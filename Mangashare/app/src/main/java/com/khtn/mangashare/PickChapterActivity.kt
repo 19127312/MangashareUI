@@ -31,13 +31,8 @@ class PickChapterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pick_chapter)
-        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
 
-            isReadPermissionGranted = permissions[Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
 
-        }
-
-        requestPermission()
         isUpdate=intent.getBooleanExtra("isUpdate",false)
         positionClick=0
         //If update
@@ -51,31 +46,8 @@ class PickChapterActivity : AppCompatActivity() {
         itemChapterClick()
 
     }
-    private fun requestPermission(){
 
-        isReadPermissionGranted = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
-
-        val permissionRequest : MutableList<String> = ArrayList()
-
-        if (!isReadPermissionGranted){
-
-            permissionRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-
-        }
-
-        if (permissionRequest.isNotEmpty()){
-
-            permissionLauncher.launch(permissionRequest.toTypedArray())
-        }
-
-    }
     fun startFileChooser( code:Int) {
-
-
 
         var i= Intent()
         i.setType("image/*")
@@ -84,17 +56,35 @@ class PickChapterActivity : AppCompatActivity() {
             i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
         }
         i.setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(Intent.createChooser(i,"Chọn hình"),code)
+        startActivityForResult(i,code)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         //Add function, if pic is successfully gotten from gallery
         if(requestCode==1111 &&resultCode== Activity.RESULT_OK&& data!=null){
-            Log.d("MYSCREEN", data.clipData?.itemCount.toString())
+//            Log.d("MYSCREEN","HEOO")
+//
+//            Log.d("MYSCREEN", data.clipData?.itemCount.toString())
+            if(data.clipData!=null){
+                val count=  data.clipData?.itemCount
+                Log.d("MYSCREEN",count.toString())
+
+                for(i in 0 until count!!){
+                    Log.d("MYSCREEN",data.clipData!!.getItemAt(i).uri.toString())
+
+                    imgsList.add(picItem(data.clipData!!.getItemAt(i).uri))
+                }
+                adapter.notifyDataSetChanged()
+                Log.d("MYSCREEN",count.toString())
+
+            }
+//            Log.d("MYSCREEN",data.data!!.toString())
+//
 //            var filepath=data.data!!
 //            imgsList.add(picItem(filepath))
 //            adapter.notifyItemInserted(imgsList.size)
+
         }
 
         //Change function, callback to adapter to change that item
