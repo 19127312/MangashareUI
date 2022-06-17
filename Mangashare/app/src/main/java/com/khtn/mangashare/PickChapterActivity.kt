@@ -66,6 +66,11 @@ class PickChapterActivity : AppCompatActivity() {
 //            Log.d("MYSCREEN","HEOO")
 //
 //            Log.d("MYSCREEN", data.clipData?.itemCount.toString())
+            if(data.data!=null){
+                Log.d("MYSCREEN",data.data.toString())
+                imgsList.add(picItem(data.data!!))
+                adapter.notifyItemInserted(imgsList.size)
+            }
             if(data.clipData!=null){
                 val count=  data.clipData?.itemCount
                 Log.d("MYSCREEN",count.toString())
