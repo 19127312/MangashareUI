@@ -4,23 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".booklist.activity.PickChapterActivity">
+    tools:context=".LoginActivity">
 
     <Button
-        android:id="@+id/openGalleryBT"
+        android:id="@+id/admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Button"
+        android:text="Admin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pickedChapterRV"
-        android:layout_width="409dp"
-        android:layout_height="625dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/openGalleryBT" />
+    <Button
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User"
+        app:layout_constraintTop_toBottomOf="@+id/admin"
+        tools:layout_editor_absoluteX="111dp" />
+
+    <Button
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author"
+        app:layout_constraintTop_toBottomOf="@+id/user"
+        tools:layout_editor_absoluteX="122dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

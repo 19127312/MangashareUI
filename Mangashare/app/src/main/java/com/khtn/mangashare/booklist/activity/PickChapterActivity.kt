@@ -1,18 +1,12 @@
-package com.khtn.mangashare
+package com.khtn.mangashare.booklist.activity
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.content.Intent.ACTION_PICK
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.PickedChapterAdapter
 import com.khtn.mangashare.model.picItem
 import kotlinx.android.synthetic.main.activity_pick_chapter.*
@@ -25,8 +19,7 @@ class PickChapterActivity : AppCompatActivity() {
     lateinit var adapter: PickedChapterAdapter
     var positionClick by Delegates.notNull<Int>()
     var isUpdate=false
-    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
-    private var isReadPermissionGranted = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

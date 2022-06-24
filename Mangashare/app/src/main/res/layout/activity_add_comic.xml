@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".booklist.activity.AddComicActivity">
+
+    <ImageView
+        android:id="@+id/backPressAddComic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Thêm thông tin truyện"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/backPressAddComic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/addCoverBackground"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backPressAddComic"
+        app:srcCompat="@drawable/background_add_pic" />
+
+    <ImageView
+        android:id="@+id/coverImage"
+        android:layout_width="100dp"
+        android:scaleType="fitXY"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/addCoverBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addCoverBackground"
+        app:srcCompat="@drawable/add_cover_information" />
+
+    <ImageView
+        android:id="@+id/addCoverIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/coverImage"
+        app:layout_constraintEnd_toEndOf="@+id/coverImage"
+        app:layout_constraintStart_toStartOf="@+id/coverImage"
+        app:layout_constraintTop_toTopOf="@+id/coverImage"
+        app:srcCompat="@drawable/ic_plus" />
+
+    <TextView
+        android:id="@+id/addCoverText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm một bìa"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/coverImage"
+        app:layout_constraintEnd_toEndOf="@+id/addCoverBackground"
+        app:layout_constraintStart_toEndOf="@+id/coverImage"
+        app:layout_constraintTop_toTopOf="@+id/coverImage" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Tiêu đề truyện"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addCoverBackground" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Mô tả truyện"
+        android:inputType="textMultiLine"
+        android:minLines="6"
+        android:maxLines="10"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/dropdownTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/dropdown"
+        android:layout_marginEnd="10dp"
+        android:drawableEnd="@drawable/ic_dropdown"
+        android:hint="Chọn thể loại"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <ImageView
+        android:id="@+id/backgroundAddChapter"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/dropdownTV"
+        app:layout_constraintStart_toStartOf="@+id/dropdownTV"
+        app:layout_constraintTop_toBottomOf="@+id/dropdownTV"
+        app:srcCompat="@drawable/background_add_chapter" />
+
+    <ImageView
+        android:id="@+id/iconAddChapter"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundAddChapter"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/backgroundAddChapter"
+        app:layout_constraintTop_toTopOf="@+id/backgroundAddChapter"
+        app:srcCompat="@drawable/ic_plus" />
+
+    <TextView
+        android:id="@+id/textAddChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Thêm chương mới"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/iconAddChapter"
+        app:layout_constraintStart_toStartOf="@+id/iconAddChapter"
+        app:layout_constraintTop_toBottomOf="@+id/iconAddChapter" />
+
+    <android.widget.Button
+        android:id="@+id/confirmAddComicBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
+        android:textColor="@color/white"
+        android:background="@drawable/background_confirm_btn"
+        android:text="XÁC NHẬN"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundAddChapter"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/backgroundAddChapter"
+        app:layout_constraintTop_toBottomOf="@+id/backgroundAddChapter" />
+</androidx.constraintlayout.widget.ConstraintLayout>

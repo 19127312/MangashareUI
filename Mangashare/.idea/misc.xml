@@ -5,6 +5,28 @@
       <map>
         <entry key="..\:/Project/Mangashare/app/src/main/res/layout/activity_pick_chapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/Mangashare/app/src/main/res/layout/item_chapter_pic.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.121" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/background_confirm_btn.xml" value="0.1975" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/continue_background_btn.xml" value="0.2555" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/continue_btn.xml" value="0.176" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/dropdown.xml" value="0.1975" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/gradient_btn.xml" value="0.1935" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/ic_home.xml" value="0.121" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/ic_user_selected.xml" value="0.1975" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/drawable/tab_color_selector.xml" value="0.121" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/activity_add_comic.xml" value="0.264" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/activity_login.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/activity_pick_chapter.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_add_book_list.xml" value="0.176" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_book_list.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_follow_book_list.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_history_book_list.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_home.xml" value="0.12158054711246201" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/fragment_profile.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/item_chapter_pic.xml" value="0.24547101449275363" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/item_history_book.xml" value="0.4" />
+        <entry key="..\:/Projects/MangashareUI/Mangashare/app/src/main/res/layout/item_my_book.xml" value="0.264" />
       </map>
     </option>
   </component>
