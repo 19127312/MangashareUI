@@ -17,9 +17,10 @@ import com.khtn.mangashare.model.picItem
 class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
     RecyclerView.Adapter<PickedChapterAdapter.ViewHolder>() {
 
-    inner class ViewHolder(listItemView: View, listener: onItemClickListener) :
-        RecyclerView.ViewHolder(listItemView) {
-        val image = listItemView.findViewById<ImageView>(R.id.chosenPic)
+
+    inner class ViewHolder(listItemView: View,listener: onItemClickListener) : RecyclerView.ViewHolder(listItemView) {
+        val image=  listItemView.findViewById<ImageView>(R.id.chosenPic)
+        val number = listItemView.findViewById<TextView>(R.id.numberChapterPic)
 
         init {
             itemView.setOnClickListener {
@@ -50,6 +51,7 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val selectImage = imgs[position]
         holder.image.setImageURI(selectImage.imgURI)
+        holder.number.text="Ảnh ${position+1}"
 
     }
 
