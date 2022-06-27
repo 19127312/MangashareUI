@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.khtn.mangashare.R
@@ -33,10 +34,44 @@ class PickChapterActivity : AppCompatActivity() {
             //TODO
         }
         setupRecycleView()
-        openGalleryBT.setOnClickListener {
+        setupView()
+        pickChapterImage()
+
+        itemChapterClick()
+        backPressAddChapter.setOnClickListener {
+            finish()
+
+        }
+        deleteAllBtn.setOnClickListener {
+            imgsList.clear()
+            adapter.notifyDataSetChanged()
+            setupView()
+        }
+    }
+
+    private fun setupView() {
+        if(imgsList.size==0){
+            deleteAllBtn.visibility= View.INVISIBLE
+            statusText.visibility=View.VISIBLE
+            confirmAddChapterBtn.visibility=View.INVISIBLE
+        }else{
+            deleteAllBtn.visibility= View.VISIBLE
+            statusText.visibility=View.INVISIBLE
+            confirmAddChapterBtn.visibility=View.VISIBLE
+
+        }
+    }
+
+    private fun pickChapterImage() {
+        addChapterImage.setOnClickListener {
             startFileChooser(1111)
         }
-        itemChapterClick()
+        addChapterBackground.setOnClickListener {
+            startFileChooser(1111)
+        }
+        addChapterText.setOnClickListener {
+            startFileChooser(1111)
+        }
 
     }
 
@@ -56,9 +91,7 @@ class PickChapterActivity : AppCompatActivity() {
 
         //Add function, if pic is successfully gotten from gallery
         if(requestCode==1111 &&resultCode== Activity.RESULT_OK&& data!=null){
-//            Log.d("MYSCREEN","HEOO")
-//
-//            Log.d("MYSCREEN", data.clipData?.itemCount.toString())
+
             if(data.data!=null){
                 Log.d("MYSCREEN",data.data.toString())
                 imgsList.add(picItem(data.data!!))
@@ -82,12 +115,13 @@ class PickChapterActivity : AppCompatActivity() {
 //            var filepath=data.data!!
 //            imgsList.add(picItem(filepath))
 //            adapter.notifyItemInserted(imgsList.size)
-
+            setupView()
         }
 
         //Change function, callback to adapter to change that item
         if(requestCode==2222 &&resultCode== Activity.RESULT_OK&& data!=null){
             adapter.OnActivityResult(data,positionClick)
+            setupView()
         }
     }
     private fun setupRecycleView() {
