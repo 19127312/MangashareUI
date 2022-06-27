@@ -6,7 +6,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="blue_100">#769FEF</color>
+    <color name="yellow">#DBE754</color>
+    <color name="pink_100">#FFC6C6</color>
+    <color name="green_100">#6AF3B2</color>
     <color name="navigation">#65e85a</color>
     <color name="confirmBtn">#1A9310</color>
+    <color name="selectedTab">#E5F4D6</color>
 </resources>
