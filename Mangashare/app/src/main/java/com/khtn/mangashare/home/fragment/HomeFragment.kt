@@ -1,5 +1,6 @@
 package com.khtn.mangashare.home.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,8 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.adapter.SuggestComicAdapter
@@ -29,6 +35,10 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var comicDayRankingItem = arrayListOf<comicItem>()
+    private var comicMonthRankingItem = arrayListOf<comicItem>()
+    private var comicYearRankingItem = arrayListOf<comicItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,11 +53,12 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        init(view)
+        initRecyclerView(view)
+        initViewPager(view)
         return view
     }
 
-    fun init(view: View) {
+    private fun initRecyclerView(view: View) {
         val cate = arrayListOf<String>()
         cate.add("Hành động")
         cate.add("Trinh thám")
@@ -74,13 +85,154 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SuggestComicAdapter(context, comic)
         adapter.onItemClick = { tmp ->
-            Log.i("test",tmp.toString())
+            Log.i("test", tmp.toString())
         }
 
         recyclerViewComic.adapter = adapter
-        recyclerViewComic.scrollToPosition(Int.MAX_VALUE/2)
+        recyclerViewComic.scrollToPosition(Int.MAX_VALUE / 2)
 
     }
+
+    private fun initViewPager(view: View) {
+        val description =
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. "
+        val category = arrayListOf<String>()
+        category.add("Phiêu lưu")
+        category.add("Hành động")
+        category.add("Hài hước")
+        category.add("Phiêu lưu")
+        category.add(description)
+
+        comicDayRankingItem.add(
+            comicItem(
+                "Naruto",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        comicDayRankingItem.add(
+            comicItem(
+                "Conan",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                false,
+                category
+            )
+        )
+        comicDayRankingItem.add(
+            comicItem(
+                "Onepiece",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+
+        comicMonthRankingItem.add(
+            comicItem(
+                "Dragon ball",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        comicMonthRankingItem.add(
+            comicItem(
+                "Naruto",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        comicMonthRankingItem.add(
+            comicItem(
+                "Bleach",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+
+        comicYearRankingItem.add(
+            comicItem(
+                "Naruto",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        comicYearRankingItem.add(
+            comicItem(
+                "Bleach",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        comicYearRankingItem.add(
+            comicItem(
+                "Doraemon",
+                R.drawable.manga_cover,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+
+        val tabLayout = view.findViewById<TabLayout>(R.id.rankingTL)
+        val viewPager = view.findViewById<ViewPager2>(R.id.comicRankingVP)
+        viewPager?.adapter =
+            ViewPagerRankingAdapter(
+                this,
+                comicDayRankingItem,
+                comicMonthRankingItem,
+                comicYearRankingItem
+            )
+        viewPager?.isUserInputEnabled = false
+        TabLayoutMediator(tabLayout, viewPager!!) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Hot trong ngày"
+                1 -> tab.text = "Hot trong tháng"
+                2 -> tab.text = "Hot trong năm"
+            }
+        }.attach()
+    }
+
 
     companion object {
         /**

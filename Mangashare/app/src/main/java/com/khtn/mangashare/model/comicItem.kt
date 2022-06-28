@@ -10,12 +10,15 @@ class comicItem : Serializable {
     var author: String? = ""
     var lastestChapter: Int? = 1
     var likeNumber: Int? = 0
+    var viewNumber: Int? = 0
     var updatedTime: Long? = 0
     var lastSeenChapter = 0
     var lastDateSeen = ""
     var totalChapter = 0
     var cover = 0
     var status = "Censored"
+    var completeStatus = false
+    var category = arrayListOf<String>()
 
     constructor() {}
     constructor(cover: Int, name: String, total: Int, lastSeen: Int, lastDate: String) {
@@ -59,5 +62,25 @@ class comicItem : Serializable {
         this.name = name
         this.cover = cover
         this.totalChapter = totalChapter
+    }
+
+    constructor(
+        name: String?,
+        cover: Int,
+        totalChapter: Int,
+        view: Int,
+        like: Int,
+        description: String?,
+        completeStatus: Boolean,
+        category: ArrayList<String>
+    ) {
+        this.name = name
+        this.cover = cover
+        this.totalChapter = totalChapter
+        this.viewNumber = view
+        this.likeNumber = like
+        this.description = description
+        this.completeStatus = completeStatus
+        this.category = category
     }
 }
