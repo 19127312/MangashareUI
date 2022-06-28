@@ -13,4 +13,5 @@
     <color name="navigation">#65e85a</color>
     <color name="confirmBtn">#1A9310</color>
     <color name="selectedTab">#E5F4D6</color>
+    <color name="gray">#EFEFEF</color>
 </resources>

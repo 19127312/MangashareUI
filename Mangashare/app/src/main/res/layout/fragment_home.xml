@@ -70,7 +70,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,9 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="Giới thiệu cho bạn"
                 android:fontFamily="@font/montaguslab_bold"
-                android:textSize="25sp"
+                android:text="Giới thiệu cho bạn"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -156,9 +156,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Thể loại"
                 android:fontFamily="@font/montaguslab_bold"
-                android:textSize="25sp"
+                android:text="Thể loại"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -167,7 +167,7 @@
 
             <android.widget.Button
                 android:id="@+id/funnyCategoryBTN"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/round_btn"
@@ -185,7 +185,7 @@
 
             <android.widget.Button
                 android:id="@+id/sportCategoryBTN"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/round_btn"
@@ -203,7 +203,7 @@
 
             <android.widget.Button
                 android:id="@+id/adventureCategoryBTN"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/round_btn"
@@ -223,7 +223,7 @@
 
             <android.widget.Button
                 android:id="@+id/loveCategoryBTN"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:background="@drawable/round_btn"
                 android:backgroundTint="@color/pink_100"
@@ -267,10 +267,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Bảng xếp hạng"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montaguslab_bold"
-                android:textSize="25sp"
+                android:text="Bảng xếp hạng"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/sportCategoryBTN"
                 app:layout_constraintTop_toBottomOf="@+id/sportCategoryBTN" />
@@ -313,14 +313,16 @@
                 android:id="@+id/rankingTL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:tabTextAppearance="@style/tab_text"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/rankingAddLL"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:tabIndicatorHeight="0dp"
                 app:tabBackground="@drawable/tab_selector"
-                app:tabMode="fixed">
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed"
+                app:tabRippleColor="@null"
+                app:tabTextAppearance="@style/tab_text">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -340,8 +342,9 @@
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintEnd_toEndOf="@+id/rankingTL"
                 app:layout_constraintStart_toStartOf="@+id/rankingTL"
@@ -356,7 +359,9 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/comicRankingVP"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
