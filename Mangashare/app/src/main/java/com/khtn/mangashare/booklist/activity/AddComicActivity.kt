@@ -37,6 +37,9 @@ class AddComicActivity : AppCompatActivity() {
         }
 
         addChapter()
+        confirmAddComicBtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun addChapter() {
@@ -44,16 +47,17 @@ class AddComicActivity : AppCompatActivity() {
         intent= Intent(this,PickChapterActivity::class.java)
         intent.putExtra("mode","add")
         backgroundAddChapter.setOnClickListener {
-            startActivity(intent)
+            startActivityForResult(intent,5555)
         }
         iconAddChapter.setOnClickListener {
-            startActivity(intent)
+            startActivityForResult(intent,5555)
         }
         textAddChapter.setOnClickListener {
-            startActivity(intent)
+            startActivityForResult(intent,5555)
 
         }
     }
+
 
     private fun categoryClick() {
         val selectedItems = ArrayList<Int>()
@@ -123,6 +127,9 @@ class AddComicActivity : AppCompatActivity() {
             thumbnail=data.data!!
             coverImage.setImageURI(thumbnail)
             addCoverIcon.visibility= View.INVISIBLE
+        }
+        if(requestCode===5555 &&resultCode== Activity.RESULT_OK){
+            finish()
         }
 
 

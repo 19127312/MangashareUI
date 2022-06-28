@@ -2,24 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootChapterAdd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".booklist.activity.PickChapterActivity">
 
-    <android.widget.Button
-        android:id="@+id/confirmAddChapterBtn"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/deleteCheck"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/background_confirm_btn"
-        android:text="XÁC NHẬN"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/pickedChapterRV"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/pickedChapterRV" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Xóa"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
 
     <ImageView
         android:id="@+id/addChapterBackground"
@@ -35,7 +33,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="80dp"
         android:fontFamily="@font/poppins_bold"
@@ -57,27 +55,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pickedChapterRV"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteAllBtn" />
 
-    <TextView
-        android:id="@+id/deleteAllBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:text="Xóa toàn bộ"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
+
 
     <ImageView
         android:id="@+id/addChapterImage"
@@ -114,65 +93,125 @@
         app:layout_constraintTop_toBottomOf="@+id/addChapterBackground"
         app:layout_constraintVertical_bias="0.332" />
 
+
+    <TextView
+        android:id="@+id/deleteAllBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Xóa toàn bộ"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pickedChapterRV"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAllBtn" />
+
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="169dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/confirmAddChapterBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusPriceText"
-        app:layout_constraintVertical_bias="0.44">
+
+        app:layout_constraintStart_toStartOf="@+id/statusChapterText"
+        app:layout_constraintTop_toBottomOf="@+id/statusChapterText">
 
         <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/freeStatus"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:checked="true"
             android:text="Free" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/vipStatus"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:text="Vip" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/statusPriceText"
+    <LinearLayout
+        android:id="@+id/priceLinearText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/priceChapterText"
+        app:layout_constraintTop_toBottomOf="@+id/priceChapterText">
+
+        <EditText
+            android:id="@+id/priceInputText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Nhập giá"
+            android:singleLine="true"
+
+            />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:paddingTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/currency" />
+
+    </LinearLayout>
+
+    <android.widget.Button
+        android:id="@+id/confirmAddChapterBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background_confirm_btn"
+        android:text="XÁC NHẬN"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/statusChapterText"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:text="Tình trạng"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pickedChapterRV" />
 
     <TextView
-        android:id="@+id/priceText"
+        android:id="@+id/priceChapterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:text="Giá tiền"
-        app:layout_constraintBottom_toBottomOf="@+id/statusPriceText"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toTopOf="@+id/statusPriceText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/statusChapterText" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
-
-        android:ems="10"
-        android:hint="Số tiền"
-
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintStart_toStartOf="@+id/priceText"
-        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
-
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="244dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
