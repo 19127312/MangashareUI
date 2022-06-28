@@ -1,14 +1,13 @@
-package com.khtn.mangashare.adapter
+package com.khtn.mangashare.booklist.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.model.picItem
@@ -21,11 +20,17 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
     inner class ViewHolder(listItemView: View,listener: onItemClickListener) : RecyclerView.ViewHolder(listItemView) {
         val image=  listItemView.findViewById<ImageView>(R.id.chosenPic)
         val number = listItemView.findViewById<TextView>(R.id.numberChapterPic)
+        val checkStatus= listItemView.findViewById<ImageView>(R.id.statusCheckPic)
 
         init {
-            itemView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
+           itemView.setOnClickListener {
+               listener.onItemClick(adapterPosition)
+           }
+           itemView.setOnLongClickListener {
+               listener.onLongItemClick(adapterPosition)
+               return@setOnLongClickListener true
+           }
+
         }
     }
 
@@ -33,6 +38,10 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
 
     interface onItemClickListener {
         fun onItemClick(position: Int) {
+
+        }
+
+        fun onLongItemClick(position: Int){
 
         }
     }
@@ -52,7 +61,13 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
         val selectImage = imgs[position]
         holder.image.setImageURI(selectImage.imgURI)
         holder.number.text="Ảnh ${position+1}"
-
+        if(selectImage.check){
+            holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_checked)
+            holder.checkStatus.visibility=View.VISIBLE
+        }else{
+            holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_pic)
+            holder.checkStatus.visibility=View.INVISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
@@ -62,6 +77,7 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
     fun OnActivityResult(data: Intent?, posChange: Int) {
         if (data != null) {
             imgs[posChange].imgURI = data.data!!
+            imgs[posChange].check=false
             notifyItemChanged(posChange)
         }
     }

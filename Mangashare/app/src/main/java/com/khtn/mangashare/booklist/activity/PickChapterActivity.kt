@@ -5,15 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.khtn.mangashare.R
-import com.khtn.mangashare.adapter.PickedChapterAdapter
+import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
 import com.khtn.mangashare.model.picItem
 import kotlinx.android.synthetic.main.activity_pick_chapter.*
-import kotlin.Int
 import kotlin.properties.Delegates
-import kotlin.toString
+
 
 class PickChapterActivity : AppCompatActivity() {
     lateinit var imgsList : ArrayList<picItem>
@@ -47,6 +48,40 @@ class PickChapterActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             setupView()
         }
+
+        priceInputText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                priceInputText.clearFocus()
+
+            }
+            false
+        })
+
+        radioCheck()
+
+        confirmAddChapterBtn.setOnClickListener {
+            val replyIntent = Intent()
+            setResult(Activity.RESULT_OK, replyIntent)
+            finish()
+        }
+    }
+
+    private fun radioCheck() {
+        radioGroup.setOnCheckedChangeListener { group, i ->
+            if(i== R.id.freeStatus){
+                Log.d("MyScreen","FREECHECK")
+
+                priceChapterText.visibility=View.INVISIBLE
+                priceLinearText.visibility=View.INVISIBLE
+            }
+            if( i==R.id.vipStatus){
+                Log.d("MyScreen","VIPCHECK")
+                priceChapterText.visibility=View.VISIBLE
+                priceLinearText.visibility=View.VISIBLE
+            }
+
+        }
+
     }
 
     private fun setupView() {
@@ -54,10 +89,17 @@ class PickChapterActivity : AppCompatActivity() {
             deleteAllBtn.visibility= View.INVISIBLE
             statusText.visibility=View.VISIBLE
             confirmAddChapterBtn.visibility=View.INVISIBLE
+            radioGroup.visibility=View.INVISIBLE
+            statusChapterText.visibility=View.INVISIBLE
+            priceChapterText.visibility=View.INVISIBLE
+            priceLinearText.visibility=View.INVISIBLE
         }else{
             deleteAllBtn.visibility= View.VISIBLE
             statusText.visibility=View.INVISIBLE
             confirmAddChapterBtn.visibility=View.VISIBLE
+            radioGroup.visibility=View.VISIBLE
+            statusChapterText.visibility=View.VISIBLE
+
 
         }
     }
@@ -137,7 +179,26 @@ class PickChapterActivity : AppCompatActivity() {
                 positionClick=position
                 startFileChooser(2222)
             }
+
+            override fun onLongItemClick(position: Int) {
+                if(imgsList[position].check){
+                    imgsList[position].check=false
+                    adapter.notifyItemChanged(position)
+                }else{
+                    imgsList[position].check=true
+                    adapter.notifyItemChanged(position)
+                }
+
+            }
         })
+    }
+
+    override fun onBackPressed() {
+        if( priceInputText.isFocused){
+            priceInputText.clearFocus();
+        }else {
+            super.onBackPressed();
+        }
     }
 
 }

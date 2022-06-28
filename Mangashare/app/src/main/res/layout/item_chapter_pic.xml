@@ -7,9 +7,14 @@
 
     <ImageView
         android:id="@+id/chosenPic"
-        android:layout_width="142dp"
-        android:layout_height="193dp"
+        android:layout_width="120dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/outline_pic"
+        android:padding="3dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +26,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chosenPic"
+        app:layout_constraintStart_toStartOf="@+id/chosenPic"
         app:layout_constraintTop_toBottomOf="@+id/chosenPic" />
+
+    <ImageView
+        android:id="@+id/statusCheckPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/chosenPic"
+        app:layout_constraintTop_toTopOf="@+id/chosenPic"
+        app:srcCompat="@drawable/ic_check" />
 </androidx.constraintlayout.widget.ConstraintLayout>
