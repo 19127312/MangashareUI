@@ -10,22 +10,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.adapter.SuggestCategoryAdapter
+import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
 import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
 class AddComicActivity : AppCompatActivity() {
     private val IMAGE_PICK_GALLARY_CODE=100
     var thumbnail: Uri? =null
-    var categoryArray: Array<String> = arrayOf("Hành động", "Hài hước", "Tình cảm","Trinh thám","Võ thuật","Kinh dị")
-    var selectedArray: ArrayList<Boolean> = ArrayList()
-    val initSelectedItems = booleanArrayOf(false, false, false,false, false, false)
+    var selectedItems: ArrayList<Int> = ArrayList<Int>()
 
+    var categoryArray: Array<String> = arrayOf("Hành động", "Hài hước", "Tình cảm","Trinh thám","Võ thuật","Kinh dị")
+    var chooseArray:ArrayList<String> = ArrayList()
+    val initSelectedItems = booleanArrayOf(false, false, false,false, false, false)
+    lateinit var adapter: SuggestCategoryAdapter
+
+    lateinit var mode: String
+    lateinit var layout: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_comic)
-
+        var intent: Intent = getIntent()
+        mode = intent.getStringExtra("mode").toString()
+        layout=findViewById<LinearLayout>(R.id.rootLinear)
         backPressAddComic.setOnClickListener {
 
             finish()
@@ -40,6 +52,44 @@ class AddComicActivity : AppCompatActivity() {
         confirmAddComicBtn.setOnClickListener {
             finish()
         }
+        initCatRV()
+        setupView(mode)
+    }
+
+    private fun setupView(mode: String) {
+
+
+        when(mode){
+            "add"-> {
+                layout.removeView(headerChaptername)
+                layout.removeView(headerDescription)
+                layout.removeView(chapterTableLayout)
+
+            }
+            "edit"-> {
+                titleModeComic.text="Sửa thông tin truyện"
+                addCoverIcon.visibility= View.INVISIBLE
+                addCoverText.text="Sửa bìa truyện"
+                coverImage.setImageResource(R.drawable.cover_manga)
+                editTextTextPersonName.setText("Plapla pla")
+                editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
+            }
+        }
+    }
+
+    private fun initCatRV() {
+        if(mode=="add"){
+            chooseArray.add("Thể loại")
+        }else{
+            chooseArray.add("Hành động")
+            chooseArray.add("Hài hước")
+            initSelectedItems[0]=true
+            initSelectedItems[1]=true
+
+        }
+        adapter=SuggestCategoryAdapter(this, chooseArray)
+        categoryRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        categoryRV.adapter = adapter
     }
 
     private fun addChapter() {
@@ -60,7 +110,6 @@ class AddComicActivity : AppCompatActivity() {
 
 
     private fun categoryClick() {
-        val selectedItems = ArrayList<Int>()
         val builder = AlertDialog.Builder(this)
         Log.d("HeLLO","He")
         builder.setTitle("Dialog with checkboxes")
@@ -76,7 +125,12 @@ class AddComicActivity : AppCompatActivity() {
                 })
             .setPositiveButton("OK",
                 DialogInterface.OnClickListener{dialogInterface, i ->
+                    chooseArray.clear()
+                    for(item in selectedItems){
+                            chooseArray.add(categoryArray[item])
 
+                    }
+                    adapter.notifyDataSetChanged()
                 })
             .setNegativeButton("Thoát",
                 DialogInterface.OnClickListener{dialogInterface, i ->
@@ -88,7 +142,21 @@ class AddComicActivity : AppCompatActivity() {
                     for (i in initSelectedItems.indices) {
                         initSelectedItems[i]=false
                     }
+                    chooseArray.clear()
+                    chooseArray.add("Thể loại")
+                    adapter.notifyDataSetChanged()
+
                 })
+            .setOnCancelListener {
+                chooseArray.clear()
+                for(item in selectedItems){
+                    if(!chooseArray.contains(categoryArray[item])){
+                        chooseArray.add(categoryArray[item])
+                    }
+                }
+                adapter.notifyDataSetChanged()
+
+            }
         builder.create()
         builder.show()
 

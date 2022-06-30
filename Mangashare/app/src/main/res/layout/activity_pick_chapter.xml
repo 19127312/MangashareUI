@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/background_add_pic" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titlePickChapterText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -47,6 +47,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <ImageView
         android:id="@+id/backPressAddChapter"
         android:layout_width="wrap_content"
@@ -54,9 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back" />
-
-
-
 
     <ImageView
         android:id="@+id/addChapterImage"
@@ -207,11 +205,24 @@
         app:layout_constraintTop_toTopOf="@+id/statusChapterText" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/pickNumberText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="244dp" />
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:text="Đã chọn 0"
+        app:layout_constraintStart_toStartOf="@+id/addChapterBackground"
+        app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
+
+    <ImageView
+        android:id="@+id/deletePickButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pickNumberText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pickNumberText"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/ic_clear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

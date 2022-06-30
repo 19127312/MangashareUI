@@ -81,5 +81,7 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
             notifyItemChanged(posChange)
         }
     }
-
+    fun SetChange(){
+        notifyDataSetChanged()
+    }
 }
