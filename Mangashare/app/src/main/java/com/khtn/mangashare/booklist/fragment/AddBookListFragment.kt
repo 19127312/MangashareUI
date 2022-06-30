@@ -78,9 +78,12 @@ class AddBookListFragment : Fragment() {
             recyclerView.adapter=adapter
         }
         adapter.setOnItemClickListener(object: myBookListAdapter.onItemClickListener{
-            lateinit var intent: Intent
             override fun onItemClick(position: Int) {
                 Log.d("MyScreen",position.toString())
+                var intent: Intent
+                intent= Intent(context,AddComicActivity::class.java)
+                intent.putExtra("mode","edit")
+                startActivity(intent)
 
             }
         })
