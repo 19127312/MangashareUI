@@ -18,7 +18,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.adapter.SuggestComicAdapter
+import com.khtn.mangashare.comicDetail.ComicDetailActivity
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.navigation.MainActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,7 +87,8 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SuggestComicAdapter(context, comic)
         adapter.onItemClick = { tmp ->
-            Log.i("test", tmp.toString())
+            val intent = Intent(context, ComicDetailActivity::class.java)
+            startActivity(intent)
         }
 
         recyclerViewComic.adapter = adapter
