@@ -13,9 +13,8 @@
     <color name="navigation">#65e85a</color>
     <color name="confirmBtn">#1A9310</color>
     <color name="selectedTab">#E5F4D6</color>
-
     <color name="checked">#1584ec</color>
-
     <color name="gray">#EFEFEF</color>
-
+    <color name="pink_2">#F0E3E3</color>
+    <color name="pink_3">#F8F2F2</color>
 </resources>

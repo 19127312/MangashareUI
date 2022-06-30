@@ -312,7 +312,7 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/rankingTL"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/rankingAddLL"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -322,7 +322,8 @@
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="fixed"
                 app:tabRippleColor="@null"
-                app:tabTextAppearance="@style/tab_text">
+                app:tabTextAppearance="@style/tab_text"
+                app:tabTextColor="#394929">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
