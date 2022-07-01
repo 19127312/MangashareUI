@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/markVipChapterIM"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_book_mark" />
+
+    <TextView
+        android:id="@+id/numberVipChapterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/lexend_regular"
+        android:text="Chương 1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/markVipChapterIM"
+        app:layout_constraintStart_toEndOf="@+id/markVipChapterIM"
+        app:layout_constraintTop_toTopOf="@+id/markVipChapterIM" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/numberVipChapterTV"
+        app:layout_constraintTop_toBottomOf="@+id/numberVipChapterTV"
+        app:srcCompat="@drawable/ic_view_number" />
+
+    <TextView
+        android:id="@+id/viewNumberVipChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="@font/lexend_regular"
+        android:text="3000"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/numberVipChapterTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/dateUpdateVipChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_medium"
+        android:text="16/08/2022"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/numberVipChapterTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/numberVipChapterTV"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/priceVipChapterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="3"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/numberVipChapterTV"
+        app:layout_constraintStart_toEndOf="@+id/numberVipChapterTV"
+        app:layout_constraintTop_toTopOf="@+id/numberVipChapterTV" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="17dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/priceVipChapterTV"
+        app:layout_constraintStart_toEndOf="@+id/priceVipChapterTV"
+        app:layout_constraintTop_toTopOf="@+id/priceVipChapterTV"
+        app:srcCompat="@drawable/currency" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
