@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
 import kotlinx.android.synthetic.main.activity_add_comic.*
+import kotlinx.android.synthetic.main.activity_pick_chapter.*
 import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
 class AddComicActivity : AppCompatActivity() {
@@ -54,8 +57,30 @@ class AddComicActivity : AppCompatActivity() {
         }
         initCatRV()
         setupView(mode)
-    }
+        editTextTextPersonName.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                editTextTextPersonName.clearFocus()
 
+            }
+            false
+        })
+
+        editTextTextMultiLine.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                editTextTextMultiLine.clearFocus()
+            }
+            false
+        })
+    }
+    override fun onBackPressed() {
+        if( editTextTextPersonName.isFocused ||editTextTextMultiLine.isFocused){
+            editTextTextPersonName.clearFocus()
+            editTextTextMultiLine.clearFocus()
+
+        }else {
+            super.onBackPressed();
+        }
+    }
     private fun setupView(mode: String) {
 
 
@@ -64,6 +89,7 @@ class AddComicActivity : AppCompatActivity() {
                 layout.removeView(headerChaptername)
                 layout.removeView(headerDescription)
                 layout.removeView(chapterTableLayout)
+                layout.removeView(chapterRV)
 
             }
             "edit"-> {
@@ -81,6 +107,8 @@ class AddComicActivity : AppCompatActivity() {
         if(mode=="add"){
             chooseArray.add("Thể loại")
         }else{
+            selectedItems.add(0)
+            selectedItems.add(1)
             chooseArray.add("Hành động")
             chooseArray.add("Hài hước")
             initSelectedItems[0]=true
@@ -112,7 +140,7 @@ class AddComicActivity : AppCompatActivity() {
     private fun categoryClick() {
         val builder = AlertDialog.Builder(this)
         Log.d("HeLLO","He")
-        builder.setTitle("Dialog with checkboxes")
+        builder.setTitle("Chọn thể loại")
             .setMultiChoiceItems(
                 categoryArray, initSelectedItems,
                 DialogInterface.OnMultiChoiceClickListener {

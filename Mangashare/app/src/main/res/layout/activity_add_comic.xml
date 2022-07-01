@@ -199,6 +199,18 @@
                     android:textSize="15dp" />
 
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@drawable/outline_pic"
+                android:id="@+id/chapterRV"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                tools:listitem="@layout/item_chapter"
+
+                android:layout_marginEnd="10dp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
