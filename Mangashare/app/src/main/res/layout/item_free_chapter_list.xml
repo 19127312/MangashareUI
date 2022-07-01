@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/markFreeChapterIM"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_book_mark" />
+
+    <TextView
+        android:id="@+id/numberFreeChapterTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/lexend_regular"
+        android:text="Chương 1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/markFreeChapterIM"
+        app:layout_constraintStart_toEndOf="@+id/markFreeChapterIM"
+        app:layout_constraintTop_toTopOf="@+id/markFreeChapterIM" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/numberFreeChapterTV"
+        app:layout_constraintTop_toBottomOf="@+id/numberFreeChapterTV"
+        app:srcCompat="@drawable/ic_view_number" />
+
+    <TextView
+        android:id="@+id/viewNumberFreeChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="@font/lexend_regular"
+        android:text="3000"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/numberFreeChapterTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/dateUpdateFreeChapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_medium"
+        android:text="16/08/2022"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/numberFreeChapterTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toEndOf="@+id/numberFreeChapterTV"
+        app:layout_constraintTop_toTopOf="@+id/numberFreeChapterTV"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="100dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/ic_free"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Miễn phí"
+        android:textColor="@color/green_101"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/numberFreeChapterTV"
+        app:layout_constraintStart_toEndOf="@+id/numberFreeChapterTV"
+        app:layout_constraintTop_toTopOf="@+id/numberFreeChapterTV" />
+</androidx.constraintlayout.widget.ConstraintLayout>
