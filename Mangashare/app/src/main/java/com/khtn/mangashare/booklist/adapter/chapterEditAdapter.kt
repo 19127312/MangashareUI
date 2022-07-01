@@ -10,9 +10,10 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.picItem
 
-class chapterEditAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
+class chapterEditAdapter(var imgs: ArrayList<chapterItem>) :
     RecyclerView.Adapter<chapterEditAdapter.ViewHolder>() {
 
 
@@ -38,7 +39,7 @@ class chapterEditAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
 
     }
 
-    fun setOnItemClickListener(listener: onItemClickListener) {
+    fun setOnItemClickListener(listener: chapterEditAdapter.onItemClickListener) {
         mListener = listener
     }
 
@@ -51,7 +52,8 @@ class chapterEditAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val selectImage = imgs[position]
-        holder.number.text="Ảnh ${position+1}"
+        holder.number.text="Chương ${selectImage.number}"
+        holder.date.text="Ngày cập nhật: ${selectImage.datePost}"
         //holder.date.text="Ngày cập nhật: ${}"
     }
 
@@ -59,14 +61,5 @@ class chapterEditAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
         return imgs.size
     }
 
-    fun OnActivityResult(data: Intent?, posChange: Int) {
-        if (data != null) {
-            imgs[posChange].imgURI = data.data!!
-            imgs[posChange].check=false
-            notifyItemChanged(posChange)
-        }
-    }
-    fun SetChange(){
-        notifyDataSetChanged()
-    }
+
 }
