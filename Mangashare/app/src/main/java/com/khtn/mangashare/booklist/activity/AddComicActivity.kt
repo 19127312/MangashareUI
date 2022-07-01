@@ -2,7 +2,6 @@ package com.khtn.mangashare.booklist.activity
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -13,12 +12,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
+import com.khtn.mangashare.booklist.adapter.chapterEditAdapter
+import com.khtn.mangashare.model.chapterItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.activity_pick_chapter.*
 import kotlinx.android.synthetic.main.fragment_add_book_list.*
@@ -27,12 +26,13 @@ class AddComicActivity : AppCompatActivity() {
     private val IMAGE_PICK_GALLARY_CODE=100
     var thumbnail: Uri? =null
     var selectedItems: ArrayList<Int> = ArrayList<Int>()
+    lateinit var chapterList : ArrayList<chapterItem>
 
     var categoryArray: Array<String> = arrayOf("Hành động", "Hài hước", "Tình cảm","Trinh thám","Võ thuật","Kinh dị")
     var chooseArray:ArrayList<String> = ArrayList()
     val initSelectedItems = booleanArrayOf(false, false, false,false, false, false)
     lateinit var adapter: SuggestCategoryAdapter
-
+    lateinit var chapterAdapter: chapterEditAdapter
     lateinit var mode: String
     lateinit var layout: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,8 +99,35 @@ class AddComicActivity : AppCompatActivity() {
                 coverImage.setImageResource(R.drawable.cover_manga)
                 editTextTextPersonName.setText("Plapla pla")
                 editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
+                setupRV()
+                filterChapterMode.setOnClickListener {
+                    chapterList.reverse()
+                    chapterAdapter.notifyDataSetChanged()
+                }
             }
         }
+    }
+
+    private fun setupRV() {
+        chapterList= ArrayList<chapterItem>()
+        chapterList.add(chapterItem(1,"10/01/22"))
+        chapterList.add(chapterItem(2,"12/01/22"))
+        chapterList.add(chapterItem(3,"13/01/22"))
+        chapterList.add(chapterItem(4,"14/01/22"))
+        chapterList.add(chapterItem(5,"15/01/22"))
+
+        chapterAdapter = chapterEditAdapter(chapterList)
+        chapterRV.adapter=chapterAdapter
+        chapterRV.layoutManager= LinearLayoutManager(this)
+
+        chapterAdapter.setOnItemClickListener(object: chapterEditAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                var intent: Intent=Intent(this@AddComicActivity,PickChapterActivity::class.java)
+                intent.putExtra("mode","edit")
+                startActivityForResult(intent,5555)
+            }
+
+        })
     }
 
     private fun initCatRV() {

@@ -35,7 +35,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="600dp">
+        android:layout_height="605dp">
 
         <LinearLayout
             android:id="@+id/rootLinear"
@@ -105,22 +105,39 @@
                 android:text="Sửa tiêu đề truyện"
                 android:textSize="20dp"
                 android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextTextPersonName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="Tiêu đề truyện"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addCoverBackground" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+<!--            <EditText-->
+<!--                android:id="@+id/editTextTextPersonName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:ems="10"-->
+<!--                android:hint="Tiêu đề truyện"-->
+<!--                android:inputType="textPersonName"-->
+<!--                android:minHeight="48dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/addCoverBackground" />-->
 
             <TextView
                 android:id="@+id/headerDescription"
@@ -262,7 +279,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="23dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/background_confirm_btn"
