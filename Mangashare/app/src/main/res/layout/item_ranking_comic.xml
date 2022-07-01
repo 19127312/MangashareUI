@@ -113,7 +113,6 @@
             android:id="@+id/rankingChapterTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins_regular"
             android:text="500 chương"
             android:textSize="12sp"
