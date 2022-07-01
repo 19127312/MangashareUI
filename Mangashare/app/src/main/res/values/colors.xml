@@ -17,4 +17,7 @@
     <color name="gray">#EFEFEF</color>
     <color name="pink_2">#F0E3E3</color>
     <color name="pink_3">#F8F2F2</color>
+    <color name="transparent_black">#55000000</color>
+    <color name="transparent_white">#55FFFFFF</color>
+    <color name="transparent_gray">#55D0D0D0</color>
 </resources>

@@ -65,7 +65,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/round_btn"
-                android:backgroundTint="#55000000"
+                android:backgroundTint="@color/transparent_black"
                 android:orientation="vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -161,8 +161,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/round_btn"
-            android:backgroundTint="#55EFEFEF"
+            android:backgroundTint="@color/transparent_gray"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingEnd="20dp"
@@ -180,7 +182,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_book_mark" />
+                    android:src="@drawable/ic_continue_read" />
 
                 <TextView
                     android:layout_width="wrap_content"
