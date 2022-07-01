@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/markFreeChapterIM"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="13dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +21,15 @@
         android:id="@+id/numberFreeChapterTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="32dp"
         android:fontFamily="@font/lexend_regular"
         android:text="Chương 1"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/markFreeChapterIM"
         app:layout_constraintStart_toEndOf="@+id/markFreeChapterIM"
-        app:layout_constraintTop_toTopOf="@+id/markFreeChapterIM" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.722" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -58,21 +59,21 @@
         android:id="@+id/dateUpdateFreeChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/lexend_medium"
         android:text="16/08/2022"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/numberFreeChapterTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toEndOf="@+id/numberFreeChapterTV"
         app:layout_constraintTop_toTopOf="@+id/numberFreeChapterTV"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="15dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/ic_free"
         android:gravity="center"
         android:paddingStart="10dp"
@@ -81,6 +82,7 @@
         android:textColor="@color/green_101"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/numberFreeChapterTV"
+        app:layout_constraintEnd_toStartOf="@+id/dateUpdateFreeChapter"
         app:layout_constraintStart_toEndOf="@+id/numberFreeChapterTV"
         app:layout_constraintTop_toTopOf="@+id/numberFreeChapterTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

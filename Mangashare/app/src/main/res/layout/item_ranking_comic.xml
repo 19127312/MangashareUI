@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
@@ -79,12 +79,11 @@
             android:id="@+id/imageView6"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="@+id/rankingChapterTV"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rankingChapterTV"
             app:layout_constraintTop_toTopOf="@+id/rankingChapterTV"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_stack" />
 
         <ImageView
@@ -113,6 +112,7 @@
             android:id="@+id/rankingChapterTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins_regular"
             android:text="500 chương"
             android:textSize="12sp"

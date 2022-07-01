@@ -11,11 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/lexend_regular"
-        android:text="Cập nhật mới nhất: chương 13 (27/06/2022)"
+        android:text="Mới nhất: Chương 13"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +31,6 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/lexend_medium"
         android:text="Cũ nhất"
@@ -41,7 +38,6 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/updateTimeChapterListTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/updateTimeChapterListTV"
         app:layout_constraintTop_toTopOf="@+id/updateTimeChapterListTV" />
 
     <android.widget.Button
