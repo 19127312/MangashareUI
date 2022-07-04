@@ -252,6 +252,10 @@ class AddComicActivity : AppCompatActivity() {
                         chooseArray.add(categoryArray[item])
                     }
                 }
+                if(selectedItems.size==0){
+                    chooseArray.add("Thể loại")
+
+                }
                 adapter.notifyDataSetChanged()
 
             }
