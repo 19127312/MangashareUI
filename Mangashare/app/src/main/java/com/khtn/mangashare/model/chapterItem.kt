@@ -32,5 +32,11 @@ class chapterItem : Serializable {
         this.bookmark = bookmark
         this.viewNumber = view
     }
+    constructor (temp: chapterItem){
+        this.number = temp.number
+        this.datePost = temp.datePost
+
+
+    }
 
 }

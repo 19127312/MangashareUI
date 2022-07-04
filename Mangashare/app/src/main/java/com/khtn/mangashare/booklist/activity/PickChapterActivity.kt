@@ -24,30 +24,48 @@ class PickChapterActivity : AppCompatActivity() {
     var tempList:ArrayList<picItem> = ArrayList<picItem>()
     lateinit var adapter: PickedChapterAdapter
     var positionClick by Delegates.notNull<Int>()
-    var isUpdate=false
+    lateinit var mode: String
     lateinit var view :View
-
+    lateinit var positionChapter:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pick_chapter)
         view=findViewById<View>(R.id.rootChapterAdd)
 
-        isUpdate=intent.getBooleanExtra("isUpdate",false)
+        mode= intent.getStringExtra("mode").toString()
+        positionChapter=intent.getStringExtra("positionChapter").toString()
         positionClick=0
         //If update
-        if(isUpdate){
-            //TODO
-        }
+
         setupRecycleView()
+        if(mode=="add"){
+            icon_deleteChapter_btn.visibility=View.INVISIBLE
+        }else{
+            titlePickChapterText.text="Sửa chương truyện"
+            imgsList.add(picItem(R.drawable.cover_manga))
+            imgsList.add(picItem(R.drawable.cover_manga))
+            imgsList.add(picItem(R.drawable.cover_manga))
+            imgsList.add(picItem(R.drawable.cover_manga))
+            priceChapterText.visibility=View.INVISIBLE
+            priceLinearText.visibility=View.INVISIBLE
+        }
+
         setupView()
         pickChapterImage()
 
         itemChapterClick()
         backPressAddChapter.setOnClickListener {
             finish()
-
         }
+        icon_deleteChapter_btn.setOnClickListener {
+            val replyIntent = Intent()
+            replyIntent.putExtra("status", "delete")
+            replyIntent.putExtra("positionChapter", positionChapter)
+            setResult(Activity.RESULT_OK, replyIntent)
+            finish()
+        }
+
         deleteAllBtn.setOnClickListener {
             tempList= ArrayList(imgsList)
             imgsList.clear()
@@ -79,8 +97,13 @@ class PickChapterActivity : AppCompatActivity() {
 
         confirmAddChapterBtn.setOnClickListener {
             val replyIntent = Intent()
+            replyIntent.putExtra("status", mode)
+            if(mode!="add") {
+                replyIntent.putExtra("positionChapter", positionChapter)
+            }
             setResult(Activity.RESULT_OK, replyIntent)
             finish()
+
         }
 
         deleteCheck.setOnClickListener {
@@ -106,6 +129,8 @@ class PickChapterActivity : AppCompatActivity() {
                 Log.d("MyScreen",imgsList.size.toString())
                 tempList.clear()
                 adapter.SetChange()
+                setupView()
+
             })
             deleteList.clear()
             pickNumberText.text="Đã chọn ${deleteList.size}"
@@ -145,6 +170,8 @@ class PickChapterActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+
+
         if(deleteList.size==0){
             deletePickButton.visibility= View.INVISIBLE
             pickNumberText.visibility= View.INVISIBLE
@@ -248,7 +275,6 @@ class PickChapterActivity : AppCompatActivity() {
         pickedChapterRV.layoutManager= GridLayoutManager(this,3)
     }
     private fun itemChapterClick() {
-        var intent: Intent
         adapter.setOnItemClickListener(object: PickedChapterAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 positionClick=position
