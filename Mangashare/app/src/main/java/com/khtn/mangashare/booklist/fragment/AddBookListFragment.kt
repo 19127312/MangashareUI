@@ -1,5 +1,6 @@
 package com.khtn.mangashare.booklist.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.activity.AddComicActivity
 import com.khtn.mangashare.booklist.adapter.historyBookListAdapter
 import com.khtn.mangashare.booklist.adapter.myBookListAdapter
 import com.khtn.mangashare.model.comicItem
+import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +32,8 @@ private const val ARG_PARAM2 = "param2"
 class AddBookListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var adapter: myBookListAdapter
-
+    val DELETE_CODE=666;
+    lateinit var itemList:ArrayList<comicItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +68,6 @@ class AddBookListFragment : Fragment() {
         if (recyclerView != null) {
             recyclerView.layoutManager= LinearLayoutManager(activity)
         }
-        var itemList:ArrayList<comicItem>
         itemList= ArrayList()
         itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Censored"))
         itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Uncensored"))
@@ -79,14 +82,40 @@ class AddBookListFragment : Fragment() {
         }
         adapter.setOnItemClickListener(object: myBookListAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                Log.d("MyScreen",position.toString())
                 var intent: Intent
                 intent= Intent(context,AddComicActivity::class.java)
                 intent.putExtra("mode","edit")
-                startActivity(intent)
+                intent.putExtra("position",position.toString())
+                startActivityForResult(intent,DELETE_CODE)
 
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==DELETE_CODE &&resultCode== Activity.RESULT_OK&& data!=null){
+            val position = data!!.getStringExtra("position")?.toInt()
+            var snackbar = Snackbar.make(rootAddBook, "Đã xóa truyện ${itemList[position!!.toInt()].name}", Snackbar.LENGTH_LONG)
+            var item=comicItem(itemList[position])
+
+            if (position != null) {
+                itemList.removeAt(position)
+            }
+            if (position != null) {
+                adapter.notifyItemRemoved(position)
+            }
+            if (position != null) {
+                adapter.notifyItemRangeChanged(position,itemList.size)
+            }
+            snackbar.show()
+            snackbar.setAction("Undo delete", View.OnClickListener() {
+                itemList.add(position,item)
+                adapter.notifyItemInserted(position)
+                adapter.notifyItemRangeChanged(position, itemList.size)
+
+            })
+        }
     }
 
 

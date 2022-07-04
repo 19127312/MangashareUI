@@ -113,4 +113,11 @@ class comicItem : Serializable {
         this.category = category
         this.chapter = chapter
     }
+    constructor (temp: comicItem){
+        this.name = temp.name
+        this.totalChapter = temp.totalChapter
+        this.status = temp.status
+        this.cover = temp.cover
+
+    }
 }
