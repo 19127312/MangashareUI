@@ -125,7 +125,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/suggestCategoryRC"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -139,7 +139,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/suggestComicRC"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -148,7 +148,6 @@
                 app:layout_constraintStart_toStartOf="@+id/suggestCategoryRC"
                 app:layout_constraintTop_toBottomOf="@+id/suggestCategoryRC"
                 app:layout_constraintVertical_bias="0.0">
-
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView

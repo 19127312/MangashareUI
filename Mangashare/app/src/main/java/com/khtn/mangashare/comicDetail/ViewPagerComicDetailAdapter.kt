@@ -1,5 +1,7 @@
 package com.khtn.mangashare.comicDetail
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestComicAdapter
+import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
+import com.khtn.mangashare.chapterDetail.ImageChapterDetailAdapter
 import com.khtn.mangashare.model.comicItem
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import java.time.LocalDate
@@ -63,6 +67,22 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         init(view)
     }
 
+    lateinit var adapter: ChapterRecyclerViewAdapter
+    var items = arrayListOf<ChapterRecyclerViewItem>()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 111 && resultCode == Activity.RESULT_OK) {
+            var tmp = data?.getSerializableExtra("comic") as comicItem
+            comic = tmp
+            items.clear()
+            tmp.chapter.forEach { i ->
+                items.add(ChapterRecyclerViewItem.parseData(i))
+            }
+
+            adapter.notifyDataSetChanged()
+        }
+    }
+
     private fun init(view: View?) {
         var latestChapter = view?.findViewById<TextView>(R.id.lastestChapterListTV)
         var price = view?.findViewById<TextView>(R.id.priceChapterListTV)
@@ -81,28 +101,27 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         numberChapter?.setText("${numberChapterTmp} Chương")
 
         //RecycleView
-        val items = arrayListOf<ChapterRecyclerViewItem>()
         comic.chapter.forEach { i ->
             items.add(ChapterRecyclerViewItem.parseData(i))
         }
         val recycleView = view?.findViewById<RecyclerView>(R.id.chapterListDetailRC)
         recycleView?.layoutManager = LinearLayoutManager(activity)
-        val adapter = context?.let { ChapterRecyclerViewAdapter(it) }!!
+        adapter = context?.let { ChapterRecyclerViewAdapter(it) }!!
         adapter.items = items
         recycleView?.adapter = adapter
 
         adapter.itemClickListener = { view, item, position ->
-            val messenger = when (item) {
-                is ChapterRecyclerViewItem.VipChapter -> "Vip ${item.chapter} click"
-                is ChapterRecyclerViewItem.FreeChapter -> "Free ${item.chapter} click"
-            }
-            Toast.makeText(context, messenger, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, ChapterDetailActivity::class.java)
+            intent.putExtra("comic", comic)
+            intent.putExtra("chapterNumber", position)
+            startActivityForResult(intent, 111)
         }
 
         adapter.onButtonClick = { view, item, position ->
             when (item) {
                 is ChapterRecyclerViewItem.VipChapter -> {
                     if (item.status == true) {
+                        comic.chapter[position].bookmark = false
                         item.status = false
                     } else {
                         items.forEach { i ->
@@ -112,11 +131,13 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
                             }
                         }
                         item.status = true
+                        comic.chapter[position].bookmark = true
                     }
                 }
                 is ChapterRecyclerViewItem.FreeChapter -> {
                     if (item.status == true) {
                         item.status = false
+                        comic.chapter[position].bookmark = false
                     } else {
                         items.forEach { i ->
                             when (i) {
@@ -125,6 +146,7 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
                             }
                         }
                         item.status = true
+                        comic.chapter[position].bookmark = true
                     }
 
                 }
