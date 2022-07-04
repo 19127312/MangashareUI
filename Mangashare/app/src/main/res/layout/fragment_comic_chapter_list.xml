@@ -6,10 +6,10 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/updateTimeChapterListTV"
+        android:id="@+id/lastestChapterListTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/lexend_regular"
         android:text="Mới nhất: Chương 13"
         android:textColor="@color/black"
@@ -22,13 +22,13 @@
         android:layout_width="0dp"
         android:layout_height="400dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/sortChapterTV"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/updateTimeChapterListTV"
-        app:layout_constraintTop_toBottomOf="@+id/updateTimeChapterListTV" />
+        app:layout_constraintStart_toStartOf="@+id/lastestChapterListTV"
+        app:layout_constraintTop_toBottomOf="@+id/lastestChapterListTV" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sortChapterTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -36,9 +36,11 @@
         android:text="Cũ nhất"
         android:textColor="@color/checked"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/updateTimeChapterListTV"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/lastestChapterListTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/updateTimeChapterListTV" />
+        app:layout_constraintTop_toTopOf="@+id/lastestChapterListTV" />
 
     <android.widget.Button
         android:id="@+id/buyChapterListBTN"
@@ -73,7 +75,7 @@
         android:id="@+id/priceChapterListTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="256dp"
+        android:layout_marginStart="250dp"
         android:fontFamily="@font/lexend_regular"
         android:text="13"
         android:textColor="#33000000"
@@ -87,10 +89,9 @@
         android:id="@+id/imageView3"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/priceChapterListTV"
-        app:layout_constraintEnd_toEndOf="@+id/chapterListDetailRC"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/priceChapterListTV"
         app:layout_constraintTop_toTopOf="@+id/priceChapterListTV"
         app:srcCompat="@drawable/currency" />

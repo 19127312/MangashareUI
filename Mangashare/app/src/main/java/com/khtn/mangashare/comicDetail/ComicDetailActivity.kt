@@ -32,7 +32,7 @@ class ComicDetailActivity : AppCompatActivity() {
         chapterList.add(chapterItem(12,"24/05/2022",0,false,200))
         chapterList.add(chapterItem(13,"25/05/2022",0,false,200))
         chapterList.add(chapterItem(14,"26/05/2022",100,false,200))
-        chapterList.add(chapterItem(15,"27/05/2022",0,false,200))
+        chapterList.add(chapterItem(15,"10/07/2022",0,false,200))
 
 
         val category = arrayListOf<String>()
