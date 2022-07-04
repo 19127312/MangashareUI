@@ -1,5 +1,6 @@
 package com.khtn.mangashare.comicDetail
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -14,10 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
-import com.khtn.mangashare.adapter.RankingComicAdapter
 import com.khtn.mangashare.adapter.SuggestComicAdapter
 import com.khtn.mangashare.model.comicItem
 import com.ms.square.android.expandabletextview.ExpandableTextView
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ViewPagerComicDetailAdapter : FragmentStateAdapter {
     constructor(
@@ -56,27 +60,27 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView(view)
         init(view)
     }
 
-
-
     private fun init(view: View?) {
-        var reviewNumber = view?.findViewById<TextView>(R.id.reviewNumberTV)
-        var viewNumber = view?.findViewById<TextView>(R.id.viewNumberTV)
-        var likeNumber = view?.findViewById<TextView>(R.id.likeNumberTV)
-        var followNumber = view?.findViewById<TextView>(R.id.followNumberTV)
-        var description = view?.findViewById<ExpandableTextView>(R.id.expandTV)
-        description?.setText(comic.description)
+        var latestChapter = view?.findViewById<TextView>(R.id.lastestChapterListTV)
+        var price = view?.findViewById<TextView>(R.id.priceChapterListTV)
+        var sort = view?.findViewById<TextView>(R.id.sortChapterTV)
+        var numberChapter = view?.findViewById<TextView>(R.id.numberChapterChapterListTV)
+        latestChapter?.setText("Mới nhất: Chương ${comic.chapter.size}")
+        var priceTmp: Int = 0
+        var numberChapterTmp: Int = 0
+        comic.chapter.forEach { i ->
+            if (i.price!! > 0) {
+                numberChapterTmp++
+                priceTmp += i.price!!
+            }
+        }
+        price?.setText(priceTmp.toString())
+        numberChapter?.setText("${numberChapterTmp} Chương")
 
-        comic.reviewNumber?.toString().let { reviewNumber?.setText(it) }
-        comic.viewNumber?.toString().let { viewNumber?.setText(it) }
-        comic.likeNumber?.toString().let { likeNumber?.setText(it) }
-        comic.followNumber?.toString().let { followNumber?.setText(it) }
-    }
-
-    private fun initRecyclerView(view: View?) {
+        //RecycleView
         val items = arrayListOf<ChapterRecyclerViewItem>()
         comic.chapter.forEach { i ->
             items.add(ChapterRecyclerViewItem.parseData(i))
@@ -98,35 +102,42 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         adapter.onButtonClick = { view, item, position ->
             when (item) {
                 is ChapterRecyclerViewItem.VipChapter -> {
-                    if(item.status == true){
+                    if (item.status == true) {
                         item.status = false
-                    }
-                    else{
+                    } else {
                         items.forEach { i ->
-                            when(i){
-                                is ChapterRecyclerViewItem.VipChapter -> i.status=false
-                                is ChapterRecyclerViewItem.FreeChapter -> i.status=false
+                            when (i) {
+                                is ChapterRecyclerViewItem.VipChapter -> i.status = false
+                                is ChapterRecyclerViewItem.FreeChapter -> i.status = false
                             }
                         }
-                        item.status= true
+                        item.status = true
                     }
                 }
                 is ChapterRecyclerViewItem.FreeChapter -> {
-                    if(item.status == true){
+                    if (item.status == true) {
                         item.status = false
-                    }
-                    else{
+                    } else {
                         items.forEach { i ->
-                            when(i){
-                                is ChapterRecyclerViewItem.VipChapter -> i.status=false
-                                is ChapterRecyclerViewItem.FreeChapter -> i.status=false
+                            when (i) {
+                                is ChapterRecyclerViewItem.VipChapter -> i.status = false
+                                is ChapterRecyclerViewItem.FreeChapter -> i.status = false
                             }
                         }
-                        item.status= true
+                        item.status = true
                     }
 
                 }
             }
+            adapter.notifyDataSetChanged()
+        }
+        sort?.setOnClickListener {
+            if (sort.text == "Cũ nhất") {
+                sort.setText("Mới nhất")
+            } else {
+                sort.setText("Cũ nhất")
+            }
+            items.reverse()
             adapter.notifyDataSetChanged()
         }
     }
@@ -147,18 +158,50 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
 
     private var recyclerView: RecyclerView? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun init(view: View?) {
         var reviewNumber = view?.findViewById<TextView>(R.id.reviewNumberTV)
         var viewNumber = view?.findViewById<TextView>(R.id.viewNumberTV)
         var likeNumber = view?.findViewById<TextView>(R.id.likeNumberTV)
         var followNumber = view?.findViewById<TextView>(R.id.followNumberTV)
         var description = view?.findViewById<ExpandableTextView>(R.id.expandTV)
-        description?.setText(comic.description)
+        var updateTime = view?.findViewById<TextView>(R.id.updateDetailComicTV)
 
         comic.reviewNumber?.toString().let { reviewNumber?.setText(it) }
         comic.viewNumber?.toString().let { viewNumber?.setText(it) }
         comic.likeNumber?.toString().let { likeNumber?.setText(it) }
         comic.followNumber?.toString().let { followNumber?.setText(it) }
+        description?.setText(comic.description)
+        if (comic.chapter.size > 0) {
+
+            val new = LocalDate.parse(
+                comic.chapter[0].datePost,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            )
+            val old = LocalDate.parse(
+                comic.chapter[comic.chapter.size - 1].datePost,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            )
+            val tmp: LocalDate
+            if (old > new) {
+                tmp = old
+            } else {
+                tmp = new
+            }
+            val day = tmp.dayOfWeek.toString()
+            var temp = ""
+            when (day) {
+                "MONDAY" -> temp = "thứ 2"
+                "TUESDAY" -> temp = "thứ 3"
+                "WEDNESDAY" -> temp = "thứ 4"
+                "THURSDAY" -> temp = "thứ 5"
+                "FRIDAY" -> temp = "thứ 6"
+                "SATURDAY" -> temp = "thứ 7"
+                "SUNDAY" -> temp = "chủ nhật"
+            }
+            updateTime?.setText("Cập nhật mới nhất ${temp} (${comic.chapter[comic.chapter.size - 1].datePost})")
+        }
+
     }
 
     private fun initRecyclerView(view: View?) {
