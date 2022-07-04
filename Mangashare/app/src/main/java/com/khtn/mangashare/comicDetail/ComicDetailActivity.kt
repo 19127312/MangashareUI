@@ -17,23 +17,85 @@ class ComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
-        val chapterList = arrayListOf<chapterItem>()
-        chapterList.add(chapterItem(1,"20/05/2022",0,false,200))
-        chapterList.add(chapterItem(2,"21/05/2022",100,false,200))
-        chapterList.add(chapterItem(3,"22/05/2022",220,false,200))
-        chapterList.add(chapterItem(4,"23/05/2022",0,false,200))
-        chapterList.add(chapterItem(5,"24/05/2022",0,true,200))
-        chapterList.add(chapterItem(6,"25/05/2022",0,false,200))
-        chapterList.add(chapterItem(7,"26/05/2022",100,false,200))
-        chapterList.add(chapterItem(8,"27/05/2022",0,false,200))
-        chapterList.add(chapterItem(9,"21/05/2022",100,false,200))
-        chapterList.add(chapterItem(10,"22/05/2022",220,false,200))
-        chapterList.add(chapterItem(11,"23/05/2022",0,false,200))
-        chapterList.add(chapterItem(12,"24/05/2022",0,false,200))
-        chapterList.add(chapterItem(13,"25/05/2022",0,false,200))
-        chapterList.add(chapterItem(14,"26/05/2022",100,false,200))
-        chapterList.add(chapterItem(15,"10/07/2022",0,false,200))
 
+        val intent = intent
+        var comic: comicItem = initItem()
+        comic = initItem()
+        initViewPager(comic)
+        init(comic)
+
+    }
+
+    lateinit var adapter: ViewPagerComicDetailAdapter
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun init(comic: comicItem) {
+        val tb = findViewById<Toolbar>(R.id.comicDetailTB)
+        val author = findViewById<TextView>(R.id.authorDetailTV)
+        val category = findViewById<TextView>(R.id.categoryDetailTV)
+        tb.title = comic.name
+        author.setText(comic.author)
+        if (comic.category.size > 0) {
+            category.setText(comic.category[0])
+        }
+        tb.setNavigationOnClickListener { finish() }
+    }
+
+    private fun initViewPager(comic: comicItem) {
+
+        val tabLayout = findViewById<TabLayout>(R.id.detailTL)
+        val viewPager = findViewById<ViewPager2>(R.id.comicDetailVP)
+        adapter = ViewPagerComicDetailAdapter(
+            supportFragmentManager, lifecycle,
+            comic
+        )
+        viewPager?.adapter = adapter
+
+        viewPager?.isUserInputEnabled = false
+        TabLayoutMediator(tabLayout, viewPager!!) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Mô tả truyện"
+                1 -> tab.text = "Chương truyện"
+            }
+        }.attach()
+    }
+
+    private fun initItem(): comicItem {
+        val imageList = arrayListOf<Int>()
+        imageList.add(R.drawable.cover_manga)
+        imageList.add(R.drawable.cover_manga)
+        imageList.add(R.drawable.cover_manga)
+        imageList.add(R.drawable.cover_manga)
+        imageList.add(R.drawable.cover_manga)
+
+        val imageList2 = arrayListOf<Int>()
+        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_cover)
+
+        val chapterList = arrayListOf<chapterItem>()
+        chapterList.add(chapterItem(1, "20/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(2, "21/05/2022", 100, false, 200, imageList2))
+        chapterList.add(chapterItem(3, "22/05/2022", 220, false, 200, imageList2))
+        chapterList.add(chapterItem(4, "23/05/2022", 0, false, 200, imageList2))
+        chapterList.add(chapterItem(5, "24/05/2022", 0, true, 200, imageList2))
+        chapterList.add(chapterItem(6, "25/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(7, "26/05/2022", 100, false, 200, imageList))
+        chapterList.add(chapterItem(8, "27/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(9, "21/05/2022", 100, false, 200, imageList2))
+        chapterList.add(chapterItem(10, "22/05/2022", 220, false, 200, imageList))
+        chapterList.add(chapterItem(11, "23/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(12, "24/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(13, "25/05/2022", 0, false, 200, imageList))
+        chapterList.add(chapterItem(14, "26/05/2022", 100, false, 200, imageList))
+        chapterList.add(chapterItem(15, "10/07/2022", 0, false, 200, imageList))
 
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
@@ -56,38 +118,6 @@ class ComicDetailActivity : AppCompatActivity() {
                 false,
                 category, chapterList
             )
-
-        initViewPager(comic)
-        init(comic)
-    }
-
-    private fun init(comic: comicItem) {
-        val tb = findViewById<Toolbar>(R.id.comicDetailTB)
-        val author = findViewById<TextView>(R.id.authorDetailTV)
-        val category = findViewById<TextView>(R.id.categoryDetailTV)
-        tb.title = comic.name
-        author.setText(comic.author)
-        if (comic.category.size > 0) {
-            category.setText(comic.category[0])
-        }
-        tb.setNavigationOnClickListener { finish() }
-    }
-
-    private fun initViewPager(comic: comicItem) {
-
-        val tabLayout = findViewById<TabLayout>(R.id.detailTL)
-        val viewPager = findViewById<ViewPager2>(R.id.comicDetailVP)
-        viewPager?.adapter =
-            ViewPagerComicDetailAdapter(
-                supportFragmentManager, lifecycle,
-                comic
-            )
-        viewPager?.isUserInputEnabled = false
-        TabLayoutMediator(tabLayout, viewPager!!) { tab, position ->
-            when (position) {
-                0 -> tab.text = "Mô tả truyện"
-                1 -> tab.text = "Chương truyện"
-            }
-        }.attach()
+        return comic
     }
 }

@@ -14,11 +14,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/comicDetailTB"
+            android:id="@+id/chapterDetailTB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-
             android:paddingEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,107 +37,31 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/cover_manga"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/detailComicLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/round_btn"
-                android:backgroundTint="@color/transparent_black"
-                android:orientation="vertical"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@+id/imageView">
-
-                <TextView
-                    android:id="@+id/authorDetailTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_semibold"
-                    android:text="Aoyama Gōshō"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/categoryDetailTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_semibold"
-                    android:text="Trinh thám"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/detailTL"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:tabBackground="@drawable/tab_selector"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed"
-                app:tabRippleColor="@null"
-                app:tabTextAppearance="@style/tab_text"
-                app:tabTextColor="#394929">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mô tả truyện" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chương truyện" />
-
-            </com.google.android.material.tabs.TabLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/detailTL"
-                app:layout_constraintStart_toStartOf="@+id/detailTL"
-                app:layout_constraintTop_toBottomOf="@+id/detailTL">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/comicDetailVP"
+                        android:id="@+id/chapterDetailVP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
@@ -146,11 +69,12 @@
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -163,41 +87,48 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/round_btn"
-            android:backgroundTint="@color/transparent_gray"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <ImageView
+                android:id="@+id/goPreviousChapterIM"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_left_arrows"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
             <LinearLayout
-                android:id="@+id/continueReadComicDetailIM"
+                android:id="@+id/commentChapterDetailLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="TouchTargetSizeCheck">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_continue_read" />
+                    android:src="@drawable/ic_oval_comment" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
-                    android:text="Tiếp tục đọc"
+                    android:text="Bình luận"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/commentComicDetailLL"
+                android:id="@+id/chooseChapterDetailLL"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -209,30 +140,50 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_comment" />
+                    android:src="@drawable/ic_book_open" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
-                    android:text="Bình luận"
+                    android:text="Chương"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <android.widget.Button
-                android:layout_width="140dp"
-                android:layout_height="30dp"
+            <LinearLayout
+                android:id="@+id/markChapterDetailLL"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/round_btn"
-                android:backgroundTint="@color/confirmBtn"
-                android:fontFamily="@font/lexend_regular"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="Bắt Đầu Đọc"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/markChapterIM"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:src="@drawable/ic_book_mark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Đánh dấu"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/goNextChapterIM"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_right_arrows"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

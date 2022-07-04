@@ -9,7 +9,7 @@ class chapterItem : Serializable {
     var price: Int? = 0
     var bookmark: Boolean = false
     var viewNumber: Int? = 0
-
+    var imageList = arrayListOf<Int>()
     constructor() {}
 
     constructor(number: Int, datePost: String, price: Int) {
@@ -25,12 +25,13 @@ class chapterItem : Serializable {
         this.datePost = datePost
     }
 
-    constructor(number: Int, datePost: String, price: Int, bookmark: Boolean, view : Int) {
+    constructor(number: Int, datePost: String, price: Int, bookmark: Boolean, view : Int, image : ArrayList<Int>) {
         this.number = number
         this.datePost = datePost
         this.price = price
         this.bookmark = bookmark
         this.viewNumber = view
+        this.imageList = image
     }
 
 }

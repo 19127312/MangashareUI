@@ -23,7 +23,8 @@ class SuggestComicAdapter(var context: Context?, var comics: ArrayList<comicItem
         val comicChapter = listItemView.findViewById<TextView>(R.id.suggestComicChapterTV)
 
         init {
-            listItemView.setOnClickListener { onItemClick?.invoke(comics[adapterPosition % comics.size]) }
+            //listItemView.setOnClickListener { onItemClick?.invoke(comics[adapterPosition % comics.size]) }
+            listItemView.setOnClickListener { onItemClick?.invoke(comics[adapterPosition]) }
         }
     }
 
@@ -35,15 +36,17 @@ class SuggestComicAdapter(var context: Context?, var comics: ArrayList<comicItem
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pos = position % comics.size
-        val comic = comics[pos]
+        //val pos = position % comics.size
+        //val comic = comics[pos]
+        val comic = comics[position]
         holder.comicImage.setImageResource(comic.cover)
         holder.comicName.setText(comic.name)
         holder.comicChapter.setText("Chap ${comic.totalChapter}")
     }
 
     override fun getItemCount(): Int {
-        return Int.MAX_VALUE
+        //return Int.MAX_VALUE
+        return comics.size
     }
 
 }
