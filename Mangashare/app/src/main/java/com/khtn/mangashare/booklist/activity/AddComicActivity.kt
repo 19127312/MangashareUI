@@ -13,11 +13,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
 import com.khtn.mangashare.booklist.adapter.chapterEditAdapter
 import com.khtn.mangashare.model.chapterItem
+import com.khtn.mangashare.model.comicItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.activity_pick_chapter.*
 import kotlinx.android.synthetic.main.fragment_add_book_list.*
@@ -34,12 +37,15 @@ class AddComicActivity : AppCompatActivity() {
     lateinit var adapter: SuggestCategoryAdapter
     lateinit var chapterAdapter: chapterEditAdapter
     lateinit var mode: String
+    lateinit var position: String
     lateinit var layout: LinearLayout
+    var isReverse=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_comic)
         var intent: Intent = getIntent()
         mode = intent.getStringExtra("mode").toString()
+        position= intent.getStringExtra("position").toString()
         layout=findViewById<LinearLayout>(R.id.rootLinear)
         backPressAddComic.setOnClickListener {
 
@@ -71,6 +77,13 @@ class AddComicActivity : AppCompatActivity() {
             }
             false
         })
+
+        icon_trash_comic_btn.setOnClickListener {
+            val replyIntent = Intent()
+            replyIntent.putExtra("position", position)
+            setResult(Activity.RESULT_OK, replyIntent)
+            finish()
+        }
     }
     override fun onBackPressed() {
         if( editTextTextPersonName.isFocused ||editTextTextMultiLine.isFocused){
@@ -86,10 +99,13 @@ class AddComicActivity : AppCompatActivity() {
 
         when(mode){
             "add"-> {
-                layout.removeView(headerChaptername)
-                layout.removeView(headerDescription)
+
                 layout.removeView(chapterTableLayout)
                 layout.removeView(chapterRV)
+                icon_trash_comic_btn.visibility=View.INVISIBLE
+                chapterList= ArrayList<chapterItem>()
+                chapterAdapter = chapterEditAdapter(chapterList)
+
 
             }
             "edit"-> {
@@ -100,14 +116,39 @@ class AddComicActivity : AppCompatActivity() {
                 editTextTextPersonName.setText("Plapla pla")
                 editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
                 setupRV()
-                filterChapterMode.setOnClickListener {
-                    chapterList.reverse()
-                    chapterAdapter.notifyDataSetChanged()
-                }
+                setupFilter()
             }
         }
     }
+    fun setupFilter(){
+        filterChapterMode.setOnClickListener {
+            chapterList.reverse()
+            chapterAdapter.notifyDataSetChanged()
+            isReverse=!isReverse
 
+            if(isReverse){
+                filterChapterMode.text="Mới nhất"
+            }else{
+                filterChapterMode.text="Cũ nhất"
+
+            }
+        }
+    }
+    fun setupRVadd(){
+        chapterRV.adapter=chapterAdapter
+        chapterRV.layoutManager= LinearLayoutManager(this)
+
+        chapterAdapter.setOnItemClickListener(object: chapterEditAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                var intent: Intent=Intent(this@AddComicActivity,PickChapterActivity::class.java)
+                intent.putExtra("mode","edit")
+                intent.putExtra("positionChapter",position.toString())
+
+                startActivityForResult(intent,5555)
+            }
+
+        })
+    }
     private fun setupRV() {
         chapterList= ArrayList<chapterItem>()
         chapterList.add(chapterItem(1,"10/01/22"))
@@ -124,6 +165,8 @@ class AddComicActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
                 var intent: Intent=Intent(this@AddComicActivity,PickChapterActivity::class.java)
                 intent.putExtra("mode","edit")
+                intent.putExtra("positionChapter",position.toString())
+
                 startActivityForResult(intent,5555)
             }
 
@@ -252,7 +295,47 @@ class AddComicActivity : AppCompatActivity() {
             addCoverIcon.visibility= View.INVISIBLE
         }
         if(requestCode===5555 &&resultCode== Activity.RESULT_OK){
-            finish()
+            val position = data!!.getStringExtra("positionChapter")?.toInt()
+            val status = data!!.getStringExtra("status")
+            if(status=="add"){
+                if(position==null){
+                    var table= findViewById<RecyclerView>(R.id.chapterRV)
+                    var bar= findViewById<LinearLayout>(R.id.chapterTableLayout)
+                    if(table==null && bar ==null){
+                        layout.addView(chapterTableLayout,5)
+                        layout.addView(chapterRV,6)
+                        setupRVadd()
+                        setupFilter()
+                    }
+
+                    if(isReverse){
+                        chapterList.add(0,chapterItem(chapterList.size+1,"10/01/22"))
+                        chapterAdapter.notifyItemInserted(0)
+
+                    }
+                    else{
+                        chapterList.add(chapterItem(chapterList.size+1,"10/01/22"))
+                        chapterAdapter.notifyItemInserted(chapterList.size)
+
+                    }
+
+                }
+            }else if(status=="delete"){
+                var snackbar = Snackbar.make(rootAddComic , "Đã xóa truyện ${position?.plus(1)}", Snackbar.LENGTH_LONG)
+                var item= chapterItem(chapterList[position!!])
+                chapterList.removeAt(position)
+                chapterAdapter.notifyItemRemoved(position)
+                chapterAdapter.notifyItemRangeChanged(position,chapterList.size)
+                snackbar.show()
+                snackbar.setAction("Undo delete", View.OnClickListener() {
+                    chapterList.add(position,item)
+                    chapterAdapter.notifyItemInserted(position)
+                    chapterAdapter.notifyItemRangeChanged(position, chapterList.size)
+                })
+            }else if(status=="edit"){
+            }
+
+
         }
 
 

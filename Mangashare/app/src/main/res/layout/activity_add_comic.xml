@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/rootAddComic"
     tools:context=".booklist.activity.AddComicActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/backPressAddComic"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_trash_comic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/titleModeComic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleModeComic"
+            app:srcCompat="@drawable/ic_trash" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -96,22 +108,19 @@
                     app:layout_constraintVertical_bias="0.504" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/headerChaptername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="24dp"
-                android:text="Sửa tiêu đề truyện"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
+                app:endIconMode="clear_text"
+
+                app:hintTextColor="@color/confirmBtn"
+                app:boxStrokeColor="@color/confirmBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -120,51 +129,41 @@
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username" />
+                    android:hint="Tên truyện" />
 
             </com.google.android.material.textfield.TextInputLayout>
-<!--            <EditText-->
-<!--                android:id="@+id/editTextTextPersonName"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:ems="10"-->
-<!--                android:hint="Tiêu đề truyện"-->
-<!--                android:inputType="textPersonName"-->
-<!--                android:minHeight="48dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="1.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/addCoverBackground" />-->
 
-            <TextView
-                android:id="@+id/headerDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="24dp"
-                android:text="Sửa mô tả truyện"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/editTextTextMultiLine"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="Mô tả truyện"
+                android:layout_marginEnd="16dp"
                 android:inputType="textMultiLine"
                 android:maxLines="10"
                 android:minLines="6"
-                android:scrollbars="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                android:layout_gravity="top"
+                app:endIconMode="clear_text"
+
+                app:hintTextColor="@color/confirmBtn"
+                app:boxStrokeColor="@color/confirmBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTextMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+
+                    android:gravity="start"
+                    android:hint="Mô tả truyện" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/dropdownTV"

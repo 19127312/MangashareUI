@@ -33,5 +33,11 @@ class chapterItem : Serializable {
         this.viewNumber = view
         this.imageList = image
     }
+    constructor (temp: chapterItem){
+        this.number = temp.number
+        this.datePost = temp.datePost
+
+
+    }
 
 }

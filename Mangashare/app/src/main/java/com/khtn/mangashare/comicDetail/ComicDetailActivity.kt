@@ -17,10 +17,8 @@ class ComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
-
-        val intent = intent
+        
         var comic: comicItem = initItem()
-        comic = initItem()
         initViewPager(comic)
         init(comic)
 
@@ -28,10 +26,7 @@ class ComicDetailActivity : AppCompatActivity() {
 
     lateinit var adapter: ViewPagerComicDetailAdapter
 
-    override fun onResume() {
-        super.onResume()
-        adapter.notifyDataSetChanged()
-    }
+
 
     private fun init(comic: comicItem) {
         val tb = findViewById<Toolbar>(R.id.comicDetailTB)

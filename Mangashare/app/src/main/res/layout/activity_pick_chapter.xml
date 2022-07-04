@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/titlePickChapterText"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="80dp"
         android:fontFamily="@font/poppins_bold"
@@ -224,5 +224,15 @@
         app:layout_constraintTop_toTopOf="@+id/pickNumberText"
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/ic_clear" />
+
+    <ImageView
+        android:id="@+id/icon_deleteChapter_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/titlePickChapterText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlePickChapterText"
+        app:srcCompat="@drawable/ic_trash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

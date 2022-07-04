@@ -59,7 +59,12 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val selectImage = imgs[position]
-        holder.image.setImageURI(selectImage.imgURI)
+
+        if(selectImage.imgURI==null){
+            holder.image.setImageResource(selectImage.imgResource)
+        }else{
+            holder.image.setImageURI(selectImage.imgURI)
+        }
         holder.number.text="Ảnh ${position+1}"
         if(selectImage.check){
             holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_checked)
@@ -77,7 +82,6 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
     fun OnActivityResult(data: Intent?, posChange: Int) {
         if (data != null) {
             imgs[posChange].imgURI = data.data!!
-            imgs[posChange].check=false
             notifyItemChanged(posChange)
         }
     }
