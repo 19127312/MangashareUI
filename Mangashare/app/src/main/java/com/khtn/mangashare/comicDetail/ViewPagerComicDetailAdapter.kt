@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -188,14 +190,28 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
         var followNumber = view?.findViewById<TextView>(R.id.followNumberTV)
         var description = view?.findViewById<ExpandableTextView>(R.id.expandTV)
         var updateTime = view?.findViewById<TextView>(R.id.updateDetailComicTV)
+        var likeLL = view?.findViewById<LinearLayout>(R.id.likeComicDetailLL)
+        var followLL = view?.findViewById<LinearLayout>(R.id.followComicDetailLL)
 
         comic.reviewNumber?.toString().let { reviewNumber?.setText(it) }
         comic.viewNumber?.toString().let { viewNumber?.setText(it) }
         comic.likeNumber?.toString().let { likeNumber?.setText(it) }
         comic.followNumber?.toString().let { followNumber?.setText(it) }
         description?.setText(comic.description)
-        if (comic.chapter.size > 0) {
 
+        likeLL?.setOnClickListener{
+            val image = view?.findViewById<ImageView>(R.id.likeComicIM)
+            comic.likeNumber = comic.likeNumber?.plus(1)
+            comic.likeNumber?.toString().let { likeNumber?.setText(it) }
+            image?.setImageResource(R.drawable.ic_like_checked)
+        }
+        followLL?.setOnClickListener{
+            val image = view?.findViewById<ImageView>(R.id.followComicIM)
+            comic.followNumber = comic.followNumber?.plus(1)
+            comic.followNumber?.toString().let { followNumber?.setText(it) }
+            image?.setImageResource(R.drawable.ic_hotspot_checked)
+        }
+        if (comic.chapter.size > 0) {
             val new = LocalDate.parse(
                 comic.chapter[0].datePost,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy")

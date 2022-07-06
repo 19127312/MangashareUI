@@ -173,7 +173,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                android:id="@+id/continueReadComicDetailIM"
+                android:id="@+id/continueReadComicDetailLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -221,6 +221,7 @@
             </LinearLayout>
 
             <android.widget.Button
+                android:id="@+id/startReadBTN"
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"

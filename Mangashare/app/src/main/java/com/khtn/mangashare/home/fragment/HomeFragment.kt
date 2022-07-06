@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +24,7 @@ import com.khtn.mangashare.adapter.SuggestComicAdapter
 import com.khtn.mangashare.comicDetail.ComicDetailActivity
 import com.khtn.mangashare.model.comicItem
 import com.khtn.mangashare.navigation.MainActivity
+import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +65,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
+        val searchIm = view?.findViewById<ImageView>(R.id.searchIM)
+        searchIm?.setOnClickListener {
+            val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail)
+            val ic = view?.findViewById<ImageView>(R.id.iconapp)
+            ic?.startAnimation(anim)
+        }
         val cate = arrayListOf<String>()
         cate.add("Hành động")
         cate.add("Trinh thám")
