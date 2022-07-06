@@ -21,6 +21,9 @@ class comicItem : Serializable {
     var status = "Censored"
     var completeStatus = false
     var category = arrayListOf<String>()
+    var reporter=""
+    var contextReport=""
+    var replyReport=""
     var chapter = arrayListOf<chapterItem>()
     constructor() {}
     constructor(cover: Int, name: String, total: Int, lastSeen: Int, lastDate: String) {
@@ -37,9 +40,17 @@ class comicItem : Serializable {
         this.totalChapter = total
         this.status = status
         this.cover = cover
-
     }
 
+    constructor(cover: Int, name: String,author:String ,reporter: String, status: String,context: String, reply: String) {
+        this.name = name
+        this.reporter = reporter
+        this.status = status
+        this.cover = cover
+        this.contextReport=context
+        this.replyReport=reply
+        this.author=author
+    }
     constructor(
         name: String?,
         thumbnail: String?,
