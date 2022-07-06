@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rootAddComic"
+   >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backPressViewReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/titleModeComic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Báo cáo"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/backPressViewReport"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="605dp">
+
+        <LinearLayout
+            android:id="@+id/rootLinearReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="21dp"
+                tools:layout_editor_absoluteY="66dp">
+
+                <ImageView
+                    android:id="@+id/reportBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/background_add_pic" />
+
+                <ImageView
+                    android:id="@+id/reportCover"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="24dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/reportBackground"
+                    app:srcCompat="@drawable/add_cover_information" />
+
+
+                <TextView
+                    android:id="@+id/authorReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên tác giả"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportCover"
+                    app:layout_constraintEnd_toEndOf="@+id/reportBackground"
+                    app:layout_constraintHorizontal_bias="0.173"
+                    app:layout_constraintStart_toEndOf="@+id/reportCover"
+                    app:layout_constraintTop_toTopOf="@+id/reportCover"
+                    app:layout_constraintVertical_bias="0.674" />
+
+                <TextView
+                    android:id="@+id/nameReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên truyện"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportCover"
+                    app:layout_constraintEnd_toEndOf="@+id/reportBackground"
+                    app:layout_constraintHorizontal_bias="0.173"
+                    app:layout_constraintStart_toEndOf="@+id/reportCover"
+                    app:layout_constraintTop_toTopOf="@+id/reportCover"
+                    app:layout_constraintVertical_bias="0.333" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/reporterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Người báo cáo"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintVertical_bias="0.235" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nội dung"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintVertical_bias="0.235" />
+
+            <TextView
+                android:id="@+id/contextReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Nội dung"
+                android:textSize="15dp"
+
+                app:layout_constraintVertical_bias="0.235" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hình ảnh kèm theo"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintVertical_bias="0.235" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pickedChapterRV"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+             />
+
+            <TextView
+                android:id="@+id/headerReplyAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Tác giả phản hồi"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintVertical_bias="0.235" />
+
+            <TextView
+                android:id="@+id/authorReplyReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Nội dung"
+                android:textSize="15dp"
+
+                app:layout_constraintVertical_bias="0.235" />
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/rootLinearButton"
+
+        >
+        <android.widget.Button
+            android:id="@+id/skipReportBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_skip_btn"
+            android:text="Bỏ qua"
+            android:textColor="@color/white"
+            />
+        <android.widget.Button
+            android:id="@+id/confirmReportBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_confirm_btn"
+            android:text="XÁC NHẬN"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+</LinearLayout>

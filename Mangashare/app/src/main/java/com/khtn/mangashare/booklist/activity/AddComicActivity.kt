@@ -17,13 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
-import com.khtn.mangashare.booklist.adapter.PickedChapterAdapter
 import com.khtn.mangashare.booklist.adapter.chapterEditAdapter
 import com.khtn.mangashare.model.chapterItem
-import com.khtn.mangashare.model.comicItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
-import kotlinx.android.synthetic.main.activity_pick_chapter.*
-import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
 class AddComicActivity : AppCompatActivity() {
     private val IMAGE_PICK_GALLARY_CODE=100
@@ -112,7 +108,7 @@ class AddComicActivity : AppCompatActivity() {
                 titleModeComic.text="Sửa thông tin truyện"
                 addCoverIcon.visibility= View.INVISIBLE
                 addCoverText.text="Sửa bìa truyện"
-                coverImage.setImageResource(R.drawable.cover_manga)
+                reportCover.setImageResource(R.drawable.cover_manga)
                 editTextTextPersonName.setText("Plapla pla")
                 editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
                 setupRV()
@@ -270,7 +266,7 @@ class AddComicActivity : AppCompatActivity() {
     }
 
     private fun addCover() {
-        addCoverBackground.setOnClickListener {
+        reportBackground.setOnClickListener {
             openGallery()
         }
 
@@ -278,7 +274,7 @@ class AddComicActivity : AppCompatActivity() {
             openGallery()
         }
 
-        coverImage.setOnClickListener {
+        reportCover.setOnClickListener {
             openGallery()
         }
         addCoverText.setOnClickListener {
@@ -295,7 +291,7 @@ class AddComicActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==IMAGE_PICK_GALLARY_CODE &&resultCode== Activity.RESULT_OK&& data!=null){
             thumbnail=data.data!!
-            coverImage.setImageURI(thumbnail)
+            reportCover.setImageURI(thumbnail)
             addCoverIcon.visibility= View.INVISIBLE
         }
         if(requestCode===5555 &&resultCode== Activity.RESULT_OK){

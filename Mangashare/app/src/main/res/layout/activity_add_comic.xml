@@ -63,7 +63,7 @@
                 tools:layout_editor_absoluteY="66dp">
 
                 <ImageView
-                    android:id="@+id/addCoverBackground"
+                    android:id="@+id/reportBackground"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:scaleType="fitXY"
@@ -73,24 +73,24 @@
                     app:srcCompat="@drawable/background_add_pic" />
 
                 <ImageView
-                    android:id="@+id/coverImage"
+                    android:id="@+id/reportCover"
                     android:layout_width="100dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="24dp"
                     android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="@+id/addCoverBackground"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/addCoverBackground"
+                    app:layout_constraintTop_toTopOf="@+id/reportBackground"
                     app:srcCompat="@drawable/add_cover_information" />
 
                 <ImageView
                     android:id="@+id/addCoverIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/coverImage"
-                    app:layout_constraintEnd_toEndOf="@+id/coverImage"
-                    app:layout_constraintStart_toStartOf="@+id/coverImage"
-                    app:layout_constraintTop_toTopOf="@+id/coverImage"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportCover"
+                    app:layout_constraintEnd_toEndOf="@+id/reportCover"
+                    app:layout_constraintStart_toStartOf="@+id/reportCover"
+                    app:layout_constraintTop_toTopOf="@+id/reportCover"
                     app:srcCompat="@drawable/ic_plus" />
 
                 <TextView
@@ -100,11 +100,11 @@
                     android:text="Thêm một bìa"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/coverImage"
-                    app:layout_constraintEnd_toEndOf="@+id/addCoverBackground"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportCover"
+                    app:layout_constraintEnd_toEndOf="@+id/reportBackground"
                     app:layout_constraintHorizontal_bias="0.484"
-                    app:layout_constraintStart_toEndOf="@+id/coverImage"
-                    app:layout_constraintTop_toTopOf="@+id/coverImage"
+                    app:layout_constraintStart_toEndOf="@+id/reportCover"
+                    app:layout_constraintTop_toTopOf="@+id/reportCover"
                     app:layout_constraintVertical_bias="0.504" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

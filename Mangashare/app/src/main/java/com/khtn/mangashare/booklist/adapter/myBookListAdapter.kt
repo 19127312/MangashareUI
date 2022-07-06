@@ -55,12 +55,20 @@ class myBookListAdapter( var comics:ArrayList<comicItem>?) :
         val Name:String?=comic.name
 
         holder.name.text=Name
-        holder.chapter.text="Chapter ${comic.totalChapter}"
+        if(comic.totalChapter!=0){
+            holder.chapter.text="Chapter ${comic.totalChapter}"
+        }else{
+            holder.chapter.text="Người báo cáo:  ${comic.reporter}"
+        }
         holder.img.setImageResource(comic.cover)
         if(comic.status=="Censored"){
             holder.status.setImageResource(R.drawable.censored)
-        }else{
+        }else if(comic.status=="Uncensored"){
             holder.status.setImageResource(R.drawable.wait_to_censor)
+        }else if(comic.status=="Đã"){
+            holder.status.setImageResource(R.drawable.xuli)
+        }else if(comic.status=="Chưa"){
+            holder.status.setImageResource(R.drawable.chuaxuly)
 
         }
     }

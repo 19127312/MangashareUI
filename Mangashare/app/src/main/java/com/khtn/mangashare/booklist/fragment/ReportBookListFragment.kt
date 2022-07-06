@@ -1,11 +1,19 @@
 package com.khtn.mangashare.booklist.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.booklist.activity.AddComicActivity
+import com.khtn.mangashare.booklist.activity.ViewReportActivity
+import com.khtn.mangashare.booklist.adapter.historyBookListAdapter
+import com.khtn.mangashare.booklist.adapter.myBookListAdapter
+import com.khtn.mangashare.model.comicItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,40 +29,47 @@ class ReportBookListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var itemList:ArrayList<comicItem>
+    private lateinit var adapter: myBookListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report_book_list, container, false)
+        val view= inflater.inflate(R.layout.fragment_report_book_list, container, false)
+        initRecyclerView(view)
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ReportBookListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ReportBookListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun initRecyclerView(view: View?) {
+        val recyclerView= view?.findViewById<RecyclerView>(R.id.reportRV)
+        if (recyclerView != null) {
+            recyclerView.layoutManager= LinearLayoutManager(activity)
+        }
+        itemList= ArrayList()
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn A","Đã","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. Integer vel urna sagittis, vestibulum eros nec, aliquet leo. Morbi at quam ut sem efficitur imperdiet.","Không hợp ly"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn B","Chưa","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. Integer vel urna sagittis, vestibulum eros nec, aliquet leo. Morbi at quam ut sem efficitur imperdiet.","Không hợp ly"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn C","Đã","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. .",""))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn D","Đã","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. Integer vel urna sagittis, vestibulum eros nec, aliquet leo. Morbi at quam ut sem efficitur imperdiet.",""))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn E","Chưa","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. ","Không hợp ly"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn F","Chưa","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. Integer vel urna sagittis, vestibulum eros nec, aliquet leo. Morbi at quam ut sem efficitur imperdiet.",""))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan","Kasi","Nguyễn Văn G","Chưa","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac quam lacus. Nullam nec erat sed neque suscipit luctus. Morbi vitae egestas nisi. Mauris tincidunt in mi vel lobortis. ","Không hợp ly"))
+        adapter= myBookListAdapter(itemList)
+        if (recyclerView != null) {
+            recyclerView.adapter=adapter
+        }
+        adapter.setOnItemClickListener(object: myBookListAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                var intent: Intent
+                intent= Intent(context,ViewReportActivity::class.java)
+                intent.putExtra("comic",itemList[position])
+                startActivity(intent)
             }
+        })
     }
+
+
 }

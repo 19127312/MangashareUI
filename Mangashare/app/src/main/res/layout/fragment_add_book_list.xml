@@ -35,7 +35,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myBookListRV"
-        android:layout_width="414dp"
+        android:layout_width="match_parent"
         android:layout_height="489dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
