@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/rootAddComic"
+    android:id="@+id/rootReportComic"
    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_weight="1"
+
         android:layout_height="wrap_content">
 
         <ImageView
@@ -37,13 +39,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="605dp">
+        android:id="@+id/scrollViewReport"
+        android:layout_weight="50"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/rootLinearReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/backGroundCoverDetail"
+                >
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -102,7 +112,7 @@
                     app:layout_constraintTop_toTopOf="@+id/reportCover"
                     app:layout_constraintVertical_bias="0.333" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/reporterName"
@@ -153,6 +163,7 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="10dp"
+                tools:listitem="@layout/item_image_report"
              />
 
             <TextView
@@ -172,14 +183,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
                 android:text="Nội dung"
                 android:textSize="15dp"
-
                 app:layout_constraintVertical_bias="0.235" />
 
         </LinearLayout>
     </ScrollView>
     <LinearLayout
+        android:layout_weight="1"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -209,6 +222,15 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/background_confirm_btn"
             android:text="XÁC NHẬN"
+            android:textColor="@color/white"
+            />
+        <android.widget.Button
+            android:id="@+id/waitToConfirm"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/background_confirm_btn"
+            android:text="CHỜ XÁC NHẬN TỪ TÁC GIẢ"
             android:textColor="@color/white"
             />
     </LinearLayout>
