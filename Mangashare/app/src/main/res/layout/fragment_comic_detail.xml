@@ -107,6 +107,7 @@
                 android:background="@drawable/linear_layout_divider" />
 
             <LinearLayout
+                android:id="@+id/likeComicDetailLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -127,6 +128,7 @@
                         android:textSize="16sp" />
 
                     <ImageView
+                        android:id="@+id/likeComicIM"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_hand_like" />
@@ -147,6 +149,7 @@
                 android:background="@drawable/linear_layout_divider" />
 
             <LinearLayout
+                android:id="@+id/followComicDetailLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,6 +170,7 @@
                         android:textSize="16sp" />
 
                     <ImageView
+                        android:id="@+id/followComicIM"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_follow" />
