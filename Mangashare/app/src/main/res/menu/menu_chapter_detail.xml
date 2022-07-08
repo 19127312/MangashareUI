@@ -2,13 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_add"
-        app:showAsAction="never"
-        android:title="Add">
+        android:id="@+id/action_report"
+        android:icon="@drawable/ic_report"
+        android:title="Báo cáo"
+        app:showAsAction="never">
     </item>
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_follow"
         app:showAsAction="never"
-        android:title="Settings">
+        android:icon="@drawable/ic_follow"
+        android:title="Theo dõi">
+    </item>
+    <item
+        android:id="@+id/action_share"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_small_share"
+        android:title="Chia sẻ">
     </item>
 </menu>

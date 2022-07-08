@@ -74,9 +74,13 @@
         android:id="@+id/bottomChapterDetailCL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        android:focusable="true"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="@color/transparent_gray"
         android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -86,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/transparent_black"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +103,7 @@
                 android:layout_height="30dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_left_arrows"
+                android:src="@drawable/ic_back"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <LinearLayout
@@ -106,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/transparent_black"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -131,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/transparent_black"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -155,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/transparent_black"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
@@ -181,7 +189,7 @@
                 android:layout_height="30dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_right_arrows"
+                android:src="@drawable/ic_next"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
