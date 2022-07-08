@@ -51,4 +51,7 @@ dependencies {
 
     //Expandable TextView
     implementation 'com.ms-square:expandableTextView:0.1.4'
+
+    // Zoom Image
+    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 }
