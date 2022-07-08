@@ -42,7 +42,7 @@ class comicItem : Serializable {
         this.cover = cover
     }
 
-    constructor(cover: Int, name: String,author:String ,reporter: String, status: String,context: String, reply: String) {
+    constructor(cover: Int, name: String,author:String ,reporter: String, status: String, reply: String,context: String) {
         this.name = name
         this.reporter = reporter
         this.status = status
