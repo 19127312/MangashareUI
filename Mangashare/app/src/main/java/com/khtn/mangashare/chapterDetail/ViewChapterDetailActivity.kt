@@ -21,7 +21,7 @@ import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 
 
-class ChapterDetailActivity : AppCompatActivity() {
+class ViewChapterDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chapter_detail)
@@ -157,7 +157,7 @@ class ChapterDetailActivity : AppCompatActivity() {
         rc?.adapter = adapter
         bottomSheetDialog.show()
         adapter?.onItemClick = { tmp ->
-            val intent = Intent(this, ChapterDetailActivity::class.java)
+            val intent = Intent(this, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
             intent.putExtra("chapterNumber", tmp.number?.minus(1) )
             startActivityForResult(intent, 111)

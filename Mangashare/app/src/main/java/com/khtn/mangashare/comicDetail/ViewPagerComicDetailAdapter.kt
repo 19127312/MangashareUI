@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -21,13 +20,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestComicAdapter
-import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
-import com.khtn.mangashare.chapterDetail.ImageChapterDetailAdapter
+import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.comicItem
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class ViewPagerComicDetailAdapter : FragmentStateAdapter {
     constructor(
@@ -170,7 +167,7 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         }
 
         adapter.itemClickListener = { view, item, position ->
-            val intent = Intent(context, ChapterDetailActivity::class.java)
+            val intent = Intent(context, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
             if (checkSort) {
                 intent.putExtra("chapterNumber", position)

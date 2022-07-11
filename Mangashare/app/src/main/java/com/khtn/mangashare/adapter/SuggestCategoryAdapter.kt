@@ -11,15 +11,20 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.model.comicItem
 import java.util.*
 import kotlin.collections.ArrayList
 
 class SuggestCategoryAdapter(var context: Context?, var categories: ArrayList<String>) :
     RecyclerView.Adapter<SuggestCategoryAdapter.ViewHolder>() {
-
+    var onButtonClick: ((String) -> Unit)? = null
     inner class ViewHolder(listItemView: View) :
         RecyclerView.ViewHolder(listItemView) {
         val CategoryBtn = listItemView.findViewById<Button>(R.id.categoryBTN)
+
+        init {
+            CategoryBtn.setOnClickListener { onButtonClick?.invoke(categories[adapterPosition]) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -4,22 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
-import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
-import com.khtn.mangashare.home.adapter.ViewPagerRankingAdapter
+import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 
-class ComicDetailActivity : AppCompatActivity() {
+class ViewComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
@@ -51,7 +48,7 @@ class ComicDetailActivity : AppCompatActivity() {
         val startRead = findViewById<Button>(R.id.startReadBTN)
 
         continuteRead.setOnClickListener {
-            val intent = Intent(this, ChapterDetailActivity::class.java)
+            val intent = Intent(this, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
             var index = 0
             for (i in 0..comic.chapter.size) {
@@ -65,7 +62,7 @@ class ComicDetailActivity : AppCompatActivity() {
         }
 
         startRead.setOnClickListener {
-            val intent = Intent(this, ChapterDetailActivity::class.java)
+            val intent = Intent(this, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
             intent.putExtra("chapterNumber", 0)
             startActivityForResult(intent, 112)
