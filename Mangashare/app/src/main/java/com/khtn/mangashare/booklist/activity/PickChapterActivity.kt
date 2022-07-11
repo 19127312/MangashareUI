@@ -270,7 +270,7 @@ class PickChapterActivity : AppCompatActivity() {
     private fun setupRecycleView() {
         imgsList= ArrayList<picItem>()
         deleteList=ArrayList<Int>()
-        adapter = PickedChapterAdapter(this,imgsList)
+        adapter = PickedChapterAdapter(this,imgsList,"chapter")
         pickedChapterRV.adapter=adapter
         pickedChapterRV.layoutManager= GridLayoutManager(this,3)
     }
