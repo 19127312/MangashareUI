@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +22,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.adapter.SuggestComicAdapter
+import com.khtn.mangashare.categoryList.CategoryListActivity
+import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
 import com.khtn.mangashare.comicDetail.ComicDetailActivity
+import com.khtn.mangashare.home.adapter.ViewPagerRankingAdapter
 import com.khtn.mangashare.model.comicItem
 import com.khtn.mangashare.navigation.MainActivity
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -61,14 +65,21 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         initRecyclerView(view)
         initViewPager(view)
+        init(view)
         return view
     }
-
+    private fun init(view: View){
+       var moreCategory = view.findViewById<LinearLayout>(R.id.categoriesAddLL)
+       moreCategory.setOnClickListener {
+           val intent = Intent(context, CategoryListActivity::class.java)
+           startActivity(intent)
+       }
+    }
     private fun initRecyclerView(view: View) {
-        val searchIm = view?.findViewById<ImageView>(R.id.searchIM)
+        val searchIm = view.findViewById<ImageView>(R.id.searchIM)
         searchIm?.setOnClickListener {
             val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail)
-            val ic = view?.findViewById<ImageView>(R.id.iconapp)
+            val ic = view.findViewById<ImageView>(R.id.iconapp)
             ic?.startAnimation(anim)
         }
         val cate = arrayListOf<String>()

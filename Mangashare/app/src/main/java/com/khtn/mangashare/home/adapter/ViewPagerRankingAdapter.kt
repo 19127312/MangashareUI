@@ -1,4 +1,4 @@
-package com.khtn.mangashare.home.fragment
+package com.khtn.mangashare.home.adapter
 
 import android.content.Intent
 import android.os.Bundle
