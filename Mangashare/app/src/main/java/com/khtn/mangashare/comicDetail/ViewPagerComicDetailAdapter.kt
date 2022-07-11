@@ -71,16 +71,24 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
 
     lateinit var adapter: ChapterRecyclerViewAdapter
     var items = arrayListOf<ChapterRecyclerViewItem>()
+    var checkSort : Boolean = true
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 111 && resultCode == Activity.RESULT_OK) {
             var tmp = data?.getSerializableExtra("comic") as comicItem
+            var num = data?.getIntExtra("sort",-1)
             comic = tmp
             items.clear()
             tmp.chapter.forEach { i ->
                 items.add(ChapterRecyclerViewItem.parseData(i))
             }
-
+            if(num == 1){
+                checkSort = true
+            }
+            else{
+                items.reverse()
+                checkSort = false
+            }
             adapter.notifyDataSetChanged()
         }
     }
@@ -111,13 +119,6 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         adapter = context?.let { ChapterRecyclerViewAdapter(it) }!!
         adapter.items = items
         recycleView?.adapter = adapter
-
-        adapter.itemClickListener = { view, item, position ->
-            val intent = Intent(context, ChapterDetailActivity::class.java)
-            intent.putExtra("comic", comic)
-            intent.putExtra("chapterNumber", position)
-            startActivityForResult(intent, 111)
-        }
 
         adapter.onButtonClick = { view, item, position ->
             when (item) {
@@ -155,14 +156,31 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
             }
             adapter.notifyDataSetChanged()
         }
+        var checkSort = true
         sort?.setOnClickListener {
             if (sort.text == "Cũ nhất") {
+                checkSort = false
                 sort.setText("Mới nhất")
             } else {
+                checkSort = true
                 sort.setText("Cũ nhất")
             }
             items.reverse()
             adapter.notifyDataSetChanged()
+        }
+
+        adapter.itemClickListener = { view, item, position ->
+            val intent = Intent(context, ChapterDetailActivity::class.java)
+            intent.putExtra("comic", comic)
+            if (checkSort) {
+                intent.putExtra("chapterNumber", position)
+                intent.putExtra("sort",1)
+            } else {
+                intent.putExtra("chapterNumber", comic.chapter.size - position - 1)
+                intent.putExtra("sort",0)
+            }
+
+            startActivityForResult(intent, 111)
         }
     }
 }
@@ -199,13 +217,13 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
         comic.followNumber?.toString().let { followNumber?.setText(it) }
         description?.setText(comic.description)
 
-        likeLL?.setOnClickListener{
+        likeLL?.setOnClickListener {
             val image = view?.findViewById<ImageView>(R.id.likeComicIM)
             comic.likeNumber = comic.likeNumber?.plus(1)
             comic.likeNumber?.toString().let { likeNumber?.setText(it) }
             image?.setImageResource(R.drawable.ic_like_checked)
         }
-        followLL?.setOnClickListener{
+        followLL?.setOnClickListener {
             val image = view?.findViewById<ImageView>(R.id.followComicIM)
             comic.followNumber = comic.followNumber?.plus(1)
             comic.followNumber?.toString().let { followNumber?.setText(it) }

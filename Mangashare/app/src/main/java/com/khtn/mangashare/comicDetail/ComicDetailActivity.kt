@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
-import com.khtn.mangashare.home.fragment.ViewPagerRankingAdapter
+import com.khtn.mangashare.home.adapter.ViewPagerRankingAdapter
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 

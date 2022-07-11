@@ -41,6 +41,7 @@ class ChapterDetailActivity : AppCompatActivity() {
         val intent = intent
         comic = intent.getSerializableExtra("comic") as comicItem
         val num: Int = intent.getIntExtra("chapterNumber", -1)
+        val numSort: Int = intent.getIntExtra("sort", -1)
 
         markLL = findViewById(R.id.markChapterDetailLL)
         markIV = findViewById(R.id.markChapterIM)
@@ -56,6 +57,7 @@ class ChapterDetailActivity : AppCompatActivity() {
         tb.setNavigationOnClickListener {
             val replyIntent = Intent()
             replyIntent.putExtra("comic", comic)
+            replyIntent.putExtra("sort",numSort)
             setResult(Activity.RESULT_OK, replyIntent)
             finish()
         }

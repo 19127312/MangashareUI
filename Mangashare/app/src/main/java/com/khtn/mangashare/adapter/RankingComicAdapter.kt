@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
-import com.khtn.mangashare.home.fragment.IOnRecyclerViewItemTouchListener
+import com.khtn.mangashare.home.adapter.IOnRecyclerViewItemTouchListener
 import com.khtn.mangashare.model.comicItem
 
 class RankingComicAdapter(var context: Context?, var comics: ArrayList<comicItem>) :
