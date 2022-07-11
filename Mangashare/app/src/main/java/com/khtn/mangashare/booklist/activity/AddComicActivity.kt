@@ -43,7 +43,7 @@ class AddComicActivity : AppCompatActivity() {
         mode = intent.getStringExtra("mode").toString()
         position= intent.getStringExtra("position").toString()
         layout=findViewById<LinearLayout>(R.id.rootLinear)
-        backPressAddComic.setOnClickListener {
+        backPressUserReport.setOnClickListener {
 
             finish()
         }

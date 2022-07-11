@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/backPressAddComic"
+            android:id="@+id/backPressUserReport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/backPressAddComic"
+            app:layout_constraintStart_toStartOf="@+id/backPressUserReport"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

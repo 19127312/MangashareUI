@@ -13,7 +13,7 @@ import com.khtn.mangashare.R
 import com.khtn.mangashare.model.picItem
 
 
-class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) :
+class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>,var type:String) :
     RecyclerView.Adapter<PickedChapterAdapter.ViewHolder>() {
 
 
@@ -65,10 +65,25 @@ class PickedChapterAdapter(var context: Activity, var imgs: ArrayList<picItem>) 
         }else{
             holder.image.setImageURI(selectImage.imgURI)
         }
-        holder.number.text="Ảnh ${position+1}"
+        if(type=="chapter"){
+            holder.number.text="Ảnh ${position+1}"
+        }else{
+            if(position==0){
+                holder.number.text=""
+            }else{
+                holder.number.text="Ảnh ${position}"
+
+            }
+        }
+        if(type=="chapter"){
+
+        }
         if(selectImage.check){
-            holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_checked)
-            holder.checkStatus.visibility=View.VISIBLE
+            if(type!="report" || position!=0 ){
+                holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_checked)
+                holder.checkStatus.visibility=View.VISIBLE
+            }
+
         }else{
             holder.image.background= ContextCompat.getDrawable(context, R.drawable.outline_pic)
             holder.checkStatus.visibility=View.INVISIBLE
