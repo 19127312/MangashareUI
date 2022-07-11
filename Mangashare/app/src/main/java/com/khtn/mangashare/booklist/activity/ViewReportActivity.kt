@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
@@ -13,12 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.adapter.ReportImageAdapter
-import com.khtn.mangashare.comicDetail.ComicDetailActivity
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.model.comicItem
 import com.khtn.mangashare.model.picItem
 import kotlinx.android.synthetic.main.activity_view_report.*
 import kotlinx.android.synthetic.main.activity_view_report.sentReplyBtn
-import kotlinx.android.synthetic.main.custom_report_layout.*
 
 class ViewReportActivity : AppCompatActivity() {
     lateinit var comic:comicItem
@@ -83,7 +81,7 @@ class ViewReportActivity : AppCompatActivity() {
 
     private fun goToComicDetail() {
         var intent: Intent
-        intent= Intent(this,ComicDetailActivity::class.java)
+        intent= Intent(this,ViewComicDetailActivity::class.java)
         backGroundCoverDetail.setOnClickListener {
             startActivity(intent)
         }

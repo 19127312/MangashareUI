@@ -1,14 +1,17 @@
 package com.khtn.mangashare.categoryList
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.booklist.activity.ViewBookListActivity
 import com.khtn.mangashare.model.categoryItem
+import com.khtn.mangashare.model.comicItem
 
-class CategoryListActivity : AppCompatActivity() {
+class ViewCategoryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
@@ -28,17 +31,21 @@ class CategoryListActivity : AppCompatActivity() {
 
         var recyclerView = findViewById<RecyclerView>(R.id.categoryListRC)!!
         var tb = findViewById<Toolbar>(R.id.categoryDetailTB)
-        tb.setNavigationOnClickListener{
+        tb.setNavigationOnClickListener {
             finish()
         }
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.layoutManager = GridLayoutManager(this , 2)
-        val adapter = CategoryListAdapter(this,categoryList)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        val adapter = CategoryListAdapter(this, categoryList)
+
         adapter?.onButtonClick = { tmp ->
-            //val intent = Intent(context, ComicListActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, ViewBookListActivity::class.java)
+            intent.putExtra("title", tmp.name)
+            startActivity(intent)
         }
         recyclerView.adapter = adapter
     }
+
+
 }

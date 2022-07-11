@@ -1,19 +1,11 @@
 package com.khtn.mangashare.chapterDetail
 
-import android.animation.ValueAnimator
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -22,15 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
-import com.khtn.mangashare.adapter.SuggestComicAdapter
-import com.khtn.mangashare.comicDetail.ChapterRecyclerViewAdapter
-import com.khtn.mangashare.comicDetail.ChapterRecyclerViewItem
-import com.khtn.mangashare.comicDetail.ComicDetailActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
-import com.ms.square.android.expandabletextview.ExpandableTextView
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class ViewPagerChapterDetailAdapter : FragmentStateAdapter {
     constructor(

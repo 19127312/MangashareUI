@@ -2,7 +2,6 @@ package com.khtn.mangashare.home.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.RankingComicAdapter
-import com.khtn.mangashare.comicDetail.ComicDetailActivity
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.model.comicItem
 
 interface IOnRecyclerViewItemTouchListener {
@@ -81,7 +80,7 @@ class RankingComicFragment(private var comicList: ArrayList<comicItem>) : Fragme
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         val adapter = context?.let { RankingComicAdapter(it, comicList) }
         adapter?.onItemClick = { tmp ->
-            val intent = Intent(context, ComicDetailActivity::class.java)
+            val intent = Intent(context, ViewComicDetailActivity::class.java)
             startActivity(intent)
         }
         recyclerView?.adapter = adapter

@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mangashare">
         <activity
-            android:name=".categoryList.CategoryListActivity"
+            android:name=".booklist.activity.ViewBookListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".categoryList.ViewCategoryListActivity"
             android:exported="false" />
         <activity
             android:name=".booklist.activity.ZoomImageActivity"
@@ -23,10 +26,10 @@
             android:name=".booklist.activity.ViewReportActivity"
             android:exported="false" />
         <activity
-            android:name=".chapterDetail.ChapterDetailActivity"
+            android:name=".chapterDetail.ViewChapterDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".comicDetail.ComicDetailActivity"
+            android:name=".comicDetail.ViewComicDetailActivity"
             android:exported="false" />
         <activity
             android:name=".booklist.activity.AddComicActivity"

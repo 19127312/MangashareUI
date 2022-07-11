@@ -2,33 +2,28 @@ package com.khtn.mangashare.home.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.adapter.SuggestComicAdapter
-import com.khtn.mangashare.categoryList.CategoryListActivity
-import com.khtn.mangashare.chapterDetail.ChapterDetailActivity
-import com.khtn.mangashare.comicDetail.ComicDetailActivity
+import com.khtn.mangashare.booklist.activity.ViewBookListActivity
+import com.khtn.mangashare.categoryList.ViewCategoryListActivity
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.home.adapter.ViewPagerRankingAdapter
 import com.khtn.mangashare.model.comicItem
-import com.khtn.mangashare.navigation.MainActivity
-import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,13 +63,43 @@ class HomeFragment : Fragment() {
         init(view)
         return view
     }
-    private fun init(view: View){
-       var moreCategory = view.findViewById<LinearLayout>(R.id.categoriesAddLL)
-       moreCategory.setOnClickListener {
-           val intent = Intent(context, CategoryListActivity::class.java)
-           startActivity(intent)
-       }
+
+    private fun init(view: View) {
+        val moreCategory = view.findViewById<LinearLayout>(R.id.categoriesAddLL)
+        val moreSuggestComic = view.findViewById<LinearLayout>(R.id.suggestAddLL)
+        val funnyCategoryBTN = view.findViewById<Button>(R.id.funnyCategoryBTN)
+        val adventureCategoryBTN = view.findViewById<Button>(R.id.adventureCategoryBTN)
+        val sportCategoryBTN = view.findViewById<Button>(R.id.sportCategoryBTN)
+        val loveCategoryBTN = view.findViewById<Button>(R.id.loveCategoryBTN)
+
+        moreCategory.setOnClickListener {
+            val intent = Intent(context, ViewCategoryListActivity::class.java)
+            startActivity(intent)
+        }
+
+        moreSuggestComic.setOnClickListener {
+            val intent = Intent(context, ViewBookListActivity::class.java)
+            intent.putExtra("title", "Giới thiệu cho bạn")
+            startActivity(intent)
+        }
+
+        funnyCategoryBTN.setOnClickListener {
+            goToBookListByCategory("Vui nhộn")
+        }
+
+        adventureCategoryBTN.setOnClickListener {
+            goToBookListByCategory("Phiêu lưu")
+        }
+
+        sportCategoryBTN.setOnClickListener {
+            goToBookListByCategory("Thể thao")
+        }
+
+        loveCategoryBTN.setOnClickListener {
+            goToBookListByCategory("Tình cảm")
+        }
     }
+
     private fun initRecyclerView(view: View) {
         val searchIm = view.findViewById<ImageView>(R.id.searchIM)
         searchIm?.setOnClickListener {
@@ -91,10 +116,13 @@ class HomeFragment : Fragment() {
         cate.add("Hài hước")
 
         val recyclerViewCategory = view.findViewById<RecyclerView>(R.id.suggestCategoryRC)
+        val categoryAdapter = SuggestCategoryAdapter(context, cate)
         recyclerViewCategory.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewCategory.adapter = SuggestCategoryAdapter(context, cate)
-
+        recyclerViewCategory.adapter = categoryAdapter
+        categoryAdapter.onButtonClick = { item ->
+            goToBookListByCategory(item)
+        }
         val comic = arrayListOf<comicItem>()
         comic.add(comicItem("Naruto", R.drawable.cover_manga, 100))
         comic.add(comicItem("One piece", R.drawable.cover_manga, 501))
@@ -108,7 +136,7 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SuggestComicAdapter(context, comic)
         adapter.onItemClick = { tmp ->
-            val intent = Intent(context, ComicDetailActivity::class.java)
+            val intent = Intent(context, ViewComicDetailActivity::class.java)
             startActivity(intent)
         }
 
@@ -257,6 +285,11 @@ class HomeFragment : Fragment() {
         }.attach()
     }
 
+    private fun goToBookListByCategory(title: String) {
+        val intent = Intent(context, ViewBookListActivity::class.java)
+        intent.putExtra("title", title)
+        startActivity(intent)
+    }
 
     companion object {
         /**
