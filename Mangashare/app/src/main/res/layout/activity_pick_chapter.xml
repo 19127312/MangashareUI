@@ -14,7 +14,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="Xóa"
-        android:textSize="20dp"
+        android:fontFamily="@font/lexend_semibold"
+
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
@@ -34,12 +36,11 @@
         android:id="@+id/titlePickChapterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="80dp"
-        android:fontFamily="@font/poppins_bold"
+        android:fontFamily="@font/lexend_bold"
         android:text="Thêm chương truyện"
-        android:textSize="20dp"
-        android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/backPressAddChapter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.795"
@@ -69,12 +70,12 @@
 
     <TextView
         android:id="@+id/addChapterText"
-        android:layout_width="197dp"
+        android:layout_width="222dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/lexend_semibold"
         android:gravity="center"
         android:text="Thêm ảnh cho chương truyện"
-        android:textSize="20dp"
-        android:textStyle="bold"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/addChapterImage"
         app:layout_constraintEnd_toEndOf="@+id/addChapterBackground"
         app:layout_constraintStart_toEndOf="@+id/addChapterImage"
@@ -84,6 +85,7 @@
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_regular"
         android:text="Không có ảnh nào được chọn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +100,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:fontFamily="@font/lexend_semibold"
+
         android:text="Xóa toàn bộ"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
@@ -192,6 +196,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:text="Tình trạng"
+        android:fontFamily="@font/lexend_regular"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pickedChapterRV" />
 
@@ -201,6 +207,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:text="Giá tiền"
+        android:fontFamily="@font/lexend_regular"
+        android:textSize="15sp"
+
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
         app:layout_constraintTop_toTopOf="@+id/statusChapterText" />
 
@@ -210,6 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/lexend_regular"
         android:text="Đã chọn 0"
         app:layout_constraintStart_toStartOf="@+id/addChapterBackground"
         app:layout_constraintTop_toBottomOf="@+id/addChapterBackground" />
