@@ -15,9 +15,9 @@
         app:tabIndicatorColor="@color/navigation"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
-        app:tabTextAppearance="@style/tab_text"
+        app:tabSelectedTextColor="@color/navigation"
 
-        app:tabSelectedTextColor="@color/navigation" />
+        app:tabTextAppearance="@style/tab_text_middle" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerBookList"

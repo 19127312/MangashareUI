@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Viết một truyện mới"
         android:textStyle="bold"
+        android:fontFamily="@font/lexend_semibold"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/addComicBtn"
         app:layout_constraintEnd_toEndOf="parent"
