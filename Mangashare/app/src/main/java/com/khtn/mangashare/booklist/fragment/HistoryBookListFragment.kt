@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.adapter.historyBookListAdapter
+import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.model.comicItem
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,17 +58,18 @@ class HistoryBookListFragment : Fragment() {
 
 
 
-        adapter= historyBookListAdapter(itemList)
+        adapter= historyBookListAdapter(context,itemList)
         if (recyclerView != null) {
             recyclerView.adapter=adapter
         }
         adapter.setOnItemClickListener(object: historyBookListAdapter.onItemClickListener{
             lateinit var intent: Intent
             override fun onItemClick(position: Int) {
-
-
+                val intent = Intent(context, ViewComicDetailActivity::class.java)
+                startActivity(intent)
             }
         })
+
     }
 
 

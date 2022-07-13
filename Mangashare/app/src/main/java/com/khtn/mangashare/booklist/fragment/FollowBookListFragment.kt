@@ -1,11 +1,19 @@
 package com.khtn.mangashare.booklist.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.booklist.adapter.followBookAdapter
+import com.khtn.mangashare.booklist.adapter.historyBookListAdapter
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
+import com.khtn.mangashare.model.comicItem
+import kotlinx.android.synthetic.main.fragment_follow_book_list.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,42 +27,51 @@ private const val ARG_PARAM2 = "param2"
  */
 class FollowBookListFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var adapter: followBookAdapter
+    private lateinit var root: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follow_book_list, container, false)
+        val view= inflater.inflate(R.layout.fragment_follow_book_list, container, false)
+
+        initRecyclerView(view)
+        return view
+    }
+    private fun initRecyclerView(view: View?) {
+        val recyclerView= view?.findViewById<RecyclerView>(R.id.followRV)
+        if (recyclerView != null) {
+            recyclerView.layoutManager= LinearLayoutManager(activity)
+        }
+        var itemList:ArrayList<comicItem>
+        itemList= ArrayList()
+
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        val root= view?.findViewById<View>(R.id.rootFollow)
+
+
+
+        adapter= root?.let { followBookAdapter(it,context,itemList) }!!
+        if (recyclerView != null) {
+            recyclerView.adapter=adapter
+        }
+        adapter.setOnItemClickListener(object: followBookAdapter.onItemClickListener{
+            lateinit var intent: Intent
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, ViewComicDetailActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FollowBookListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FollowBookListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }
