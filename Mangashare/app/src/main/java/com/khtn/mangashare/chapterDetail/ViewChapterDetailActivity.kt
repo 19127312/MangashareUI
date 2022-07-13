@@ -12,13 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khtn.mangashare.R
+import com.khtn.mangashare.booklist.activity.UserReportActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.navigation.MainActivity
 
 
 class ViewChapterDetailActivity : AppCompatActivity() {
@@ -57,7 +62,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         tb.setNavigationOnClickListener {
             val replyIntent = Intent()
             replyIntent.putExtra("comic", comic)
-            replyIntent.putExtra("sort",numSort)
+            replyIntent.putExtra("sort", numSort)
             setResult(Activity.RESULT_OK, replyIntent)
             finish()
         }
@@ -83,11 +88,15 @@ class ViewChapterDetailActivity : AppCompatActivity() {
                 tb.title = "Chương ${position + 1}"
                 markComic(position)
                 goBackNextChapter(position)
+                showBottomSheet(position)
             }
         })
+        showBottomSheet(num)
+    }
 
+    private fun showBottomSheet(pos: Int) {
         chapterListLL.setOnClickListener {
-            showBottomSheetDialog(comic.chapter)
+            showBottomSheetDialog(comic.chapter, pos)
         }
     }
 
@@ -139,6 +148,8 @@ class ViewChapterDetailActivity : AppCompatActivity() {
                 true
             }
             R.id.action_report -> {
+                val intent = Intent(this, UserReportActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.action_share -> {
@@ -148,19 +159,38 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showBottomSheetDialog(chapterList: ArrayList<chapterItem>) {
+    private fun showBottomSheetDialog(chapterList: ArrayList<chapterItem>, number: Int) {
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.fragment_bottom_sheet_chapter_list)
         val rc = bottomSheetDialog.findViewById<RecyclerView>(R.id.bottomSheetChapterListRC)
-        var adapter = BottomSheetChapterListAdapter(this, chapterList)
+        var adapter = BottomSheetChapterListAdapter(this, chapterList, number)
         rc?.layoutManager = LinearLayoutManager(this)
         rc?.adapter = adapter
+        rc?.smoothSnapToPosition(number)
+        rc?.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         bottomSheetDialog.show()
         adapter?.onItemClick = { tmp ->
             val intent = Intent(this, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
-            intent.putExtra("chapterNumber", tmp.number?.minus(1) )
+            intent.putExtra("chapterNumber", tmp.number?.minus(1))
             startActivityForResult(intent, 111)
         }
+    }
+
+    private fun RecyclerView.smoothSnapToPosition(
+        position: Int,
+        snapMode: Int = LinearSmoothScroller.SNAP_TO_START
+    ) {
+        val smoothScroller = object : LinearSmoothScroller(this.context) {
+            override fun getVerticalSnapPreference(): Int = snapMode
+            override fun getHorizontalSnapPreference(): Int = snapMode
+        }
+        smoothScroller.targetPosition = position
+        layoutManager?.startSmoothScroll(smoothScroller)
     }
 }
