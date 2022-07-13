@@ -1,6 +1,5 @@
 package com.khtn.mangashare.booklist.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,18 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.khtn.mangashare.R
 import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
-class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicItem>?) :
-    RecyclerView.Adapter<historyBookListAdapter.HolderVideo>(){
+class followBookAdapter(var root: View,var context: Context?, var comics:ArrayList<comicItem>?) :
+    RecyclerView.Adapter<followBookAdapter.HolderVideo>(){
 
     lateinit var ViewGroup: ViewGroup
 
@@ -28,11 +25,11 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
     class HolderVideo(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
 
 
-        var img: ImageView =itemView.findViewById(R.id.coverHistory)
-        var name: TextView =itemView.findViewById(R.id.nameMangaHistory)
-        var chapter: TextView =itemView.findViewById(R.id.chapterHistory)
-        var date: TextView =itemView.findViewById(R.id.dateHistory)
-        var button :Button= itemView.findViewById(R.id.buttonContinueReading)
+        var img: ImageView =itemView.findViewById(R.id.coverFollow)
+        var name: TextView =itemView.findViewById(R.id.nameMangaFollow)
+        var chapter: TextView =itemView.findViewById(R.id.chapterFollow)
+        var author: TextView =itemView.findViewById(R.id.authorFollow)
+        var button : ImageView = itemView.findViewById(R.id.cancelFollowBtn)
 
         init{
             itemView.setOnClickListener{
@@ -50,10 +47,10 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
     fun setOnItemClickListener(listener: onItemClickListener){
         mListenr=listener
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): historyBookListAdapter.HolderVideo {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_history_book,parent,false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): followBookAdapter.HolderVideo {
+        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_follow_comic,parent,false)
         ViewGroup=parent
-        return historyBookListAdapter.HolderVideo(view,mListenr)
+        return followBookAdapter.HolderVideo(view,mListenr)
     }
 
 
@@ -67,15 +64,24 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
         comic.lastSeenChapter=4
         val Name:String?=comic.name
         holder.name.text=Name
-        holder.chapter.text="Chapter ${comic.lastSeenChapter+1}/${comic.totalChapter}"
-        holder.date.text=comic.lastDateSeen
+        holder.chapter.text="Chapter ${comic.totalChapter}"
+        holder.author.text=comic.author
         holder.img.setImageResource(comic.cover)
         holder.button.setOnClickListener {
-            val intent = Intent(context, ViewChapterDetailActivity::class.java)
-            intent.putExtra("comic", comic)
-            var index = comic.lastSeenChapter
-            intent.putExtra("chapterNumber", index)
-            context?.startActivity(intent);
+            var snackbar = Snackbar.make(root, "Đã bỏ theo dõi ${comic.name}", Snackbar.LENGTH_LONG)
+
+
+            comics?.removeAt(position)
+            notifyItemRemoved(position)
+            comics?.let { it1 -> notifyItemRangeChanged(position, it1.size) }
+
+            snackbar.show()
+            snackbar.setAction("Theo dõi lại", View.OnClickListener() {
+                comics?.add(position,comic)
+                notifyItemInserted(position)
+                comics?.let { it1 -> notifyItemRangeChanged(position, it1.size) }
+
+            })
         }
     }
     private fun initItem(): comicItem {
