@@ -63,29 +63,28 @@
         android:fontFamily="@font/lexend_medium"
         android:text="16/08/2022"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/numberVipChapterTV"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/numberVipChapterTV"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/numberVipChapterTV" />
 
     <TextView
         android:id="@+id/priceVipChapterTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginEnd="3dp"
         android:text="3"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/numberVipChapterTV"
-        app:layout_constraintStart_toEndOf="@+id/numberVipChapterTV"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/numberVipChapterTV" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="17dp"
         android:layout_height="18dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/priceVipChapterTV"
-        app:layout_constraintStart_toEndOf="@+id/priceVipChapterTV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/priceVipChapterTV"
         app:srcCompat="@drawable/currency" />
 

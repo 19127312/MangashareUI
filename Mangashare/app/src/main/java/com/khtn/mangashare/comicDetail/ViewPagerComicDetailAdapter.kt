@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -111,12 +112,15 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         comic.chapter.forEach { i ->
             items.add(ChapterRecyclerViewItem.parseData(i))
         }
-        val recycleView = view?.findViewById<RecyclerView>(R.id.chapterListDetailRC)
-        recycleView?.layoutManager = LinearLayoutManager(activity)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.chapterListDetailRC)
+        recyclerView?.layoutManager = LinearLayoutManager(activity)
         adapter = context?.let { ChapterRecyclerViewAdapter(it) }!!
         adapter.items = items
-        recycleView?.adapter = adapter
-
+        recyclerView?.adapter = adapter
+        recyclerView?.addItemDecoration(
+            DividerItemDecoration(context,
+                DividerItemDecoration.VERTICAL)
+        )
         adapter.onButtonClick = { view, item, position ->
             when (item) {
                 is ChapterRecyclerViewItem.VipChapter -> {
@@ -165,7 +169,7 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
             items.reverse()
             adapter.notifyDataSetChanged()
         }
-
+        
         adapter.itemClickListener = { view, item, position ->
             val intent = Intent(context, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
@@ -189,6 +193,7 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_comic_detail, container, false)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView(view)
