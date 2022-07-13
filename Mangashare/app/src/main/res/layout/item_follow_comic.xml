@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/coverHistory"
+        android:id="@+id/coverFollow"
         android:scaleType="fitXY"
 
         android:layout_width="100dp"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/cover_manga" />
 
     <TextView
-        android:id="@+id/nameMangaHistory"
+        android:id="@+id/nameMangaFollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,48 +27,44 @@
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/coverHistory"
-        app:layout_constraintTop_toTopOf="@+id/coverHistory" />
+        app:layout_constraintStart_toEndOf="@+id/coverFollow"
+        app:layout_constraintTop_toTopOf="@+id/coverFollow" />
 
     <TextView
-        android:id="@+id/chapterHistory"
+        android:id="@+id/authorFollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/lexend_medium"
-
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/nameMangaHistory"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nameMangaHistory"
-        app:layout_constraintTop_toBottomOf="@+id/nameMangaHistory" />
-
-    <TextView
-        android:id="@+id/dateHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/lexend_medium"
-
-        android:text="TextView"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/chapterHistory"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameMangaFollow"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/chapterHistory"
-        app:layout_constraintTop_toBottomOf="@+id/chapterHistory" />
+        app:layout_constraintStart_toStartOf="@+id/nameMangaFollow"
+        app:layout_constraintTop_toBottomOf="@+id/nameMangaFollow" />
 
-    <android.widget.Button
-        android:id="@+id/buttonContinueReading"
-        android:layout_width="96dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/gradient_btn"
-        android:text="Tiếp tục"
+    <TextView
+        android:id="@+id/chapterFollow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lexend_medium"
+        android:textStyle="italic"
 
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/dateHistory"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/authorFollow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/authorFollow"
+        app:layout_constraintTop_toBottomOf="@+id/authorFollow" />
+
+    <ImageView
+        android:id="@+id/cancelFollowBtn"
+        android:layout_width="46dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/coverFollow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nameMangaHistory"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/coverFollow"
+        app:srcCompat="@drawable/ic_cancel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
