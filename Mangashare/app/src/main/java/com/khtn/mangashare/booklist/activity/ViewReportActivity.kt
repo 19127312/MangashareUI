@@ -95,7 +95,7 @@ class ViewReportActivity : AppCompatActivity() {
         reportCover.setImageResource(comic.cover)
         nameReport.text=comic.name
         authorReport.text=comic.author
-        reporterName.text= "Người báo cáo:"+comic.reporter
+        reporterName.text= comic.reporter
         contextReport.text=comic.contextReport
         if(comic.status=="Đã"){
             rootReportComic.removeView(rootLinearButton)

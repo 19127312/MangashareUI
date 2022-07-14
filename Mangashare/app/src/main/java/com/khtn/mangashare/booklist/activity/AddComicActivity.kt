@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,9 @@ import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.booklist.adapter.chapterEditAdapter
 import com.khtn.mangashare.model.chapterItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
+import kotlinx.android.synthetic.main.activity_add_comic.backPressUserReport
+import kotlinx.android.synthetic.main.activity_add_comic.titleModeComic
+import kotlinx.android.synthetic.main.activity_user_report.*
 
 class AddComicActivity : AppCompatActivity() {
     private val IMAGE_PICK_GALLARY_CODE=100
@@ -36,6 +40,7 @@ class AddComicActivity : AppCompatActivity() {
     lateinit var position: String
     lateinit var layout: LinearLayout
     var isReverse=false
+    var isSetCover=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_comic)
@@ -55,7 +60,27 @@ class AddComicActivity : AppCompatActivity() {
 
         addChapter()
         confirmAddComicBtn.setOnClickListener {
-            finish()
+            var isOK=true
+            if(editTextTextPersonName.text?.isEmpty() == true){
+                textInputLayoutName.helperText="Tên truyện không được bỏ trống"
+                isOK=false
+            }
+
+            if(editTextTextMultiLine.text?.isEmpty() == true){
+                textInputLayoutDes.helperText="Mô tả không được bỏ trống"
+                isOK=false
+            }
+
+            if(!isSetCover){
+                addCoverText.text="Cần thêm bìa truyện"
+                addCoverText.setTextColor(getResources().getColor(R.color.skip))
+                isOK=false
+            }
+            if(isOK ){
+                finish()
+            }
+
+            //
         }
         initCatRV()
         setupView(mode)
@@ -105,6 +130,7 @@ class AddComicActivity : AppCompatActivity() {
 
             }
             "edit"-> {
+                isSetCover=true
                 titleModeComic.text="Sửa thông tin truyện"
                 addCoverIcon.visibility= View.INVISIBLE
                 addCoverText.text="Sửa bìa truyện"
@@ -171,7 +197,7 @@ class AddComicActivity : AppCompatActivity() {
 
     private fun initCatRV() {
         if(mode=="add"){
-            chooseArray.add("Thể loại")
+            rootLinear.removeView(categoryRV)
         }else{
             selectedItems.add(0)
             selectedItems.add(1)
@@ -179,8 +205,12 @@ class AddComicActivity : AppCompatActivity() {
             chooseArray.add("Hài hước")
             initSelectedItems[0]=true
             initSelectedItems[1]=true
-
+            initAdapterRV()
+            Log.d("MyScreen", rootLinear.childCount.toString())
         }
+
+    }
+    private fun initAdapterRV(){
         adapter=SuggestCategoryAdapter(this, chooseArray)
         categoryRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         categoryRV.adapter = adapter
@@ -205,7 +235,6 @@ class AddComicActivity : AppCompatActivity() {
 
     private fun categoryClick() {
         val builder = AlertDialog.Builder(this)
-        Log.d("HeLLO","He")
         builder.setTitle("Chọn thể loại")
             .setMultiChoiceItems(
                 categoryArray, initSelectedItems,
@@ -224,7 +253,19 @@ class AddComicActivity : AppCompatActivity() {
                             chooseArray.add(categoryArray[item])
 
                     }
-                    adapter.notifyDataSetChanged()
+                    if(selectedItems.size==0){
+                        rootLinear.removeView(categoryRV)
+                    }else{
+                        val x: Int = rootLinear.childCount
+                        if(x==7 || x ==5){
+                            Log.d("MyScreen", "addRV")
+                            rootLinear.addView(categoryRV,4)
+                        }
+                        initAdapterRV()
+
+                        adapter.notifyDataSetChanged()
+
+                    }
                 })
             .setNegativeButton("Thoát",
                 DialogInterface.OnClickListener{dialogInterface, i ->
@@ -237,9 +278,8 @@ class AddComicActivity : AppCompatActivity() {
                         initSelectedItems[i]=false
                     }
                     chooseArray.clear()
-                    chooseArray.add("Thể loại")
                     adapter.notifyDataSetChanged()
-
+                    rootLinear.removeView(categoryRV)
                 })
             .setOnCancelListener {
                 chooseArray.clear()
@@ -249,20 +289,22 @@ class AddComicActivity : AppCompatActivity() {
                     }
                 }
                 if(selectedItems.size==0){
-                    chooseArray.add("Thể loại")
+                    rootLinear.removeView(categoryRV)
+                }else{
+                    val x: Int = rootLinear.childCount
+                    if(x==7 || x ==5){
+                        rootLinear.addView(categoryRV,4)
+                    }
+                    initAdapterRV()
+                    adapter.notifyDataSetChanged()
 
                 }
-                adapter.notifyDataSetChanged()
 
             }
         builder.create()
         builder.show()
 
-//        for (i in initSelectedItems.indices) {
-//            if(initSelectedItems[i]){
-//                Log.d("MyScreen",categoryArray[i].toString())
-//            }
-//        }
+
     }
 
     private fun addCover() {
@@ -293,6 +335,10 @@ class AddComicActivity : AppCompatActivity() {
             thumbnail=data.data!!
             reportCover.setImageURI(thumbnail)
             addCoverIcon.visibility= View.INVISIBLE
+            isSetCover=true
+            addCoverText.text="Sửa bìa truyện"
+            addCoverText.setTextColor(getResources().getColor(androidx.media.R.color.secondary_text_default_material_light))
+
         }
         if(requestCode===5555 &&resultCode== Activity.RESULT_OK){
             val position = data!!.getStringExtra("positionChapter")?.toInt()
