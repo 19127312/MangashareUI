@@ -49,7 +49,7 @@ class UserReportActivity : AppCompatActivity() {
     fun setupListener(){
         deleteAllReportBtn.setOnClickListener {
             imgsList.clear()
-            imgsList.add(picItem(R.drawable.cover_manga))
+            imgsList.add(picItem(R.drawable.addimage))
             adapter.notifyDataSetChanged()
             setupView()
         }
@@ -118,7 +118,7 @@ class UserReportActivity : AppCompatActivity() {
     }
     private fun setupRecycleView() {
         imgsList= ArrayList<picItem>()
-        imgsList.add(picItem(R.drawable.cover_manga))
+        imgsList.add(picItem(R.drawable.addimage))
         adapter = PickedChapterAdapter(this,imgsList,"report")
         deleteList=ArrayList<Int>()
         ReportRV.adapter=adapter
