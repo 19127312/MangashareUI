@@ -279,7 +279,8 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val adapter = context?.let { SuggestComicAdapter(it, comicList) }
         adapter?.onItemClick = { tmp ->
-            Log.i("test", tmp.name.toString())
+            val intent = Intent(context, ViewComicDetailActivity::class.java)
+            startActivity(intent)
         }
         recyclerView?.adapter = adapter
     }

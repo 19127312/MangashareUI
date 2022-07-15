@@ -1,5 +1,6 @@
 package com.khtn.mangashare.booklist.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.adapter.BookListAdapter
+import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.model.comicItem
 
 class ViewBookListActivity : AppCompatActivity() {
@@ -33,6 +35,10 @@ class ViewBookListActivity : AppCompatActivity() {
         rc.setHasFixedSize(true);
         rc.layoutManager = LinearLayoutManager(this)
         rc.adapter = adapter
+        adapter.onItemClick= {item ->
+            val intent = Intent(this, ViewComicDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initComicItem(): ArrayList<comicItem> {

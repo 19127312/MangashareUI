@@ -180,6 +180,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
             intent.putExtra("chapterNumber", tmp.number?.minus(1))
             startActivityForResult(intent, 111)
             bottomSheetDialog.dismiss()
+            finish()
         }
     }
 
