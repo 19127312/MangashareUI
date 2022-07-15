@@ -38,8 +38,7 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/contraintLayout"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
