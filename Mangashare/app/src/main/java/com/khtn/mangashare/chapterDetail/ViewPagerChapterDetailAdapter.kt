@@ -22,11 +22,9 @@ class ViewPagerChapterDetailAdapter : FragmentStateAdapter {
         fragmentManager: FragmentManager,
         lifecycle: Lifecycle,
         comic: comicItem,
-        tbLayout: ConstraintLayout,
         naLayout: ConstraintLayout
     ) : super(fragmentManager, lifecycle) {
         this.comic = comic
-        this.tbLayout = tbLayout
         this.naLayout = naLayout
     }
 
@@ -37,24 +35,21 @@ class ViewPagerChapterDetailAdapter : FragmentStateAdapter {
         layout: ConstraintLayout
     ) : super(fragment) {
         this.comic = comic
-        this.tbLayout = tbLayout
         this.naLayout = naLayout
     }
 
 
     private var comic: comicItem
-    private lateinit var tbLayout: ConstraintLayout
     private lateinit var naLayout: ConstraintLayout
     override fun getItemCount(): Int = comic.chapter.size
 
     override fun createFragment(position: Int): Fragment {
-        return DetailChapterFragment(comic.chapter[position], tbLayout, naLayout)
+        return DetailChapterFragment(comic.chapter[position], naLayout)
     }
 }
 
 class DetailChapterFragment(
     private var chapter: chapterItem,
-    private var tbLayout: ConstraintLayout,
     private var naLayout: ConstraintLayout
 ) : Fragment() {
     override fun onCreateView(
@@ -86,7 +81,6 @@ class DetailChapterFragment(
                 anim =  AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail_fade_out)
                 check = false
             }
-            tbLayout.startAnimation(anim)
             naLayout.startAnimation(anim)
 
         }
