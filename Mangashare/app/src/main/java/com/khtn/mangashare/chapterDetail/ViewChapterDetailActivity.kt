@@ -68,7 +68,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         }
         adapter = ViewPagerChapterDetailAdapter(
             supportFragmentManager, lifecycle,
-            comic, tblayout, nalayout
+            comic, nalayout
         )
         viewPager = findViewById(R.id.chapterDetailVP)
         if (num != -1) {
