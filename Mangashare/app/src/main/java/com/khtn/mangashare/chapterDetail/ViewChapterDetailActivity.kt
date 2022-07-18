@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -45,8 +46,8 @@ class ViewChapterDetailActivity : AppCompatActivity() {
     private fun init() {
         val intent = intent
         comic = intent.getSerializableExtra("comic") as comicItem
-        val num: Int = intent.getIntExtra("chapterNumber", -1)
-        val numSort: Int = intent.getIntExtra("sort", -1)
+        var num: Int = intent.getIntExtra("chapterNumber", -1)
+        var numSort: Int = intent.getIntExtra("sort", -1)
 
         markLL = findViewById(R.id.markChapterDetailLL)
         markIV = findViewById(R.id.markChapterIM)
@@ -66,31 +67,21 @@ class ViewChapterDetailActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, replyIntent)
             finish()
         }
+
         adapter = ViewPagerChapterDetailAdapter(
             supportFragmentManager, lifecycle,
-            comic, nalayout
+            comic, num, nalayout, tblayout
         )
         viewPager = findViewById(R.id.chapterDetailVP)
         if (num != -1) {
             viewPager?.adapter = adapter
-            viewPager.setCurrentItem(num)
         }
 
         //back and previous chapter
         backBTN = findViewById(R.id.goPreviousChapterIM)
         nextBTN = findViewById(R.id.goNextChapterIM)
-        goBackNextChapter(num)
-
+        goBackNextChapter(num, numSort)
         markComic(num)
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                tb.title = "Chương ${position + 1}"
-                markComic(position)
-                goBackNextChapter(position)
-                showBottomSheet(position)
-            }
-        })
         showBottomSheet(num)
     }
 
@@ -100,13 +91,34 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun goBackNextChapter(pos: Int) {
+    private fun goBackNextChapter(pos: Int, sort: Int) {
+        if (pos == 0) {
+            backBTN.setImageResource(R.drawable.ic_caret_left)
+        } else if (pos == comic.chapter.size - 1) {
+            nextBTN.setImageResource(R.drawable.ic_caret_right)
+        }
+
         backBTN.setOnClickListener {
-            viewPager.setCurrentItem(pos - 1)
+            if (pos > 0) {
+                val intent = Intent(this, ViewChapterDetailActivity::class.java)
+                intent.putExtra("comic", comic)
+                intent.putExtra("sort", sort)
+                intent.putExtra("chapterNumber", pos - 1)
+                startActivityForResult(intent, 111)
+                finish()
+            }
         }
         nextBTN.setOnClickListener {
-            viewPager.setCurrentItem(pos + 1)
+            if (pos < comic.chapter.size - 1){
+                val intent = Intent(this, ViewChapterDetailActivity::class.java)
+                intent.putExtra("comic", comic)
+                intent.putExtra("sort", sort)
+                intent.putExtra("chapterNumber", pos + 1)
+                startActivityForResult(intent, 111)
+                finish()
+            }
         }
+
     }
 
     private fun markComic(pos: Int) {
@@ -118,7 +130,6 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         markLL.setOnClickListener {
             if (comic.chapter[pos].bookmark == true) {
                 comic.chapter[pos].bookmark = false
-
                 markIV.setImageResource(R.drawable.ic_book_mark)
             } else {
                 comic.chapter.forEach { i ->
