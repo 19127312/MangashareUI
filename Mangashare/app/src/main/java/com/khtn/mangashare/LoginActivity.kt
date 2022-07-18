@@ -14,19 +14,19 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
 
 
-        admin.setOnClickListener {
-            intent.putExtra("typeUser", "admin")
-            startActivity(intent)
-        }
-
-        user.setOnClickListener {
-            intent.putExtra("typeUser", "user")
-            startActivity(intent)
-        }
-
-        author.setOnClickListener {
-            intent.putExtra("typeUser", "author")
-            startActivity(intent)
-        }
+//        admin.setOnClickListener {
+//            intent.putExtra("typeUser", "admin")
+//            startActivity(intent)
+//        }
+//
+//        user.setOnClickListener {
+//            intent.putExtra("typeUser", "user")
+//            startActivity(intent)
+//        }
+//
+//        author.setOnClickListener {
+//            intent.putExtra("typeUser", "author")
+//            startActivity(intent)
+//        }
     }
 }
