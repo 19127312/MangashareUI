@@ -16,40 +16,39 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.khtn.mangashare.R
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import kotlinx.android.synthetic.main.activity_zoom_image.*
+import kotlinx.android.synthetic.main.fragment_chapter_detail.*
 
 class ViewPagerChapterDetailAdapter : FragmentStateAdapter {
     constructor(
         fragmentManager: FragmentManager,
         lifecycle: Lifecycle,
         comic: comicItem,
-        naLayout: ConstraintLayout
+        num: Int,
+        naLayout: ConstraintLayout,
+        tblayout: ConstraintLayout
     ) : super(fragmentManager, lifecycle) {
         this.comic = comic
+        this.num = num
         this.naLayout = naLayout
+        this.tbLayout = tblayout
     }
-
-    constructor(
-        fragment: Fragment,
-        comic: comicItem,
-        num: Int,
-        layout: ConstraintLayout
-    ) : super(fragment) {
-        this.comic = comic
-        this.naLayout = naLayout
-    }
-
 
     private var comic: comicItem
-    private lateinit var naLayout: ConstraintLayout
-    override fun getItemCount(): Int = comic.chapter.size
+    private var num: Int
+    private var naLayout: ConstraintLayout
+    private var tbLayout: ConstraintLayout
+
+    override fun getItemCount(): Int = comic.chapter[num].imageList.size
 
     override fun createFragment(position: Int): Fragment {
-        return DetailChapterFragment(comic.chapter[position], naLayout)
+        return DetailChapterFragment(comic.chapter[num].imageList[position], tbLayout, naLayout)
     }
 }
 
 class DetailChapterFragment(
-    private var chapter: chapterItem,
+    private var image: Int,
+    private var tblayout: ConstraintLayout,
     private var naLayout: ConstraintLayout
 ) : Fragment() {
     override fun onCreateView(
@@ -60,29 +59,23 @@ class DetailChapterFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init(view)
+        init()
     }
 
-    private fun init(view: View?) {
-        val rc = view?.findViewById<RecyclerView>(R.id.chapterDetailRC)
-        rc?.setHasFixedSize(true);
-
-        rc?.layoutManager = LinearLayoutManager(activity)
-        val adapter = context?.let { ImageChapterDetailAdapter(it, chapter.imageList) }
-        rc?.adapter = adapter
+    private fun init() {
+        imageChapterDetail.setImageResource(image)
         var check = false
-        adapter?.onItemClick = { tmp ->
-            var anim: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail)
-            if(check == false){
-                anim =  AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail)
+        imageChapterDetail?.setOnClickListener {
+            var anim: Animation
+            if (check == false) {
+                anim = AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail)
                 check = true
-            }
-            else{
-                anim =  AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail_fade_out)
+            } else {
+                anim = AnimationUtils.loadAnimation(context, R.anim.anim_chapter_detail_fade_out)
                 check = false
             }
             naLayout.startAnimation(anim)
-
+            tblayout.startAnimation(anim)
         }
     }
 }
