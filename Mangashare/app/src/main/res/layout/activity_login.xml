@@ -69,7 +69,6 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
-            app:helperText="dasdasd"
             app:startIconDrawable="@drawable/ic_envelope"
             app:boxStrokeErrorColor="@color/skip"
             app:endIconMode="clear_text"
@@ -104,7 +103,6 @@
             android:layout_height="80dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
-            app:helperText="sdasd"
             app:startIconDrawable="@drawable/ic_lock"
             app:boxStrokeErrorColor="@color/skip"
             app:endIconMode="password_toggle"
@@ -142,12 +140,12 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/loginBtn"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/confirmBtn"
-            android:text="Button"
+            android:text="Đăng nhập"
 
             app:layout_constraintEnd_toEndOf="@+id/textView9"
             app:layout_constraintStart_toStartOf="@+id/checkBox"
@@ -159,9 +157,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Hoặc với"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+            app:layout_constraintStart_toStartOf="@+id/loginBtn"
+            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
         <View
             android:id="@+id/view2"
@@ -170,7 +168,7 @@
             android:background="@drawable/black_divider"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintEnd_toStartOf="@+id/textView10"
-            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/loginBtn"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <View
@@ -179,7 +177,7 @@
             android:layout_height="2dp"
             android:background="@drawable/black_divider"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -191,7 +189,7 @@
             android:background="@drawable/rounded_outline_btn"
             android:text="Facebook"
             android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/loginBtn"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <android.widget.Button
@@ -202,7 +200,7 @@
             android:background="@drawable/rounded_outline_btn"
             android:text="Gmail"
             android:textSize="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <ImageView
@@ -231,9 +229,9 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
             app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/button2">
+            app:layout_constraintStart_toStartOf="@+id/loginBtn">
 
             <TextView
                 android:layout_width="wrap_content"
