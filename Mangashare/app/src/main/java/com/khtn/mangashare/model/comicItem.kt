@@ -76,6 +76,12 @@ class comicItem : Serializable {
         this.cover = cover
         this.totalChapter = totalChapter
     }
+    constructor(name: String?, cover: Int, author: String?, lastDate: String) {
+        this.name = name
+        this.cover = cover
+        this.author = author
+        this.lastDateSeen=lastDate
+    }
 
     constructor(
         name: String?,

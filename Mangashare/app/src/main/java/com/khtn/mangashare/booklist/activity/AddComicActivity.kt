@@ -23,6 +23,7 @@ import com.khtn.mangashare.model.chapterItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.activity_add_comic.backPressUserReport
 import kotlinx.android.synthetic.main.activity_add_comic.titleModeComic
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_user_report.*
 
 class AddComicActivity : AppCompatActivity() {
@@ -64,11 +65,15 @@ class AddComicActivity : AppCompatActivity() {
             if(editTextTextPersonName.text?.isEmpty() == true){
                 textInputLayoutName.helperText="Tên truyện không được bỏ trống"
                 isOK=false
+            }else{
+                textInputLayoutName.helperText=""
             }
 
             if(editTextTextMultiLine.text?.isEmpty() == true){
                 textInputLayoutDes.helperText="Mô tả không được bỏ trống"
                 isOK=false
+            }else{
+                textInputLayoutDes.helperText=""
             }
 
             if(!isSetCover){

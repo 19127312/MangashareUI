@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".booklist.activity.ViewCensorChapterActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backPressChapterCensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/censorChapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Chương 1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/backPressChapterCensor"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chapterDetailCensorRV"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        tools:listitem="@layout/item_image_report"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <android.widget.Button
+            android:id="@+id/noChapterBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_skip_btn"
+            android:text="Không duyệt"
+            android:textColor="@color/white"
+            />
+        <android.widget.Button
+            android:id="@+id/yesChapterBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:background="@drawable/background_confirm_btn"
+            android:text="Duyệt"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+</LinearLayout>
