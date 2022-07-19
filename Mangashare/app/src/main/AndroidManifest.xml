@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mangashare">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".booklist.activity.ViewCensorChapterActivity"
             android:exported="false" />
         <activity
