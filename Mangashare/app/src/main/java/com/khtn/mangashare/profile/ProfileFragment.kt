@@ -11,6 +11,7 @@ import android.widget.Button
 import com.khtn.mangashare.LoginActivity
 import com.khtn.mangashare.R
 import com.khtn.mangashare.categoryList.ViewCategoryListActivity
+import com.khtn.mangashare.profile.activity.TransactionActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,9 +43,15 @@ class ProfileFragment : Fragment() {
 
     private fun init(view: View?) {
         val logoutBtn = view?.findViewById<Button>(R.id.logout_btn)
+        val transactionBtn = view?.findViewById<Button>(R.id.napBtn)
+
         logoutBtn?.setOnClickListener {
             activity?.finish()
             val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        transactionBtn?.setOnClickListener {
+            val intent = Intent(context, TransactionActivity::class.java)
             startActivity(intent)
         }
     }

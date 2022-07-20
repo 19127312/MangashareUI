@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_outline_btn"
+    android:orientation="horizontal"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginTop="20dp"
+    >
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/currency"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+
+        />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+    <android.widget.Button
+        android:id="@+id/convertPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23.000 VND"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/background_btn_buy"
+        android:layout_gravity="center"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/white"
+        android:layout_marginVertical="15dp"
+        />
+</LinearLayout>
