@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -13,18 +12,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.activity.UserReportActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
-import com.khtn.mangashare.navigation.MainActivity
 
 
 class ViewChapterDetailActivity : AppCompatActivity() {
@@ -59,7 +57,8 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         setSupportActionBar(tb)
         tb.setTitleTextAppearance(this, R.style.ToolbarFont)
         tb.title = "Chương ${num + 1}"
-
+        val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.ic_menu_white)
+        tb.setOverflowIcon(drawable)
         tb.setNavigationOnClickListener {
             val replyIntent = Intent()
             replyIntent.putExtra("comic", comic)

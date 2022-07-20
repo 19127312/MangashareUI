@@ -24,6 +24,7 @@ import com.khtn.mangashare.categoryList.ViewCategoryListActivity
 import com.khtn.mangashare.comicDetail.ViewComicDetailActivity
 import com.khtn.mangashare.home.adapter.ViewPagerRankingAdapter
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.search.SearchComicActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +72,7 @@ class HomeFragment : Fragment() {
         val adventureCategoryBTN = view.findViewById<Button>(R.id.adventureCategoryBTN)
         val sportCategoryBTN = view.findViewById<Button>(R.id.sportCategoryBTN)
         val loveCategoryBTN = view.findViewById<Button>(R.id.loveCategoryBTN)
+        val searchBTN = view.findViewById<ImageView>(R.id.searchIM)
 
         moreCategory.setOnClickListener {
             val intent = Intent(context, ViewCategoryListActivity::class.java)
@@ -97,6 +99,11 @@ class HomeFragment : Fragment() {
 
         loveCategoryBTN.setOnClickListener {
             goToBookListByCategory("Tình cảm")
+        }
+
+        searchBTN.setOnClickListener{
+            val intent = Intent(context, SearchComicActivity::class.java)
+            startActivity(intent)
         }
     }
 
