@@ -21,10 +21,12 @@ class comicItem : Serializable {
     var status = "Censored"
     var completeStatus = false
     var category = arrayListOf<String>()
-    var reporter=""
-    var contextReport=""
-    var replyReport=""
+    var reporter = ""
+    var contextReport = ""
+    var replyReport = ""
     var chapter = arrayListOf<chapterItem>()
+    var comment = arrayListOf<commentItem>()
+
     constructor() {}
     constructor(cover: Int, name: String, total: Int, lastSeen: Int, lastDate: String) {
         this.name = name
@@ -42,15 +44,24 @@ class comicItem : Serializable {
         this.cover = cover
     }
 
-    constructor(cover: Int, name: String,author:String ,reporter: String, status: String, reply: String,context: String) {
+    constructor(
+        cover: Int,
+        name: String,
+        author: String,
+        reporter: String,
+        status: String,
+        reply: String,
+        context: String
+    ) {
         this.name = name
         this.reporter = reporter
         this.status = status
         this.cover = cover
-        this.contextReport=context
-        this.replyReport=reply
-        this.author=author
+        this.contextReport = context
+        this.replyReport = reply
+        this.author = author
     }
+
     constructor(
         name: String?,
         thumbnail: String?,
@@ -76,11 +87,12 @@ class comicItem : Serializable {
         this.cover = cover
         this.totalChapter = totalChapter
     }
+
     constructor(name: String?, cover: Int, author: String?, lastDate: String) {
         this.name = name
         this.cover = cover
         this.author = author
-        this.lastDateSeen=lastDate
+        this.lastDateSeen = lastDate
     }
 
     constructor(
@@ -115,7 +127,8 @@ class comicItem : Serializable {
         description: String?,
         completeStatus: Boolean,
         category: ArrayList<String>,
-        chapter : ArrayList<chapterItem>
+        chapter: ArrayList<chapterItem>,
+        comment: ArrayList<commentItem>
     ) {
         this.name = name
         this.author = author
@@ -129,8 +142,10 @@ class comicItem : Serializable {
         this.completeStatus = completeStatus
         this.category = category
         this.chapter = chapter
+        this.comment = comment
     }
-    constructor (temp: comicItem){
+
+    constructor (temp: comicItem) {
         this.name = temp.name
         this.totalChapter = temp.totalChapter
         this.status = temp.status

@@ -21,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khtn.mangashare.R
 import com.khtn.mangashare.booklist.activity.UserReportActivity
+import com.khtn.mangashare.comment.ViewCommentActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 
@@ -40,6 +41,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
     lateinit var nextBTN: ImageView
     lateinit var viewPager: ViewPager2
     lateinit var chapterListLL: LinearLayout
+    lateinit var commentLL: LinearLayout
 
     private fun init() {
         val intent = intent
@@ -47,6 +49,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         var num: Int = intent.getIntExtra("chapterNumber", -1)
         var numSort: Int = intent.getIntExtra("sort", -1)
 
+        commentLL = findViewById(R.id.commentChapterDetailLL)
         markLL = findViewById(R.id.markChapterDetailLL)
         markIV = findViewById(R.id.markChapterIM)
         chapterListLL = findViewById(R.id.chooseChapterDetailLL)
@@ -75,7 +78,13 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         if (num != -1) {
             viewPager?.adapter = adapter
         }
-
+        //view comment
+        commentLL.setOnClickListener {
+            val intent = Intent(this, ViewCommentActivity::class.java)
+            intent.putExtra("comic", comic)
+            intent.putExtra("chapterNumber", num + 1)
+            startActivity(intent)
+        }
         //back and previous chapter
         backBTN = findViewById(R.id.goPreviousChapterIM)
         nextBTN = findViewById(R.id.goNextChapterIM)

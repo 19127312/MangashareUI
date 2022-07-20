@@ -13,8 +13,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.khtn.mangashare.R
 import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
+import com.khtn.mangashare.comment.ViewCommentActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.model.commentItem
 
 class ViewComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +48,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
         val category = findViewById<TextView>(R.id.categoryDetailTV)
         val continuteRead = findViewById<LinearLayout>(R.id.continueReadComicDetailLL)
         val startRead = findViewById<Button>(R.id.startReadBTN)
+        val comment = findViewById<LinearLayout>(R.id.commentComicDetailLL)
 
         continuteRead.setOnClickListener {
             val intent = Intent(this, ViewChapterDetailActivity::class.java)
@@ -66,6 +69,13 @@ class ViewComicDetailActivity : AppCompatActivity() {
             intent.putExtra("comic", comic)
             intent.putExtra("chapterNumber", 0)
             startActivityForResult(intent, 112)
+        }
+
+        comment.setOnClickListener {
+            val intent = Intent(this, ViewCommentActivity::class.java)
+            intent.putExtra("comic", comic)
+            intent.putExtra("chapterNumber", -1)
+            startActivity(intent)
         }
 
         tb.title = comic.name
@@ -128,6 +138,21 @@ class ViewComicDetailActivity : AppCompatActivity() {
         chapterList.add(chapterItem(14, "26/05/2022", 100, false, 200, imageList2))
         chapterList.add(chapterItem(15, "10/07/2022", 0, false, 200, imageList2))
 
+        val commentList = arrayListOf<commentItem>()
+        commentList.add(commentItem("Nguyễn Văn A",1,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn B",2,"20/07/2022","Truyện hay quá. Nên đọc"))
+        commentList.add(commentItem("Nguyễn Văn C",-1,"20/07/2022","Truyện hay"))
+        commentList.add(commentItem("Nguyễn Đức Đạt",11,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Ngô Nguyễn Kiết Tường",12,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Đào Duy An",-1,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Tạ Công Điền",15,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",9,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",10,"20/07/2022","..."))
+        commentList.add(commentItem("Nguyễn Văn A",8,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",4,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",5,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn D",1,"20/07/2022","Truyện hay quá. Art đẹp"))
+
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
         category.add("Hành động")
@@ -147,7 +172,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
                 34,
                 des,
                 false,
-                category, chapterList
+                category, chapterList, commentList
             )
         return comic
     }
