@@ -20,6 +20,15 @@
             android:name=".search.SearchComicActivity"
             android:exported="false" />
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".booklist.activity.ViewCensorChapterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".booklist.activity.ViewCensorComicActivity"
+            android:exported="false" />
+        <activity
             android:name=".booklist.activity.UserReportActivity"
             android:exported="false" />
         <activity

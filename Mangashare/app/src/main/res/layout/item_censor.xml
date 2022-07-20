@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/coverCensor"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cover_manga" />
+    <TextView
+        android:id="@+id/nameMangaCensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/coverCensor"
+        app:layout_constraintTop_toTopOf="@+id/coverCensor" />
+
+    <TextView
+        android:id="@+id/authorCensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lexend_medium"
+        android:textStyle="italic"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameMangaCensor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameMangaCensor"
+        app:layout_constraintTop_toBottomOf="@+id/nameMangaCensor" />
+    <TextView
+        android:id="@+id/dateCensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lexend_medium"
+        android:textStyle="italic"
+
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/authorCensor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/authorCensor"
+        app:layout_constraintTop_toBottomOf="@+id/authorCensor" />
+</androidx.constraintlayout.widget.ConstraintLayout>

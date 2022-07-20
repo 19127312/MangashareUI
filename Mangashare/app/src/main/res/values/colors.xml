@@ -16,11 +16,13 @@
     <color name="selectedTab">#E5F4D6</color>
     <color name="checked">#1584ec</color>
     <color name="gray">#EFEFEF</color>
+    <color name="gray_2">#fafafa</color>
     <color name="pink_2">#F0E3E3</color>
     <color name="pink_3">#F8F2F2</color>
     <color name="transparent_black">#55000000</color>
     <color name="transparent_white">#55FFFFFF</color>
     <color name="transparent_gray">#55D0D0D0</color>
+    <color name="unselected_icon">#8a8a8a</color>
     <color name="skip">#EC0000</color>
     <color name="orange">#F8B95B</color>
     <color name="blue_2">#43E3DA</color>
