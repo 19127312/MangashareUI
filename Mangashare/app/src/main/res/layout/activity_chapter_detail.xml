@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#98000000"
     tools:context=".comicDetail.ViewComicDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/chapterDetailToolbarCL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/black_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,15 +19,16 @@
             android:id="@+id/chapterDetailTB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black_2"
             android:minHeight="?attr/actionBarSize"
             android:paddingEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="Naruto">
-        </androidx.appcompat.widget.Toolbar>
+            app:navigationIcon="@drawable/ic_back_white"
+            app:title="Naruto"
+            app:titleTextColor="@color/white_2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -78,7 +81,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/round_btn"
-        android:backgroundTint="@color/transparent_gray"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"

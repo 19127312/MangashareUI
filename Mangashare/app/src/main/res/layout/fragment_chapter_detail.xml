@@ -8,9 +8,10 @@
     <com.ortiz.touchview.TouchImageView
         android:id="@+id/imageChapterDetail"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

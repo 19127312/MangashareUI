@@ -26,4 +26,7 @@
     <color name="blue_2">#43E3DA</color>
     <color name="green_3">#5BF890</color>
     <color name="brown">#65B65C5C</color>
+    <color name="black_2">#2D2D2D</color>
+    <color name="white_2">#D5D5D5</color>
+    <color name="gray_2">#C8C8C8</color>
 </resources>

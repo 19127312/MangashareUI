@@ -12,7 +12,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val intent = Intent(this, MainActivity::class.java)
-
+        intent.putExtra("typeUser", "user")
+        startActivity(intent)
 
 //        admin.setOnClickListener {
 //            intent.putExtra("typeUser", "admin")
