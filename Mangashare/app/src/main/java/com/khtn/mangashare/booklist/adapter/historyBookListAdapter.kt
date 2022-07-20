@@ -18,6 +18,7 @@ import com.khtn.mangashare.R
 import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.model.commentItem
 
 class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicItem>?) :
     RecyclerView.Adapter<historyBookListAdapter.HolderVideo>(){
@@ -111,6 +112,21 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
         chapterList.add(chapterItem(14, "26/05/2022", 100, false, 200, imageList))
         chapterList.add(chapterItem(15, "10/07/2022", 0, false, 200, imageList))
 
+        val commentList = arrayListOf<commentItem>()
+        commentList.add(commentItem("Nguyễn Văn A",1,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn B",2,"20/07/2022","Truyện hay quá. Nên đọc"))
+        commentList.add(commentItem("Nguyễn Văn C",3,"20/07/2022","Truyện hay"))
+        commentList.add(commentItem("Nguyễn Đức Đạt",11,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Ngô Nguyễn Kiết Tường",12,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Đào Duy An",14,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Tạ Công Điền",15,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",9,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",10,"20/07/2022","..."))
+        commentList.add(commentItem("Nguyễn Văn A",8,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",4,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A",5,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn D",1,"20/07/2022","Truyện hay quá. Art đẹp"))
+
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
         category.add("Hành động")
@@ -130,7 +146,7 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
                 34,
                 des,
                 false,
-                category, chapterList
+                category, chapterList, commentList
             )
         return comic
     }
