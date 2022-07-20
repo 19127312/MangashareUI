@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_home_selected)
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_booklist)
-        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_user)
+        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_user_outline)
                 tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 when(oldPos){
                     0->tab?.setIcon(R.drawable.ic_home)
                     1->tab?.setIcon(R.drawable.ic_booklist)
-                    2->tab?.setIcon(R.drawable.ic_user)
+                    2->tab?.setIcon(R.drawable.ic_user_outline)
                 }
             }
 
