@@ -143,7 +143,7 @@
             android:id="@+id/loginBtn"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/confirmBtn"
             android:text="Đăng nhập"
 
