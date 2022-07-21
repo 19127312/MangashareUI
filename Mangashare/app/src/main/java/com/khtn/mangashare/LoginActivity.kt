@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         goToRegisterPage.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-
+            finish()
         }
 //        admin.setOnClickListener {
 //            intent.putExtra("typeUser", "admin")

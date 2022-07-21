@@ -27,6 +27,8 @@
                 android:layout_marginTop="20dp"
                 android:textColor="@color/black"
                 android:textSize="30sp"
+                android:fontFamily="@font/lexend_bold"
+
                 android:text="Đăng ký"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +40,7 @@
                 android:layout_marginStart="40dp"
                 android:text="Email"
                 android:textColor="@color/black"
+                android:fontFamily="@font/lexend_regular"
 
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Tên hiển thị"
                 android:textColor="@color/black"
+                android:fontFamily="@font/lexend_regular"
 
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +65,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="40dp"
                 app:startIconDrawable="@drawable/ic_user_selected"
                 app:boxStrokeErrorColor="@color/skip"
@@ -109,6 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mật khẩu"
+                android:fontFamily="@font/lexend_regular"
+
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/emailRegisterLayout"
@@ -145,6 +150,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/confirmBtn"
+                android:fontFamily="@font/lexend_semibold"
 
                 android:text="Đăng ký"
                 app:layout_constraintEnd_toEndOf="@+id/passwordRegisterLayout"
@@ -158,6 +164,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Hoặc với"
+                android:fontFamily="@font/lexend_regular"
+
                 app:layout_constraintEnd_toEndOf="@+id/registerBtn"
                 app:layout_constraintStart_toStartOf="@+id/registerBtn"
                 app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
@@ -241,6 +249,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Đã có tài khoản ?"
+                    android:fontFamily="@font/lexend_regular"
+
                     app:layout_constraintEnd_toEndOf="@+id/button2"
                     app:layout_constraintStart_toStartOf="@+id/button2"
                     app:layout_constraintTop_toBottomOf="@+id/button2" />
@@ -251,6 +261,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="Đăng nhập"
+                    android:fontFamily="@font/lexend_regular"
+
                     android:textColor="#160062"
                     app:layout_constraintEnd_toEndOf="@+id/button2"
                     app:layout_constraintStart_toStartOf="@+id/button2"
@@ -323,6 +335,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Tôi thích đọc"
+                android:fontFamily="@font/poppins_regular"
+
                 app:layout_constraintEnd_toEndOf="@+id/userBtn"
                 app:layout_constraintStart_toStartOf="@+id/userBtn"
                 app:layout_constraintTop_toBottomOf="@+id/userBtn" />
@@ -333,6 +347,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Tôi thích sáng tác"
+                android:fontFamily="@font/poppins_regular"
+
                 app:layout_constraintEnd_toEndOf="@+id/authorBtn"
                 app:layout_constraintStart_toStartOf="@+id/authorBtn"
                 app:layout_constraintTop_toBottomOf="@+id/authorBtn" />
