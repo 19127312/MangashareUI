@@ -1,6 +1,7 @@
 package com.khtn.mangashare.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
+import com.khtn.mangashare.booklist.activity.ViewBookListActivity
 import com.khtn.mangashare.home.adapter.IOnRecyclerViewItemTouchListener
 import com.khtn.mangashare.model.comicItem
 
@@ -61,7 +63,11 @@ class RankingComicAdapter(var context: Context?, var comics: ArrayList<comicItem
         holder.rc.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.rc.adapter = adapter
-
+        adapter.onButtonClick = { tmp ->
+            val intent = Intent(context, ViewBookListActivity::class.java)
+            intent.putExtra("title", tmp)
+            context!!.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

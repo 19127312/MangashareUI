@@ -1,15 +1,18 @@
 package com.khtn.mangashare.booklist.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
+import com.khtn.mangashare.booklist.activity.ViewBookListActivity
 import com.khtn.mangashare.model.comicItem
 
 
@@ -58,6 +61,11 @@ class BookListAdapter(var context: Context?, var comics: ArrayList<comicItem>) :
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         holder.rc.adapter = adapter
 
+        adapter.onButtonClick = { tmp ->
+            val intent = Intent(context, ViewBookListActivity::class.java)
+            intent.putExtra("title", tmp)
+            context!!.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
