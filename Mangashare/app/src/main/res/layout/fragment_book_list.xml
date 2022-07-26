@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabsBookList"
@@ -16,14 +15,14 @@
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/navigation"
-
         app:tabTextAppearance="@style/tab_text_middle" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerBookList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabsBookList">
+        android:layout_below="@id/tabsBookList"
+        android:layout_marginTop="10dp">
 
     </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

@@ -4,19 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootAddBook"
-  >
-
-    <!-- TODO: Update blank fragment layout -->
+    android:id="@+id/rootAddBook">
 
     <ImageView
         android:id="@+id/addComicBtn"
-        android:scaleType="fitXY"
-
         android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
         android:src="@drawable/add"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,10 +21,10 @@
         android:id="@+id/addComicText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Viết một truyện mới"
-        android:textStyle="bold"
         android:fontFamily="@font/lexend_semibold"
-        android:textSize="24dp"
+        android:text="Viết một truyện mới"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/addComicBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addComicBtn"
@@ -36,12 +32,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myBookListRV"
-        android:layout_width="match_parent"
-        android:layout_height="489dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/addComicBtn"
         app:layout_constraintTop_toBottomOf="@+id/addComicBtn"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/item_my_book" />

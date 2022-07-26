@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ import com.khtn.mangashare.booklist.activity.UserReportActivity
 import com.khtn.mangashare.comment.ViewCommentActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
+import kotlin.properties.Delegates
 
 
 class ViewChapterDetailActivity : AppCompatActivity() {
@@ -42,11 +44,13 @@ class ViewChapterDetailActivity : AppCompatActivity() {
     lateinit var viewPager: ViewPager2
     lateinit var chapterListLL: LinearLayout
     lateinit var commentLL: LinearLayout
-
+    var num by Delegates.notNull<Int>()
     private fun init() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+
         val intent = intent
         comic = intent.getSerializableExtra("comic") as comicItem
-        var num: Int = intent.getIntExtra("chapterNumber", -1)
+        num = intent.getIntExtra("chapterNumber", -1)
         var numSort: Int = intent.getIntExtra("sort", -1)
 
         commentLL = findViewById(R.id.commentChapterDetailLL)
@@ -117,7 +121,7 @@ class ViewChapterDetailActivity : AppCompatActivity() {
             }
         }
         nextBTN.setOnClickListener {
-            if (pos < comic.chapter.size - 1){
+            if (pos < comic.chapter.size - 1) {
                 val intent = Intent(this, ViewChapterDetailActivity::class.java)
                 intent.putExtra("comic", comic)
                 intent.putExtra("sort", sort)
@@ -133,12 +137,12 @@ class ViewChapterDetailActivity : AppCompatActivity() {
         if (comic.chapter[pos].bookmark == true) {
             markIV.setImageResource(R.drawable.ic_unbook_mark)
         } else {
-            markIV.setImageResource(R.drawable.ic_book_mark)
+            markIV.setImageResource(R.drawable.ic_bookmark_white)
         }
         markLL.setOnClickListener {
             if (comic.chapter[pos].bookmark == true) {
                 comic.chapter[pos].bookmark = false
-                markIV.setImageResource(R.drawable.ic_book_mark)
+                markIV.setImageResource(R.drawable.ic_bookmark_white)
             } else {
                 comic.chapter.forEach { i ->
                     i.bookmark = false
@@ -172,6 +176,14 @@ class ViewChapterDetailActivity : AppCompatActivity() {
                 true
             }
             R.id.action_share -> {
+                val txt: String? = comic.name + " Chương " + (num + 1).toString()
+                val mimeType = "text/plain"
+                ShareCompat.IntentBuilder
+                    .from(this)
+                    .setType(mimeType)
+                    .setChooserTitle("Choose your apps")
+                    .setText(txt)
+                    .startChooser()
                 true
             }
             else -> super.onOptionsItemSelected(item)
