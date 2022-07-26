@@ -9,7 +9,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reportRV"
         android:layout_width="match_parent"
-        tools:listitem="@layout/item_my_book"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        tools:listitem="@layout/item_my_book" />
 
 </FrameLayout>

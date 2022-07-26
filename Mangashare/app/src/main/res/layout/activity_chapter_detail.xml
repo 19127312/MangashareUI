@@ -26,9 +26,9 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back_white"
+            app:navigationIcon="@drawable/ic_back_white_large"
             app:title="Naruto"
-            app:titleTextColor="@color/white_2" />
+            app:titleTextColor="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -81,7 +81,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/round_btn"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +106,7 @@
                 android:layout_height="30dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_back_white"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <LinearLayout
@@ -124,14 +124,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_oval_comment" />
+                    android:src="@drawable/ic_comment_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
                     android:text="Bình luận"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -149,14 +149,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_book_open" />
+                    android:src="@drawable/ic_book_open_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
                     android:text="Chương"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -175,14 +175,14 @@
                     android:id="@+id/markChapterIM"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
-                    android:src="@drawable/ic_book_mark" />
+                    android:src="@drawable/ic_bookmark_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
                     android:text="Đánh dấu"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -192,11 +192,10 @@
                 android:layout_height="30dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_next"
+                android:src="@drawable/ic_next_white"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

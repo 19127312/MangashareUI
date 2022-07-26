@@ -27,10 +27,15 @@
             app:title="Naruto">
 
             <ImageView
+                android:id="@+id/shareComicDetailIM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_share" />
+                android:src="@drawable/ic_share"
+                android:clickable="true"
+                android:focusable="true"
+                tools:layout_editor_absoluteX="376dp"
+                tools:layout_editor_absoluteY="16dp" />
         </androidx.appcompat.widget.Toolbar>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

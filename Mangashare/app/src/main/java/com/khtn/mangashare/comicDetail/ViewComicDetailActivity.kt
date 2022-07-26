@@ -2,12 +2,14 @@ package com.khtn.mangashare.comicDetail
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ShareCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -49,6 +51,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
         val continuteRead = findViewById<LinearLayout>(R.id.continueReadComicDetailLL)
         val startRead = findViewById<Button>(R.id.startReadBTN)
         val comment = findViewById<LinearLayout>(R.id.commentComicDetailLL)
+        val share = findViewById<ImageView>(R.id.shareComicDetailIM)
 
         continuteRead.setOnClickListener {
             val intent = Intent(this, ViewChapterDetailActivity::class.java)
@@ -76,6 +79,17 @@ class ViewComicDetailActivity : AppCompatActivity() {
             intent.putExtra("comic", comic)
             intent.putExtra("chapterNumber", -1)
             startActivity(intent)
+        }
+
+        share.setOnClickListener {
+            val txt: String? = comic.name
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder
+                .from(this)
+                .setType(mimeType)
+                .setChooserTitle("Choose your apps")
+                .setText(txt)
+                .startChooser()
         }
 
         tb.title = comic.name

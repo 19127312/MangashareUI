@@ -130,8 +130,8 @@
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Giữ đăng nhập"
             android:fontFamily="@font/lexend_regular"
+            android:text="Lưu mật khẩu"
 
             app:layout_constraintStart_toStartOf="@+id/passwordLayout"
             app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
