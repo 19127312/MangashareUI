@@ -48,5 +48,4 @@ class ViewCommentAdapter(var context: Context?, var comments: ArrayList<commentI
     override fun getItemCount(): Int {
         return comments.size
     }
-
 }

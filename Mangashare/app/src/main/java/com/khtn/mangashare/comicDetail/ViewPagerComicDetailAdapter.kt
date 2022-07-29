@@ -1,28 +1,31 @@
 package com.khtn.mangashare.comicDetail
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestComicAdapter
 import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.comicItem
+import com.khtn.mangashare.model.ratingItem
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -69,21 +72,20 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
 
     lateinit var adapter: ChapterRecyclerViewAdapter
     var items = arrayListOf<ChapterRecyclerViewItem>()
-    var checkSort : Boolean = true
+    var checkSort: Boolean = true
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 111 && resultCode == Activity.RESULT_OK) {
             var tmp = data?.getSerializableExtra("comic") as comicItem
-            var num = data?.getIntExtra("sort",-1)
+            var num = data?.getIntExtra("sort", -1)
             comic = tmp
             items.clear()
             tmp.chapter.forEach { i ->
                 items.add(ChapterRecyclerViewItem.parseData(i))
             }
-            if(num == 1){
+            if (num == 1) {
                 checkSort = true
-            }
-            else{
+            } else {
                 items.reverse()
                 checkSort = false
             }
@@ -118,8 +120,10 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
         adapter.items = items
         recyclerView?.adapter = adapter
         recyclerView?.addItemDecoration(
-            DividerItemDecoration(context,
-                DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
         )
         adapter.onButtonClick = { view, item, position ->
             when (item) {
@@ -169,16 +173,16 @@ class ChapterListFragment(private var comic: comicItem) : Fragment() {
             items.reverse()
             adapter.notifyDataSetChanged()
         }
-        
+
         adapter.itemClickListener = { view, item, position ->
             val intent = Intent(context, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
             if (checkSort) {
                 intent.putExtra("chapterNumber", position)
-                intent.putExtra("sort",1)
+                intent.putExtra("sort", 1)
             } else {
                 intent.putExtra("chapterNumber", comic.chapter.size - position - 1)
-                intent.putExtra("sort",0)
+                intent.putExtra("sort", 0)
             }
 
             startActivityForResult(intent, 111)
@@ -212,8 +216,9 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
         var updateTime = view?.findViewById<TextView>(R.id.updateDetailComicTV)
         var likeLL = view?.findViewById<LinearLayout>(R.id.likeComicDetailLL)
         var followLL = view?.findViewById<LinearLayout>(R.id.followComicDetailLL)
+        var ratingLL = view?.findViewById<LinearLayout>(R.id.ratingComicDetailLL)
 
-        comic.reviewNumber?.toString().let { reviewNumber?.setText(it) }
+        comic.rating.size.toString().let { reviewNumber?.setText(it) }
         comic.viewNumber?.toString().let { viewNumber?.setText(it) }
         comic.likeNumber?.toString().let { likeNumber?.setText(it) }
         comic.followNumber?.toString().let { followNumber?.setText(it) }
@@ -225,12 +230,18 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
             comic.likeNumber?.toString().let { likeNumber?.setText(it) }
             image?.setImageResource(R.drawable.ic_like_checked)
         }
+
         followLL?.setOnClickListener {
             val image = view?.findViewById<ImageView>(R.id.followComicIM)
             comic.followNumber = comic.followNumber?.plus(1)
             comic.followNumber?.toString().let { followNumber?.setText(it) }
             image?.setImageResource(R.drawable.ic_hotspot_checked)
         }
+
+        ratingLL?.setOnClickListener {
+            showBottomSheetDialog()
+        }
+
         if (comic.chapter.size > 0) {
             val new = LocalDate.parse(
                 comic.chapter[0].datePost,
@@ -262,10 +273,194 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
 
     }
 
+    private fun showBottomSheetDialog() {
+        val bottomSheetDialog = context?.let { BottomSheetDialog(it, R.style.DialogStyle) }
+        bottomSheetDialog!!.setContentView(R.layout.fragment_bottom_sheet_rate_comic)
+
+        val cancel = bottomSheetDialog.findViewById<TextView>(R.id.cancelRatingTV)
+        val send = bottomSheetDialog.findViewById<TextView>(R.id.sendRatingTV)
+        val content = bottomSheetDialog.findViewById<EditText>(R.id.ratingET)
+        val rc = bottomSheetDialog.findViewById<RecyclerView>(R.id.ratingRC)
+        val starOne = bottomSheetDialog.findViewById<ImageView>(R.id.starRatingOneIM)
+        val starTwo = bottomSheetDialog.findViewById<ImageView>(R.id.starRatingTwoIM)
+        val starThree = bottomSheetDialog.findViewById<ImageView>(R.id.starRatingThreeIM)
+        val starFour = bottomSheetDialog.findViewById<ImageView>(R.id.starRatingFourIM)
+        val starFive = bottomSheetDialog.findViewById<ImageView>(R.id.starRatingFiveIM)
+
+        val starList = arrayListOf<Boolean>()
+        starList.add(false)
+        starList.add(false)
+        starList.add(false)
+        starList.add(false)
+        starList.add(false)
+
+        rc!!.setHasFixedSize(true)
+        rc.layoutManager = LinearLayoutManager(activity)
+        val adapter = RatingListAdapter(context, comic.rating)
+        rc.adapter = adapter
+
+        var star = 0
+        send!!.setOnClickListener {
+            if (content!!.text.toString().length > 0) {
+                starList.forEach { it ->
+                    if (it) {
+                        star++
+                    }
+                }
+                comic.rating.add(
+                    0,
+                    ratingItem("Đào Duy An", star, "20/07/2022", content.text.toString())
+                )
+                adapter.notifyDataSetChanged()
+                content.setText("")
+                val imm: InputMethodManager =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+                rc.smoothSnapToPosition(0)
+            }
+        }
+
+        cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+        starOne!!.setOnClickListener {
+            if (starList[0]) {
+                if (starList[1] == true) {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo!!.setImageResource(R.drawable.ic_star_gray)
+                    starThree!!.setImageResource(R.drawable.ic_star_gray)
+                    starFour!!.setImageResource(R.drawable.ic_star_gray)
+                    starFive!!.setImageResource(R.drawable.ic_star_gray)
+                    starList[0] = true
+                    starList[1] = false
+                    starList[2] = false
+                    starList[3] = false
+                    starList[4] = false
+                } else {
+                    starOne.setImageResource(R.drawable.ic_star_gray)
+                    starList[0] = false
+                }
+
+            } else {
+                starOne.setImageResource(R.drawable.ic_star)
+                starList[0] = true
+            }
+        }
+
+        starTwo!!.setOnClickListener {
+            if (starList[1]) {
+                if (starList[2] == true) {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star)
+                    starThree!!.setImageResource(R.drawable.ic_star_gray)
+                    starFour!!.setImageResource(R.drawable.ic_star_gray)
+                    starFive!!.setImageResource(R.drawable.ic_star_gray)
+                    starList[0] = true
+                    starList[1] = true
+                    starList[2] = false
+                    starList[3] = false
+                    starList[4] = false
+                } else {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star_gray)
+                    starList[1] = false
+                }
+            } else {
+                starOne.setImageResource(R.drawable.ic_star)
+                starTwo.setImageResource(R.drawable.ic_star)
+                starList[0] = true
+                starList[1] = true
+            }
+        }
+        starThree!!.setOnClickListener {
+            if (starList[2]) {
+                if (starList[3] == true) {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star)
+                    starThree.setImageResource(R.drawable.ic_star)
+                    starFour!!.setImageResource(R.drawable.ic_star_gray)
+                    starFive!!.setImageResource(R.drawable.ic_star_gray)
+                    starList[0] = true
+                    starList[1] = true
+                    starList[2] = true
+                    starList[3] = false
+                    starList[4] = false
+                } else {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star)
+                    starThree.setImageResource(R.drawable.ic_star_gray)
+                    starList[2] = false
+                }
+            } else {
+                starOne.setImageResource(R.drawable.ic_star)
+                starTwo.setImageResource(R.drawable.ic_star)
+                starThree.setImageResource(R.drawable.ic_star)
+                starList[0] = true
+                starList[1] = true
+                starList[2] = true
+            }
+        }
+        starFour!!.setOnClickListener {
+            if (starList[3]) {
+                if (starList[4] == true) {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star)
+                    starThree.setImageResource(R.drawable.ic_star)
+                    starFour.setImageResource(R.drawable.ic_star)
+                    starFive!!.setImageResource(R.drawable.ic_star_gray)
+                    starList[0] = true
+                    starList[1] = true
+                    starList[2] = true
+                    starList[3] = true
+                    starList[4] = false
+                } else {
+                    starOne.setImageResource(R.drawable.ic_star)
+                    starTwo.setImageResource(R.drawable.ic_star)
+                    starThree.setImageResource(R.drawable.ic_star)
+                    starFour.setImageResource(R.drawable.ic_star_gray)
+                    starList[3] = false
+                }
+            } else {
+                starOne.setImageResource(R.drawable.ic_star)
+                starTwo.setImageResource(R.drawable.ic_star)
+                starThree.setImageResource(R.drawable.ic_star)
+                starFour.setImageResource(R.drawable.ic_star)
+                starList[0] = true
+                starList[1] = true
+                starList[2] = true
+                starList[3] = true
+            }
+        }
+        starFive!!.setOnClickListener {
+            if (starList[4]) {
+                starOne.setImageResource(R.drawable.ic_star)
+                starTwo.setImageResource(R.drawable.ic_star)
+                starThree.setImageResource(R.drawable.ic_star)
+                starFour.setImageResource(R.drawable.ic_star)
+                starFive.setImageResource(R.drawable.ic_star_gray)
+                starList[4] = false
+            } else {
+                starOne.setImageResource(R.drawable.ic_star)
+                starTwo.setImageResource(R.drawable.ic_star)
+                starThree.setImageResource(R.drawable.ic_star)
+                starFour.setImageResource(R.drawable.ic_star)
+                starFive.setImageResource(R.drawable.ic_star)
+                starList[0] = true
+                starList[1] = true
+                starList[2] = true
+                starList[3] = true
+                starList[4] = true
+            }
+        }
+
+        bottomSheetDialog.show()
+    }
+
     private fun initRecyclerView(view: View?) {
 
         recyclerView = view?.findViewById(R.id.recommendComicRC)!!
-        recyclerView?.setHasFixedSize(true);
+        recyclerView?.setHasFixedSize(true)
 
         val comicList = arrayListOf<comicItem>()
         comicList.add(comicItem("Naruto", R.drawable.cover_manga, 100))
@@ -283,5 +478,17 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
             startActivity(intent)
         }
         recyclerView?.adapter = adapter
+    }
+
+    private fun RecyclerView.smoothSnapToPosition(
+        position: Int,
+        snapMode: Int = LinearSmoothScroller.SNAP_TO_START
+    ) {
+        val smoothScroller = object : LinearSmoothScroller(this.context) {
+            override fun getVerticalSnapPreference(): Int = snapMode
+            override fun getHorizontalSnapPreference(): Int = snapMode
+        }
+        smoothScroller.targetPosition = position
+        layoutManager?.startSmoothScroll(smoothScroller)
     }
 }
