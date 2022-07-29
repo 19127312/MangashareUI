@@ -26,6 +26,7 @@ class comicItem : Serializable {
     var replyReport = ""
     var chapter = arrayListOf<chapterItem>()
     var comment = arrayListOf<commentItem>()
+    var rating = arrayListOf<ratingItem>()
 
     constructor() {}
     constructor(cover: Int, name: String, total: Int, lastSeen: Int, lastDate: String) {
@@ -143,6 +144,38 @@ class comicItem : Serializable {
         this.category = category
         this.chapter = chapter
         this.comment = comment
+    }
+
+    constructor(
+        name: String?,
+        cover: Int,
+        author: String?,
+        totalChapter: Int,
+        view: Int,
+        like: Int,
+        review: Int,
+        follow: Int,
+        description: String?,
+        completeStatus: Boolean,
+        category: ArrayList<String>,
+        chapter: ArrayList<chapterItem>,
+        comment: ArrayList<commentItem>,
+        rating: ArrayList<ratingItem>
+    ) {
+        this.name = name
+        this.author = author
+        this.cover = cover
+        this.totalChapter = totalChapter
+        this.viewNumber = view
+        this.likeNumber = like
+        this.reviewNumber = review
+        this.followNumber = follow
+        this.description = description
+        this.completeStatus = completeStatus
+        this.category = category
+        this.chapter = chapter
+        this.comment = comment
+        this.rating = rating
     }
 
     constructor (temp: comicItem) {

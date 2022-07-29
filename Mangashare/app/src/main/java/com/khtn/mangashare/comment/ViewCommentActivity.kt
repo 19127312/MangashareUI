@@ -53,8 +53,7 @@ class ViewCommentActivity : AppCompatActivity() {
                 )
                 adapter.notifyDataSetChanged()
                 content.setText("")
-                val imm: InputMethodManager =
-                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
                 rc.smoothSnapToPosition(0)
             }

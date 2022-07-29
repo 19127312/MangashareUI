@@ -19,6 +19,7 @@ import com.khtn.mangashare.comment.ViewCommentActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 import com.khtn.mangashare.model.commentItem
+import com.khtn.mangashare.model.ratingItem
 
 class ViewComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
     }
 
     lateinit var adapter: ViewPagerComicDetailAdapter
-    lateinit var comic : comicItem
+    lateinit var comic: comicItem
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -153,19 +154,51 @@ class ViewComicDetailActivity : AppCompatActivity() {
         chapterList.add(chapterItem(15, "10/07/2022", 0, false, 200, imageList2))
 
         val commentList = arrayListOf<commentItem>()
-        commentList.add(commentItem("Nguyễn Văn A",1,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn B",2,"20/07/2022","Truyện hay quá. Nên đọc"))
-        commentList.add(commentItem("Nguyễn Văn C",-1,"20/07/2022","Truyện hay"))
-        commentList.add(commentItem("Nguyễn Đức Đạt",11,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Ngô Nguyễn Kiết Tường",12,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Đào Duy An",-1,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Tạ Công Điền",15,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn A",9,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn A",10,"20/07/2022","..."))
-        commentList.add(commentItem("Nguyễn Văn A",8,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn A",4,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn A",5,"20/07/2022","Truyện hay quá. Art đẹp"))
-        commentList.add(commentItem("Nguyễn Văn D",1,"20/07/2022","Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A", 1, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn B", 2, "20/07/2022", "Truyện hay quá. Nên đọc"))
+        commentList.add(commentItem("Nguyễn Văn C", -1, "20/07/2022", "Truyện hay"))
+        commentList.add(commentItem("Nguyễn Đức Đạt", 11, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(
+            commentItem(
+                "Ngô Nguyễn Kiết Tường",
+                12,
+                "20/07/2022",
+                "Truyện hay quá. Art đẹp"
+            )
+        )
+        commentList.add(commentItem("Đào Duy An", -1, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Tạ Công Điền", 15, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A", 9, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A", 10, "20/07/2022", "..."))
+        commentList.add(commentItem("Nguyễn Văn A", 8, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A", 4, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn A", 5, "20/07/2022", "Truyện hay quá. Art đẹp"))
+        commentList.add(commentItem("Nguyễn Văn D", 1, "20/07/2022", "Truyện hay quá. Art đẹp"))
+
+        val ratingList = arrayListOf<ratingItem>()
+        ratingList.add(ratingItem("Đào Duy An", 3, "22/07/2022", "Truyện hay"))
+        ratingList.add(
+            ratingItem(
+                "Ngô Nguyễn Kiết Tường",
+                0,
+                "21/07/2022",
+                "Truyện không đáng đọc, tình tiết dở tệ, art xấu"
+            )
+        )
+        ratingList.add(ratingItem("Nguyễn Đức Đạt", 2, "21/07/2022", "..."))
+        ratingList.add(
+            ratingItem(
+                "Tạ Công Điền",
+                2,
+                "21/07/2022",
+                "Truyện bình thường không có gì đặc sắc"
+            )
+        )
+        ratingList.add(ratingItem("Nguyễn Văn A", 4, "20/07/2022", "Truyện hay"))
+        ratingList.add(ratingItem("Nguyễn Văn B", 1, "19/07/2022", "Truyện không hay"))
+        ratingList.add(ratingItem("Nguyễn Văn C", 3, "10/07/2022", "Truyện hay"))
+        ratingList.add(ratingItem("Nguyễn Văn D", 5, "09/07/2022", "Truyện hay"))
+        ratingList.add(ratingItem("Đào Duy Anh", 5, "02/07/2022", "Truyện hay các bạn nên đọc"))
 
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
@@ -186,7 +219,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
                 34,
                 des,
                 false,
-                category, chapterList, commentList
+                category, chapterList, commentList, ratingList
             )
         return comic
     }
