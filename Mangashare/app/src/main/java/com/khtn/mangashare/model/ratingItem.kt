@@ -1,6 +1,8 @@
 package com.khtn.mangashare.model
 
-class ratingItem {
+import java.io.Serializable
+
+class ratingItem : Serializable {
     var name: String = ""
     var star: Int = 0
     var time: String = ""
