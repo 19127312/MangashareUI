@@ -69,6 +69,8 @@ class myBookListAdapter( var comics:ArrayList<comicItem>?) :
             holder.status.setImageResource(R.drawable.xuli)
         }else if(comic.status=="Chưa"){
             holder.status.setImageResource(R.drawable.chuaxuly)
+        }else if(comic.status=="Temp"){
+            holder.status.setImageResource(R.drawable.tempcomic)
 
         }
     }
