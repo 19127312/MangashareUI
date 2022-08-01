@@ -20,6 +20,7 @@ import com.khtn.mangashare.R
 import com.khtn.mangashare.adapter.SuggestCategoryAdapter
 import com.khtn.mangashare.booklist.adapter.chapterEditAdapter
 import com.khtn.mangashare.model.chapterItem
+import com.khtn.mangashare.model.comicItem
 import kotlinx.android.synthetic.main.activity_add_comic.*
 import kotlinx.android.synthetic.main.activity_add_comic.backPressUserReport
 import kotlinx.android.synthetic.main.activity_add_comic.titleModeComic
@@ -31,7 +32,7 @@ class AddComicActivity : AppCompatActivity() {
     var thumbnail: Uri? =null
     var selectedItems: ArrayList<Int> = ArrayList<Int>()
     lateinit var chapterList : ArrayList<chapterItem>
-
+    lateinit var comicItem: comicItem
     var categoryArray: Array<String> = arrayOf("Hành động", "Hài hước", "Tình cảm","Trinh thám","Võ thuật","Kinh dị")
     var chooseArray:ArrayList<String> = ArrayList()
     val initSelectedItems = booleanArrayOf(false, false, false,false, false, false)
@@ -42,15 +43,21 @@ class AddComicActivity : AppCompatActivity() {
     lateinit var layout: LinearLayout
     var isReverse=false
     var isSetCover=false
+    var hasComic=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_comic)
         var intent: Intent = getIntent()
         mode = intent.getStringExtra("mode").toString()
         position= intent.getStringExtra("position").toString()
+        hasComic=intent.getBooleanExtra("hasComic", false)
+        if(hasComic){
+            comicItem=intent.getSerializableExtra("comic") as comicItem
+
+            Log.d("MyScreen","Hehe");
+        }
         layout=findViewById<LinearLayout>(R.id.rootLinear)
         backPressUserReport.setOnClickListener {
-
             finish()
         }
 
@@ -139,7 +146,7 @@ class AddComicActivity : AppCompatActivity() {
                 titleModeComic.text="Sửa thông tin truyện"
                 addCoverIcon.visibility= View.INVISIBLE
                 addCoverText.text="Sửa bìa truyện"
-                reportCover.setImageResource(R.drawable.cover_manga)
+                reportCover.setImageResource(comicItem.cover)
                 editTextTextPersonName.setText("Plapla pla")
                 editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
                 setupRV()
@@ -178,11 +185,20 @@ class AddComicActivity : AppCompatActivity() {
     }
     private fun setupRV() {
         chapterList= ArrayList<chapterItem>()
-        chapterList.add(chapterItem(1,"10/01/22"))
-        chapterList.add(chapterItem(2,"12/01/22"))
-        chapterList.add(chapterItem(3,"13/01/22"))
-        chapterList.add(chapterItem(4,"14/01/22"))
-        chapterList.add(chapterItem(5,"15/01/22"))
+        chapterList.add(chapterItem(1,"Duyệt","10/01/22"))
+        chapterList.add(chapterItem(2,"Duyệt","12/01/22"))
+        chapterList.add(chapterItem(3,"Duyệt","13/01/22"))
+        if(comicItem.status=="Uncensored"){
+            chapterList.add(chapterItem(4,"Chưa duyệt","14/01/22"))
+            chapterList.add(chapterItem(5,"Chưa duyệt","15/01/22"))
+        }else if(comicItem.status=="Temp") {
+            chapterList.add(chapterItem(4,"Nháp","14/01/22"))
+            chapterList.add(chapterItem(5,"Nháp","15/01/22"))
+        }else {
+            chapterList.add(chapterItem(4,"Duyệt","14/01/22"))
+            chapterList.add(chapterItem(5,"Duyệt","15/01/22"))
+        }
+
 
         chapterAdapter = chapterEditAdapter(chapterList)
         chapterRV.adapter=chapterAdapter

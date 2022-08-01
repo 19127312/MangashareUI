@@ -76,6 +76,7 @@
             app:boxStrokeErrorColor="@color/skip"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
+
             app:helperTextTextColor="@color/skip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,11 +94,12 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/lexend_regular"
             android:text="Mật khẩu"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:fontFamily="@font/lexend_regular"
 
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/emailLayout"
             app:layout_constraintTop_toBottomOf="@+id/emailLayout" />
 
@@ -130,9 +132,10 @@
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/lexend_regular"
-            android:text="Lưu mật khẩu"
 
+            android:text="Lưu mật khẩu"
             app:layout_constraintStart_toStartOf="@+id/passwordLayout"
             app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 

@@ -6,6 +6,8 @@ class chapterItem : Serializable {
 
     var number: Int? = 0
     var datePost: String? = ""
+    var status: String? = ""
+
     var price: Int? = 0
     var bookmark: Boolean = false
     var viewNumber: Int? = 0
@@ -23,6 +25,11 @@ class chapterItem : Serializable {
     constructor(number: Int, datePost: String) {
         this.number = number
         this.datePost = datePost
+    }
+    constructor(number: Int, status: String, datePost: String){
+        this.number = number
+        this.datePost = datePost
+        this.status= status
     }
 
     constructor(number: Int, datePost: String, price: Int, bookmark: Boolean, view : Int, image : ArrayList<Int>) {
