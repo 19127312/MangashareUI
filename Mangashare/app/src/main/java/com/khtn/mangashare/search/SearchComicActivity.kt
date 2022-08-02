@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.*
+import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,13 +27,15 @@ class SearchComicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_comic)
+
         init()
         initRecyclerView()
     }
 
     var comicList = arrayListOf<comicItem>()
+    lateinit var inputSearchText : EditText
     private fun init() {
-        val inputSearchText = findViewById<EditText>(R.id.inputSearchTV)
+        inputSearchText = findViewById(R.id.inputSearchTV)
         val searchIM = findViewById<ImageView>(R.id.searchComicIM)
         val clearIM = findViewById<ImageView>(R.id.clearSeachComicIM)
         val length = findViewById<TextView>(R.id.lengthSearchTV)
@@ -75,16 +80,38 @@ class SearchComicActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initRecyclerView() {
-        val rc = findViewById<RecyclerView>(R.id.searchComicRC)
         comicList = initComicItem()
-        val adapter = BookListAdapter(this, comicList)
+        val rc = findViewById<RecyclerView>(R.id.searchComicRC)
+        var adapter = BookListAdapter(this, comicList)
         rc.setHasFixedSize(true);
         rc.layoutManager = LinearLayoutManager(this)
         rc.adapter = adapter
         adapter.onItemClick = { item ->
             val intent = Intent(this, ViewComicDetailActivity::class.java)
             startActivity(intent)
+        }
+
+        inputSearchText.setOnEditorActionListener { v, actionId, event ->
+            Log.i("testEnter","0")
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                Log.i("testEnter","1")
+                if(inputSearchText.text.toString().length != 0){
+                    Log.i("testEnter","2")
+                    comicList.forEach {
+                        var temp = inputSearchText.text.toString().lowercase()
+                        if(!it.name!!.lowercase().contains(temp)){
+                            comicList.remove(it)
+                        }
+                    }
+                    Log.i("testEnter",comicList.size.toString())
+                    adapter.notifyDataSetChanged()
+                }
+                true
+            } else {
+                false
+            }
         }
     }
 
@@ -355,7 +382,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Conan",
-                R.drawable.manga_naruto,
+                R.drawable.manga_conan,
                 100,
                 201,
                 501,
@@ -367,7 +394,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_naruto,
+                R.drawable.manga_onepiece,
                 100,
                 201,
                 501,
@@ -378,44 +405,8 @@ class SearchComicActivity : AppCompatActivity() {
         )
         rs.add(
             comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
+                "Bleach",
+                R.drawable.manga_bleach,
                 100,
                 201,
                 501,
@@ -427,7 +418,31 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Doraemon",
-                R.drawable.manga_naruto,
+                R.drawable.manga_doraemon,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        rs.add(
+            comicItem(
+                "Hunter x Hunter",
+                R.drawable.manga_hunter,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        rs.add(
+            comicItem(
+                "Dragon Ball",
+                R.drawable.manga_dragonball,
                 100,
                 201,
                 501,

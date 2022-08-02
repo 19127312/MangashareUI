@@ -491,11 +491,11 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
 
         val comicList = arrayListOf<comicItem>()
         comicList.add(comicItem("Naruto", R.drawable.manga_naruto, 100))
-        comicList.add(comicItem("One piece", R.drawable.manga_onepiece, 501))
-        comicList.add(comicItem("Hunter x hunter", R.drawable.manga_hunter, 208))
+        comicList.add(comicItem("One Piece", R.drawable.manga_onepiece, 501))
+        comicList.add(comicItem("Hunter x Hunter", R.drawable.manga_hunter, 208))
         comicList.add(comicItem("Bleach", R.drawable.manga_bleach, 130))
         comicList.add(comicItem("Doraemon", R.drawable.manga_doraemon, 208))
-        comicList.add(comicItem("Dragon ball", R.drawable.manga_dragonball, 130))
+        comicList.add(comicItem("Dragon Ball", R.drawable.manga_dragonball, 130))
 
         recyclerView?.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)

@@ -66,7 +66,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Conan",
-                R.drawable.manga_naruto,
+                R.drawable.manga_conan,
                 100,
                 201,
                 501,
@@ -78,7 +78,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_naruto,
+                R.drawable.manga_onepiece,
                 100,
                 201,
                 501,
@@ -89,44 +89,8 @@ class ViewBookListActivity : AppCompatActivity() {
         )
         rs.add(
             comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
-                100,
-                201,
-                501,
-                description,
-                true,
-                category
-            )
-        )
-        rs.add(
-            comicItem(
-                "One piece",
-                R.drawable.manga_naruto,
+                "Bleach",
+                R.drawable.manga_bleach,
                 100,
                 201,
                 501,
@@ -138,7 +102,31 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Doraemon",
-                R.drawable.manga_naruto,
+                R.drawable.manga_doraemon,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        rs.add(
+            comicItem(
+                "Hunter x Hunter",
+                R.drawable.manga_hunter,
+                100,
+                201,
+                501,
+                description,
+                true,
+                category
+            )
+        )
+        rs.add(
+            comicItem(
+                "Dragon Ball",
+                R.drawable.manga_dragonball,
                 100,
                 201,
                 501,
