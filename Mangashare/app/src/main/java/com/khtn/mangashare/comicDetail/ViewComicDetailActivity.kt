@@ -125,7 +125,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
     private fun initItem(): comicItem {
         val intent = intent
         comicName = intent.getStringExtra("comicName").toString()
-
+        Log.d("MyScreen", comicName)
         val imageList = arrayListOf<Int>()
         imageList.add(R.drawable.cover_manga)
         imageList.add(R.drawable.cover_manga)
@@ -208,7 +208,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
         var image: Int = R.drawable.cover_manga
         Log.i("testimage", comicName)
 
-        var author = ""
+        var author = "Ausi"
 
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
@@ -253,7 +253,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
 
         val comic =
             comicItem(
-                "Naruto",
+                comicName,
                 image,
                 author,
                 100,
