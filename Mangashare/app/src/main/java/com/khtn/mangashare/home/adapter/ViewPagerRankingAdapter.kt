@@ -81,6 +81,7 @@ class RankingComicFragment(private var comicList: ArrayList<comicItem>) : Fragme
         val adapter = context?.let { RankingComicAdapter(it, comicList) }
         adapter?.onItemClick = { tmp ->
             val intent = Intent(context, ViewComicDetailActivity::class.java)
+            intent.putExtra("comicName",tmp.name)
             startActivity(intent)
         }
         recyclerView?.adapter = adapter

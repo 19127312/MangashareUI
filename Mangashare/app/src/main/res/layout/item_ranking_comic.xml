@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rankingIV"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/manga_cover" />
+            app:srcCompat="@drawable/manga_naruto" />
 
         <ImageView
             android:id="@+id/rankingIV"

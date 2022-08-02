@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
@@ -55,7 +54,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Naruto",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -67,7 +66,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Conan",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -79,7 +78,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -91,7 +90,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -103,7 +102,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -115,7 +114,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -127,7 +126,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -139,7 +138,7 @@ class ViewBookListActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Doraemon",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,

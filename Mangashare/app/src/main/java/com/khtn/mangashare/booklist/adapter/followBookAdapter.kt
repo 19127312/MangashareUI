@@ -1,21 +1,17 @@
 package com.khtn.mangashare.booklist.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.khtn.mangashare.R
-import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
 import com.khtn.mangashare.model.chapterItem
 import com.khtn.mangashare.model.comicItem
 import com.khtn.mangashare.model.commentItem
-import kotlinx.android.synthetic.main.fragment_add_book_list.*
 
 class followBookAdapter(var root: View,var context: Context?, var comics:ArrayList<comicItem>?) :
     RecyclerView.Adapter<followBookAdapter.HolderVideo>(){
@@ -94,12 +90,12 @@ class followBookAdapter(var root: View,var context: Context?, var comics:ArrayLi
         imageList.add(R.drawable.cover_manga)
 
         val imageList2 = arrayListOf<Int>()
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
 
         val chapterList = arrayListOf<chapterItem>()
         chapterList.add(chapterItem(1, "20/05/2022", 0, false, 200, imageList))

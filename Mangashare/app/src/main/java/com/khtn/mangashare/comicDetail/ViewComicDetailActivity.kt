@@ -3,6 +3,7 @@ package com.khtn.mangashare.comicDetail
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -25,7 +26,6 @@ class ViewComicDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
-
         comic = initItem()
         initViewPager(comic)
         init(comic)
@@ -34,7 +34,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
 
     lateinit var adapter: ViewPagerComicDetailAdapter
     lateinit var comic: comicItem
-
+    lateinit var comicName: String
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 111 && resultCode == Activity.RESULT_OK) {
@@ -53,7 +53,9 @@ class ViewComicDetailActivity : AppCompatActivity() {
         val startRead = findViewById<Button>(R.id.startReadBTN)
         val comment = findViewById<LinearLayout>(R.id.commentComicDetailLL)
         val share = findViewById<ImageView>(R.id.shareComicDetailIM)
+        val imageComic = findViewById<ImageView>(R.id.imageComicIV)
 
+        imageComic.setImageResource(comic.cover)
         continuteRead.setOnClickListener {
             val intent = Intent(this, ViewChapterDetailActivity::class.java)
             intent.putExtra("comic", comic)
@@ -121,6 +123,9 @@ class ViewComicDetailActivity : AppCompatActivity() {
     }
 
     private fun initItem(): comicItem {
+        val intent = intent
+        comicName = intent.getStringExtra("comicName").toString()
+
         val imageList = arrayListOf<Int>()
         imageList.add(R.drawable.cover_manga)
         imageList.add(R.drawable.cover_manga)
@@ -129,12 +134,12 @@ class ViewComicDetailActivity : AppCompatActivity() {
         imageList.add(R.drawable.cover_manga)
 
         val imageList2 = arrayListOf<Int>()
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
 
         val chapterList = arrayListOf<chapterItem>()
         chapterList.add(chapterItem(1, "20/05/2022", 0, false, 200, imageList2))
@@ -200,6 +205,16 @@ class ViewComicDetailActivity : AppCompatActivity() {
         ratingList.add(ratingItem("Nguyễn Văn D", 5, "09/07/2022", "Truyện hay"))
         ratingList.add(ratingItem("Đào Duy Anh", 5, "02/07/2022", "Truyện hay các bạn nên đọc"))
 
+        var image : Int = R.drawable.cover_manga
+        Log.i("testimage",comicName)
+        when(comicName){
+            "Naruto" -> image = R.drawable.manga_naruto
+            "Conan" -> image = R.drawable.manga_conan
+            "Bleach" -> image = R.drawable.manga_bleach
+            "Doraemon" -> image = R.drawable.manga_doraemon
+            "Dragon ball" -> image = R.drawable.manga_dragonball
+            "Hunter x hunter" -> image = R.drawable.manga_hunter
+        }
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
         category.add("Hành động")
@@ -210,7 +225,7 @@ class ViewComicDetailActivity : AppCompatActivity() {
         val comic =
             comicItem(
                 "Naruto",
-                R.drawable.cover_manga,
+                image,
                 "Aoyama Gosho",
                 100,
                 23,

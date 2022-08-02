@@ -343,7 +343,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Naruto",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -355,7 +355,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Conan",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -367,7 +367,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -379,7 +379,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -391,7 +391,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -403,7 +403,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -415,7 +415,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "One piece",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -427,7 +427,7 @@ class SearchComicActivity : AppCompatActivity() {
         rs.add(
             comicItem(
                 "Doraemon",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
