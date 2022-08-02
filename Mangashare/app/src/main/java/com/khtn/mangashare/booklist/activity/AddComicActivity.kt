@@ -68,31 +68,11 @@ class AddComicActivity : AppCompatActivity() {
 
         addChapter()
         confirmAddComicBtn.setOnClickListener {
-            var isOK=true
-            if(editTextTextPersonName.text?.isEmpty() == true){
-                textInputLayoutName.helperText="Tên truyện không được bỏ trống"
-                isOK=false
-            }else{
-                textInputLayoutName.helperText=""
-            }
-
-            if(editTextTextMultiLine.text?.isEmpty() == true){
-                textInputLayoutDes.helperText="Mô tả không được bỏ trống"
-                isOK=false
-            }else{
-                textInputLayoutDes.helperText=""
-            }
-
-            if(!isSetCover){
-                addCoverText.text="Cần thêm bìa truyện"
-                addCoverText.setTextColor(getResources().getColor(R.color.skip))
-                isOK=false
-            }
-            if(isOK ){
-                finish()
-            }
-
+            checkError()
             //
+        }
+        tempConfirm.setOnClickListener {
+            checkError()
         }
         initCatRV()
         setupView(mode)
@@ -127,6 +107,31 @@ class AddComicActivity : AppCompatActivity() {
             super.onBackPressed();
         }
     }
+    fun checkError(){
+        var isOK=true
+        if(editTextTextPersonName.text?.isEmpty() == true){
+            textInputLayoutName.helperText="Tên truyện không được bỏ trống"
+            isOK=false
+        }else{
+            textInputLayoutName.helperText=""
+        }
+
+        if(editTextTextMultiLine.text?.isEmpty() == true){
+            textInputLayoutDes.helperText="Mô tả không được bỏ trống"
+            isOK=false
+        }else{
+            textInputLayoutDes.helperText=""
+        }
+
+        if(!isSetCover){
+            addCoverText.text="Cần thêm bìa truyện"
+            addCoverText.setTextColor(getResources().getColor(R.color.skip))
+            isOK=false
+        }
+        if(isOK ){
+            finish()
+        }
+    }
     private fun setupView(mode: String) {
 
 
@@ -147,7 +152,7 @@ class AddComicActivity : AppCompatActivity() {
                 addCoverIcon.visibility= View.INVISIBLE
                 addCoverText.text="Sửa bìa truyện"
                 reportCover.setImageResource(comicItem.cover)
-                editTextTextPersonName.setText("Plapla pla")
+                editTextTextPersonName.setText(comicItem.name)
                 editTextTextMultiLine.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tellus sed nulla auctor egestas. Quisque consectetur eros at vehicula malesuada ")
                 setupRV()
                 setupFilter()

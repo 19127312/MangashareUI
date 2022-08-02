@@ -54,12 +54,12 @@ class PendingBookListFragment : Fragment() {
         }
         itemList= ArrayList()
 
-        itemList.add(comicItem("Conan",R.drawable.cover_manga,"Nguyễn Văn A","23/12/2022"))
-        itemList.add(comicItem("Elsep",R.drawable.cover_manga,"Nguyễn Văn B","23/12/2022"))
-        itemList.add(comicItem("Berk",R.drawable.cover_manga,"Nguyễn Văn C","23/12/2022"))
-        itemList.add(comicItem("Mona",R.drawable.cover_manga,"Nguyễn Văn D","23/12/2022"))
-        itemList.add(comicItem("Leep",R.drawable.cover_manga,"Nguyễn Văn E","23/12/2022"))
-        itemList.add(comicItem("Hoime ",R.drawable.cover_manga,"Nguyễn Văn F","23/12/2022"))
+        itemList.add(comicItem("Conan",R.drawable.manga_conan,"Nguyễn Văn A","23/12/2022"))
+        itemList.add(comicItem("Elsep",R.drawable.manga_onepiece,"Nguyễn Văn B","23/12/2022"))
+        itemList.add(comicItem("Berk",R.drawable.manga_dragonball,"Nguyễn Văn C","23/12/2022"))
+        itemList.add(comicItem("Mona",R.drawable.manga_naruto,"Nguyễn Văn D","23/12/2022"))
+        itemList.add(comicItem("Leep",R.drawable.manga_bleach,"Nguyễn Văn E","23/12/2022"))
+        itemList.add(comicItem("Hoime ",R.drawable.manga_onepiece,"Nguyễn Văn F","23/12/2022"))
 
 
         adapter= censorListAdapter(context,itemList)
