@@ -176,7 +176,7 @@ class SearchComicActivity : AppCompatActivity() {
         fourLengthCheckedIM!!.setVisibility(View.INVISIBLE)
 
         allLengthCL!!.setOnClickListener {
-            allLengthCL.setBackgroundColor(R.color.green_5)
+            allLengthCL.setBackground((ContextCompat.getDrawable(this, R.color.green_5)))
             oneLengthCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
             twoLengthCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
             threeLengthCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
@@ -287,7 +287,7 @@ class SearchComicActivity : AppCompatActivity() {
         fourTimeCheckedIM!!.setVisibility(View.INVISIBLE)
 
         allTimeCL!!.setOnClickListener {
-            allTimeCL.setBackgroundColor(R.color.green_5)
+            allTimeCL.setBackground((ContextCompat.getDrawable(this, R.color.green_5)))
             oneTimeCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
             twoTimeCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
             threeTimeCL!!.setBackground((ContextCompat.getDrawable(this, R.color.white)))
