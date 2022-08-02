@@ -205,28 +205,57 @@ class ViewComicDetailActivity : AppCompatActivity() {
         ratingList.add(ratingItem("Nguyễn Văn D", 5, "09/07/2022", "Truyện hay"))
         ratingList.add(ratingItem("Đào Duy Anh", 5, "02/07/2022", "Truyện hay các bạn nên đọc"))
 
-        var image : Int = R.drawable.cover_manga
-        Log.i("testimage",comicName)
-        when(comicName){
-            "Naruto" -> image = R.drawable.manga_naruto
-            "Conan" -> image = R.drawable.manga_conan
-            "Bleach" -> image = R.drawable.manga_bleach
-            "Doraemon" -> image = R.drawable.manga_doraemon
-            "Dragon ball" -> image = R.drawable.manga_dragonball
-            "Hunter x hunter" -> image = R.drawable.manga_hunter
-        }
+        var image: Int = R.drawable.cover_manga
+        Log.i("testimage", comicName)
+
+        var author = ""
+
         val category = arrayListOf<String>()
         category.add("Phiêu lưu")
         category.add("Hành động")
         category.add("Hài hước")
-        category.add("Phiêu lưu")
+
+        when (comicName) {
+            "Naruto" -> {
+                image = R.drawable.banner_naruto
+                author = "Kishimoto Masashi"
+            }
+            "Conan" -> {
+                image = R.drawable.banner_conan
+                author = "Aoyama Gosho"
+                category.add(0,"Trinh thám")
+            }
+            "Bleach" -> {
+                image = R.drawable.banner_bleach
+                author = "Kubo Taito"
+            }
+            "One Piece" -> {
+                image = R.drawable.banner_onepiece
+                author = "Oda Eiichiro"
+            }
+            "Doraemon" -> {
+                image = R.drawable.banner_doraemon
+                author = "Fujiko Fujio"
+                category.add(0,"Thiếu nhi")
+            }
+            "Dragon Ball" -> {
+                image = R.drawable.banner_dragonball
+                author = "Toriyama Akira"
+            }
+            "Hunter x Hunter" -> {
+                image = R.drawable.banner_hunter
+                author = "Togashi Yoshihiro"
+            }
+        }
+
         val des =
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+
         val comic =
             comicItem(
                 "Naruto",
                 image,
-                "Aoyama Gosho",
+                author,
                 100,
                 23,
                 15,

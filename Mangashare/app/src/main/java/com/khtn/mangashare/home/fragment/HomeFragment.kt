@@ -129,11 +129,11 @@ class HomeFragment : Fragment() {
         }
         val comic = arrayListOf<comicItem>()
         comic.add(comicItem("Naruto", R.drawable.manga_naruto, 100))
-        comic.add(comicItem("One piece", R.drawable.manga_onepiece, 501))
-        comic.add(comicItem("Hunter x hunter", R.drawable.manga_hunter, 208))
+        comic.add(comicItem("One Piece", R.drawable.manga_onepiece, 501))
+        comic.add(comicItem("Hunter x Hunter", R.drawable.manga_hunter, 208))
         comic.add(comicItem("Bleach", R.drawable.manga_bleach, 130))
         comic.add(comicItem("Doraemon", R.drawable.manga_doraemon, 208))
-        comic.add(comicItem("Dragon ball", R.drawable.manga_dragonball, 130))
+        comic.add(comicItem("Dragon Ball", R.drawable.manga_dragonball, 130))
 
         val recyclerViewComic = view.findViewById<RecyclerView>(R.id.suggestComicRC)
         recyclerViewComic.layoutManager =
@@ -155,8 +155,6 @@ class HomeFragment : Fragment() {
         category.add("Phiêu lưu")
         category.add("Hành động")
         category.add("Hài hước")
-        category.add("Phiêu lưu")
-        category.add(description)
 
         comicDayRankingItem.add(
             comicItem(
@@ -184,7 +182,7 @@ class HomeFragment : Fragment() {
         )
         comicDayRankingItem.add(
             comicItem(
-                "Onepiece",
+                "One Piece",
                 R.drawable.manga_onepiece,
                 100,
                 201,
@@ -197,7 +195,7 @@ class HomeFragment : Fragment() {
 
         comicMonthRankingItem.add(
             comicItem(
-                "Dragon ball",
+                "Dragon Ball",
                 R.drawable.manga_dragonball,
                 100,
                 201,
