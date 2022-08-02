@@ -23,12 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_bold"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/coverHistory"
         app:layout_constraintTop_toTopOf="@+id/coverHistory" />
 
@@ -36,11 +36,12 @@
         android:id="@+id/chapterHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/lexend_medium"
         android:text="TextView"
         android:textColor="@color/black_2"
         app:layout_constraintEnd_toEndOf="@+id/nameMangaHistory"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="@+id/nameMangaHistory"
         app:layout_constraintTop_toBottomOf="@+id/nameMangaHistory" />
 
@@ -57,20 +58,13 @@
         app:layout_constraintStart_toStartOf="@+id/chapterHistory"
         app:layout_constraintTop_toBottomOf="@+id/chapterHistory" />
 
-    <android.widget.Button
+    <ImageView
         android:id="@+id/buttonContinueReading"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/round_btn"
-        android:backgroundTint="@color/green_3"
-        android:fontFamily="@font/lexend_semibold"
-        android:text="Tiếp tục"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/coverHistory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/coverHistory"
-        app:layout_constraintVertical_bias="0.452"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:srcCompat="@drawable/ic_continue" />
 </androidx.constraintlayout.widget.ConstraintLayout>
