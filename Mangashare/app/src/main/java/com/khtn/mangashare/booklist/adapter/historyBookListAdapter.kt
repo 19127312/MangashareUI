@@ -1,6 +1,5 @@
 package com.khtn.mangashare.booklist.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,10 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.khtn.mangashare.R
 import com.khtn.mangashare.chapterDetail.ViewChapterDetailActivity
@@ -88,12 +83,12 @@ class historyBookListAdapter( var context: Context?, var comics:ArrayList<comicI
         imageList.add(R.drawable.cover_manga)
 
         val imageList2 = arrayListOf<Int>()
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
-        imageList2.add(R.drawable.manga_cover)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
+        imageList2.add(R.drawable.manga_naruto)
 
         val chapterList = arrayListOf<chapterItem>()
         chapterList.add(chapterItem(1, "20/05/2022", 0, false, 200, imageList))

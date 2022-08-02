@@ -116,9 +116,6 @@ class HomeFragment : Fragment() {
         }
         val cate = arrayListOf<String>()
         cate.add("Hành động")
-        cate.add("Trinh thám")
-        cate.add("Phiêu lưu")
-        cate.add("Hài hước")
         cate.add("Phiêu lưu")
         cate.add("Hài hước")
 
@@ -131,12 +128,12 @@ class HomeFragment : Fragment() {
             goToBookListByCategory(item)
         }
         val comic = arrayListOf<comicItem>()
-        comic.add(comicItem("Naruto", R.drawable.cover_manga, 100))
-        comic.add(comicItem("One piece", R.drawable.cover_manga, 501))
-        comic.add(comicItem("Hunter x hunter", R.drawable.cover_manga, 208))
-        comic.add(comicItem("Bleach", R.drawable.cover_manga, 130))
-        comic.add(comicItem("Doraemon", R.drawable.cover_manga, 208))
-        comic.add(comicItem("Dragon ball", R.drawable.cover_manga, 130))
+        comic.add(comicItem("Naruto", R.drawable.manga_naruto, 100))
+        comic.add(comicItem("One piece", R.drawable.manga_onepiece, 501))
+        comic.add(comicItem("Hunter x hunter", R.drawable.manga_hunter, 208))
+        comic.add(comicItem("Bleach", R.drawable.manga_bleach, 130))
+        comic.add(comicItem("Doraemon", R.drawable.manga_doraemon, 208))
+        comic.add(comicItem("Dragon ball", R.drawable.manga_dragonball, 130))
 
         val recyclerViewComic = view.findViewById<RecyclerView>(R.id.suggestComicRC)
         recyclerViewComic.layoutManager =
@@ -144,12 +141,11 @@ class HomeFragment : Fragment() {
         val adapter = SuggestComicAdapter(context, comic)
         adapter.onItemClick = { tmp ->
             val intent = Intent(context, ViewComicDetailActivity::class.java)
+            intent.putExtra("comicName",tmp.name)
             startActivity(intent)
         }
 
         recyclerViewComic.adapter = adapter
-        recyclerViewComic.scrollToPosition(Int.MAX_VALUE / 2)
-
     }
 
     private fun initViewPager(view: View) {
@@ -165,7 +161,7 @@ class HomeFragment : Fragment() {
         comicDayRankingItem.add(
             comicItem(
                 "Naruto",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -177,7 +173,7 @@ class HomeFragment : Fragment() {
         comicDayRankingItem.add(
             comicItem(
                 "Conan",
-                R.drawable.manga_cover,
+                R.drawable.manga_conan,
                 100,
                 201,
                 501,
@@ -189,7 +185,7 @@ class HomeFragment : Fragment() {
         comicDayRankingItem.add(
             comicItem(
                 "Onepiece",
-                R.drawable.manga_cover,
+                R.drawable.manga_onepiece,
                 100,
                 201,
                 501,
@@ -202,7 +198,7 @@ class HomeFragment : Fragment() {
         comicMonthRankingItem.add(
             comicItem(
                 "Dragon ball",
-                R.drawable.manga_cover,
+                R.drawable.manga_dragonball,
                 100,
                 201,
                 501,
@@ -214,7 +210,7 @@ class HomeFragment : Fragment() {
         comicMonthRankingItem.add(
             comicItem(
                 "Naruto",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -226,7 +222,7 @@ class HomeFragment : Fragment() {
         comicMonthRankingItem.add(
             comicItem(
                 "Bleach",
-                R.drawable.manga_cover,
+                R.drawable.manga_bleach,
                 100,
                 201,
                 501,
@@ -239,7 +235,7 @@ class HomeFragment : Fragment() {
         comicYearRankingItem.add(
             comicItem(
                 "Naruto",
-                R.drawable.manga_cover,
+                R.drawable.manga_naruto,
                 100,
                 201,
                 501,
@@ -251,7 +247,7 @@ class HomeFragment : Fragment() {
         comicYearRankingItem.add(
             comicItem(
                 "Bleach",
-                R.drawable.manga_cover,
+                R.drawable.manga_bleach,
                 100,
                 201,
                 501,
@@ -263,7 +259,7 @@ class HomeFragment : Fragment() {
         comicYearRankingItem.add(
             comicItem(
                 "Doraemon",
-                R.drawable.manga_cover,
+                R.drawable.manga_doraemon,
                 100,
                 201,
                 501,
