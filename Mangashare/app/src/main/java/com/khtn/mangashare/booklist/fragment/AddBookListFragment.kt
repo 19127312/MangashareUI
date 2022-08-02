@@ -69,13 +69,13 @@ class AddBookListFragment : Fragment() {
             recyclerView.layoutManager= LinearLayoutManager(activity)
         }
         itemList= ArrayList()
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Censored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Uncensored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Uncensored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Censored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Uncensored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Censored"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,"Uncensored"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Konan",500,"Censored"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Whole Piece",500,"Uncensored"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Doremi",500,"Temp"))
+        itemList.add(comicItem(R.drawable.cover_manga,"My Ball",500,"Censored"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Demon Killer",500,"Uncensored"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Hiloios",500,"Temp"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Kintama",500,"Uncensored"))
         adapter= myBookListAdapter(itemList)
         if (recyclerView != null) {
             recyclerView.adapter=adapter
@@ -86,6 +86,8 @@ class AddBookListFragment : Fragment() {
                 intent= Intent(context,AddComicActivity::class.java)
                 intent.putExtra("mode","edit")
                 intent.putExtra("position",position.toString())
+                intent.putExtra("hasComic", true)
+                intent.putExtra("comic", itemList[position])
                 startActivityForResult(intent,DELETE_CODE)
 
             }

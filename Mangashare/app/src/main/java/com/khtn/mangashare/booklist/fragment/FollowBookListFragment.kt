@@ -49,12 +49,12 @@ class FollowBookListFragment : Fragment() {
         var itemList:ArrayList<comicItem>
         itemList= ArrayList()
 
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
-        itemList.add(comicItem(R.drawable.cover_manga,"Conan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Konan",500,80,"5:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Whole Piece",400,80,"6:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Doremi",300,80,"7:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"My Ball",200,80,"8:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Demon Killer",100,80,"9:30pm 23/22/2022"))
+        itemList.add(comicItem(R.drawable.cover_manga,"Kintama",90,80,"10:30pm 23/22/2022"))
         val root= view?.findViewById<View>(R.id.rootFollow)
 
 

@@ -142,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="10dp"
                 android:inputType="textMultiLine"
                 android:maxLines="10"
                 android:minLines="6"
@@ -173,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/dropdown"
                 android:drawableEnd="@drawable/ic_dropdown"
@@ -278,22 +279,43 @@
         </LinearLayout>
     </ScrollView>
 
-    <android.widget.Button
-        android:id="@+id/confirmAddComicBtn"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/background_confirm_btn"
-        android:text="XÁC NHẬN"
-        android:textColor="@color/white"
-        android:fontFamily="@font/lexend_semibold"
+        android:layout_weight="1">
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/backgroundAddChapter"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/backgroundAddChapter"
-        app:layout_constraintTop_toBottomOf="@+id/backgroundAddChapter" />
+
+        <android.widget.Button
+            android:id="@+id/tempConfirm"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_btn_wait"
+            android:fontFamily="@font/lexend_semibold"
+            android:text="Tạo nháp"
+            android:textColor="@color/wait"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.widget.Button
+            android:id="@+id/confirmAddComicBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_confirm_btn"
+            android:fontFamily="@font/lexend_semibold"
+            android:text="GỬI TRUYỆN"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

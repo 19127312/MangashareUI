@@ -17,7 +17,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/icon_app"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,13 +26,13 @@
             android:id="@+id/searchIM"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="175dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="@+id/iconapp"
-            app:layout_constraintStart_toEndOf="@+id/iconapp"
+            app:layout_constraintEnd_toStartOf="@+id/notificationIM"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.266"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -41,31 +41,16 @@
             android:id="@+id/notificationIM"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_notification"
             app:layout_constraintBottom_toBottomOf="@+id/searchIM"
-            app:layout_constraintStart_toEndOf="@+id/searchIM"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/searchIM"
             app:layout_constraintVertical_bias="0.272"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <ImageView
-            android:id="@+id/settingIM"
-            android:layout_width="35dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_setting"
-            app:layout_constraintBottom_toBottomOf="@+id/searchIM"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/notificationIM"
-            app:layout_constraintTop_toTopOf="@+id/searchIM"
-            app:layout_constraintVertical_bias="0.255"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView

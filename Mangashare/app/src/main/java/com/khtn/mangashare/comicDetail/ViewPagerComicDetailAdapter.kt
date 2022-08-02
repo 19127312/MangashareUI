@@ -218,24 +218,51 @@ class DetailComicFragment(private var comic: comicItem) : Fragment() {
         var followLL = view?.findViewById<LinearLayout>(R.id.followComicDetailLL)
         var ratingLL = view?.findViewById<LinearLayout>(R.id.ratingComicDetailLL)
 
-        comic.rating.size.toString().let { reviewNumber?.setText(it) }
+        var star = 0;
+        comic.rating.forEach { it ->
+            star += it.star
+        }
+        star /= comic.rating.size
+        star.toString().let { reviewNumber?.setText(it) }
         comic.viewNumber?.toString().let { viewNumber?.setText(it) }
         comic.likeNumber?.toString().let { likeNumber?.setText(it) }
         comic.followNumber?.toString().let { followNumber?.setText(it) }
         description?.setText(comic.description)
 
+        var isLike = true
         likeLL?.setOnClickListener {
             val image = view?.findViewById<ImageView>(R.id.likeComicIM)
-            comic.likeNumber = comic.likeNumber?.plus(1)
-            comic.likeNumber?.toString().let { likeNumber?.setText(it) }
-            image?.setImageResource(R.drawable.ic_like_checked)
+
+            if (isLike) {
+                comic.likeNumber = comic.likeNumber?.plus(1)
+                comic.likeNumber?.toString().let { likeNumber?.setText(it) }
+                image?.setImageResource(R.drawable.ic_like_checked)
+                isLike=false;
+            } else {
+                comic.likeNumber = comic.likeNumber?.minus(1)
+                comic.likeNumber?.toString().let { likeNumber?.setText(it) }
+                image?.setImageResource(R.drawable.ic_hand_like)
+                isLike=true;
+
+            }
+
         }
+        var isFollow = true
 
         followLL?.setOnClickListener {
             val image = view?.findViewById<ImageView>(R.id.followComicIM)
-            comic.followNumber = comic.followNumber?.plus(1)
-            comic.followNumber?.toString().let { followNumber?.setText(it) }
-            image?.setImageResource(R.drawable.ic_hotspot_checked)
+            if (isFollow) {
+                comic.followNumber = comic.followNumber?.plus(1)
+                comic.followNumber?.toString().let { followNumber?.setText(it) }
+                image?.setImageResource(R.drawable.ic_hotspot_checked)
+                isFollow = false
+            } else {
+                comic.followNumber = comic.followNumber?.minus(1)
+                comic.followNumber?.toString().let { followNumber?.setText(it) }
+                image?.setImageResource(R.drawable.ic_follow)
+                isFollow = true
+            }
+
         }
 
         ratingLL?.setOnClickListener {
