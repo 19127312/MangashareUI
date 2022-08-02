@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
@@ -27,43 +28,26 @@ class SearchComicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_comic)
-
         init()
         initRecyclerView()
     }
 
     var comicList = arrayListOf<comicItem>()
     lateinit var inputSearchText : EditText
+    lateinit var clearIM : ImageView
+    lateinit var resultText : TextView
     private fun init() {
         inputSearchText = findViewById(R.id.inputSearchTV)
-        val searchIM = findViewById<ImageView>(R.id.searchComicIM)
-        val clearIM = findViewById<ImageView>(R.id.clearSeachComicIM)
+        clearIM = findViewById(R.id.clearSeachComicIM)
         val length = findViewById<TextView>(R.id.lengthSearchTV)
         val lastUpdate = findViewById<TextView>(R.id.lastUpdateTV)
         val content = findViewById<TextView>(R.id.contentSearchTV)
         val tb = findViewById<Toolbar>(R.id.comicSearchTB)
+        resultText = findViewById(R.id.resultSearchTV)
+        resultText.setVisibility(View.INVISIBLE)
 
         if (inputSearchText.text.length == 0) {
             clearIM.setVisibility(View.INVISIBLE)
-        }
-
-        inputSearchText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if (inputSearchText.text.length == 0) {
-                    clearIM.setVisibility(View.INVISIBLE)
-                } else {
-                    clearIM.setVisibility(View.VISIBLE)
-                }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                clearIM.setVisibility(View.VISIBLE)
-            }
-        })
-
-        clearIM.setOnClickListener {
-            inputSearchText.setText("")
         }
 
         length.setOnClickListener {
@@ -90,29 +74,74 @@ class SearchComicActivity : AppCompatActivity() {
         rc.adapter = adapter
         adapter.onItemClick = { item ->
             val intent = Intent(this, ViewComicDetailActivity::class.java)
+            intent.putExtra("comicName",item.name)
             startActivity(intent)
         }
 
+        val result = arrayListOf<comicItem>()
         inputSearchText.setOnEditorActionListener { v, actionId, event ->
-            Log.i("testEnter","0")
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                Log.i("testEnter","1")
                 if(inputSearchText.text.toString().length != 0){
-                    Log.i("testEnter","2")
+                    result.clear()
                     comicList.forEach {
                         var temp = inputSearchText.text.toString().lowercase()
-                        if(!it.name!!.lowercase().contains(temp)){
-                            comicList.remove(it)
+                        if(it.name!!.lowercase().contains(temp)){
+                            result.add(it)
                         }
                     }
-                    Log.i("testEnter",comicList.size.toString())
-                    adapter.notifyDataSetChanged()
+                    if(result.size == 0){
+                        resultText.setVisibility(View.VISIBLE)
+                        rc.setVisibility(View.INVISIBLE)
+                    }
+                    else{
+                        adapter = BookListAdapter(this, result)
+                        rc.setHasFixedSize(true);
+                        rc.layoutManager = LinearLayoutManager(this)
+                        rc.adapter = adapter
+                        adapter.onItemClick = { item ->
+                            val intent = Intent(this, ViewComicDetailActivity::class.java)
+                            intent.putExtra("comicName",item.name)
+                            startActivity(intent)
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
+                    val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
                 }
                 true
             } else {
                 false
             }
         }
+        clearIM.setOnClickListener {
+            adapter = BookListAdapter(this, comicList)
+            rc.setHasFixedSize(true);
+            rc.layoutManager = LinearLayoutManager(this)
+            rc.adapter = adapter
+            adapter.onItemClick = { item ->
+                val intent = Intent(this, ViewComicDetailActivity::class.java)
+                intent.putExtra("comicName",item.name)
+                startActivity(intent)
+            }
+            adapter.notifyDataSetChanged()
+            inputSearchText.setText("")
+            resultText.setVisibility(View.INVISIBLE)
+            rc.setVisibility(View.VISIBLE)
+        }
+        inputSearchText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (inputSearchText.text.length == 0) {
+                    clearIM.setVisibility(View.INVISIBLE)
+                } else {
+                    clearIM.setVisibility(View.VISIBLE)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                clearIM.setVisibility(View.VISIBLE)
+            }
+        })
     }
 
     @SuppressLint("ResourceAsColor")

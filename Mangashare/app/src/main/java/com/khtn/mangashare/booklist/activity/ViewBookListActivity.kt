@@ -34,8 +34,9 @@ class ViewBookListActivity : AppCompatActivity() {
         rc.setHasFixedSize(true);
         rc.layoutManager = LinearLayoutManager(this)
         rc.adapter = adapter
-        adapter.onItemClick= {item ->
+        adapter.onItemClick = { item ->
             val intent = Intent(this, ViewComicDetailActivity::class.java)
+            intent.putExtra("comicName", item.name)
             startActivity(intent)
         }
     }
